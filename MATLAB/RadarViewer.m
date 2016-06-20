@@ -1,13 +1,22 @@
-target1_json = parse_json('[{"NoOfTarget_1": 0,"Tar_Dist_rms": 0.000000,"Tar_Ang_rms": 0.000000,"Tar_Vrel_rms": -0.020000,"Tar_Vrel": 14.989998,"Tar_Dist": 100.000000},{"NoOfTarget_1": 0,"Tar_Dist_rms": 0.000000,"Tar_Ang_rms": 0.000000,"Tar_Vrel_rms": -0.020000,"Tar_Vrel": 14.989998,"Tar_Dist": 120.000000}]');
-target2_json = parse_json('[{"NoOfTarget_2": 0,"Tar_PdH0": 1.000000,"Tar_Length": 0.000000,"Tar_Width": 30.900000,"Tar_Type": 0,"Tar_Ang": 20.000000,"Tar_RCSValue": 824}{"NoOfTarget_2": 0,"Tar_PdH0": 1.000000,"Tar_Length": 0.000000,"Tar_Width": 30.900000,"Tar_Type": 0,"Tar_Ang": 30.000000,"Tar_RCSValue": 0}]');
+for x = 1:100
+    part1 = cellstr(char(judp('receive',25000,300, 10000))');
+    part2 = cellstr(char(judp('receive',25001,300, 10000))');
 
-[r, theta, v] = RadarAdapter(target1_json, target2_json);
-[x, y] = pol2cart(theta, r);
+    target1_json = parse_json(part1{1});
+    target2_json = parse_json(part2{1});
+
+    [r, theta, v] = RadarAdapter(target1_json, target2_json);
+    [x, y] = pol2cart(pi/180*theta, r);
 
 
-[vx, vy] = pol2cart(theta, v);
+    [vx, vy] = pol2cart(pi/180*theta, v);
 
-scatter([0 x],[0 y]);
-hold on
-quiver(x,y,vx, vy);
-hold off
+
+    scatter([0 x],[0 y]);
+    axis([0 100 -50 50]);
+    hold on
+    quiver(x,y,vx, vy,'Autoscale','off');
+    hold off
+    drawnow
+end
+        

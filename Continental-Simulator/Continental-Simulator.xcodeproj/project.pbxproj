@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		985517B41D178A2900348069 /* ContinentalUDPClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 985517B21D178A2900348069 /* ContinentalUDPClient.c */; };
+		985517B71D178AB000348069 /* Common.c in Sources */ = {isa = PBXBuildFile; fileRef = 985517B51D178AB000348069 /* Common.c */; };
 		98FF45931D133B0600062A40 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 98FF45921D133B0600062A40 /* main.c */; };
 		98FF459B1D133B2F00062A40 /* ContinentalStruct.c in Sources */ = {isa = PBXBuildFile; fileRef = 98FF45991D133B2F00062A40 /* ContinentalStruct.c */; };
 /* End PBXBuildFile section */
@@ -24,6 +26,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		985517B21D178A2900348069 /* ContinentalUDPClient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ContinentalUDPClient.c; sourceTree = "<group>"; };
+		985517B31D178A2900348069 /* ContinentalUDPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinentalUDPClient.h; sourceTree = "<group>"; };
+		985517B51D178AB000348069 /* Common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Common.c; sourceTree = "<group>"; };
+		985517B61D178AB000348069 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		98FF458F1D133B0600062A40 /* Continental-Simulator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Continental-Simulator"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98FF45921D133B0600062A40 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		98FF45991D133B2F00062A40 /* ContinentalStruct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ContinentalStruct.c; sourceTree = "<group>"; };
@@ -63,6 +69,10 @@
 				98FF45921D133B0600062A40 /* main.c */,
 				98FF45991D133B2F00062A40 /* ContinentalStruct.c */,
 				98FF459A1D133B2F00062A40 /* ContinentalStruct.h */,
+				985517B21D178A2900348069 /* ContinentalUDPClient.c */,
+				985517B31D178A2900348069 /* ContinentalUDPClient.h */,
+				985517B51D178AB000348069 /* Common.c */,
+				985517B61D178AB000348069 /* Common.h */,
 			);
 			path = "Continental-Simulator";
 			sourceTree = "<group>";
@@ -123,7 +133,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985517B41D178A2900348069 /* ContinentalUDPClient.c in Sources */,
 				98FF459B1D133B2F00062A40 /* ContinentalStruct.c in Sources */,
+				985517B71D178AB000348069 /* Common.c in Sources */,
 				98FF45931D133B0600062A40 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +257,7 @@
 				98FF45981D133B0600062A40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

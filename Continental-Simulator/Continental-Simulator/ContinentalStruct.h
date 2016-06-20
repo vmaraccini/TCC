@@ -10,6 +10,7 @@
 #define ContinentalStruct_h
 
 #include <stdio.h>
+#include "Common.h"
 
 typedef enum {
     CAN_ARS308_ANGLE_STATUS_EXPANDED = 0,
@@ -103,17 +104,17 @@ unsigned int ContinentalStructTarget2ToJSON(CAN_ARS308_TARGET_2 object, char *bu
 #pragma mark - Helper functions
 
 //Velocity
-#define ContinentalVelocityFromInt(x) -25 + 0.03f*x
-#define ContinentalIntFromVelocity(x) (x+25)/.03f
+#define ContinentalVelocityFromInt(x) (-25 + 0.03f*x)
+#define ContinentalIntFromVelocity(x) ((x+25)/.03f)
 
-#define ContinentalVelocityRMSFromInt(x) -5 + 0.03f*x
-#define ContinentalIntFromVelocityRMS(x) (x+5)/.03f
+#define ContinentalVelocityRMSFromInt(x) (-5 + 0.03f*x)
+#define ContinentalIntFromVelocityRMS(x) ((x+5)/.03f)
 
 //Distance
 #define ContinentalDistanceFromInt(x) 0.1f*x
 #define ContinentalIntFromDistance(x) 10*x
 
-#define ContinentalDistanceRMSFromInt(x) -10 + 0.1f*x
+#define ContinentalDistanceRMSFromInt(x) (-10 + 0.1f*x)
 #define ContinentalIntFromDistanceRMS(x) 10*(x+10)
 
 //Length
@@ -125,14 +126,14 @@ unsigned int ContinentalStructTarget2ToJSON(CAN_ARS308_TARGET_2 object, char *bu
 
 
 //Angle
-#define ContinentalAngleFromInt(x) -30 + 0.1f*x
-#define ContinentalIntFromAngle(x) (x + 30)/0.1f
+#define ContinentalAngleFromInt(x) (-30 + 0.1f*x)
+#define ContinentalIntFromAngle(x) ((x + 30)/0.1f)
 
 #define ContinentalAngleRMSFromInt(x) 0.1f*x
-#define ContinentalIntFromAngleRMS(x) x/0.1f
+#define ContinentalIntFromAngleRMS(x) (x/0.1f)
 
 //Probability
-#define ContinentalProbabilityFromInt(x) x/100.f
+#define ContinentalProbabilityFromInt(x) (x/100.f)
 #define ContinentalIntFromProbability(x) x*100
 
 #endif /* ContinentalStruct_h */
