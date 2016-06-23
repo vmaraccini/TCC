@@ -13,6 +13,12 @@
 #include "ContinentalStruct.h"
 #include "ContinentalUDPClient.h"
 
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#include <netdb.h>
+#include <math.h>
+
 void CreateVehicle(float distance,
                    float angle,
                    float velocity,
@@ -21,68 +27,141 @@ void CreateVehicle(float distance,
                    CAN_ARS308_TARGET_1 *target1,
                    CAN_ARS308_TARGET_2 *target2);
 
-unsigned long JSONArrayWithTarget1Objects(char *buffer, CAN_ARS308_TARGET_1 **target1Objects, unsigned int count);
-unsigned long JSONArrayWithTarget2Objects(char *buffer, CAN_ARS308_TARGET_2 **target2Objects, unsigned int count);
+unsigned long JSONArrayWithTarget1Objects(char *buffer, CAN_ARS308_TARGET_1 *target1Objects, unsigned int count);
+unsigned long JSONArrayWithTarget2Objects(char *buffer, CAN_ARS308_TARGET_2 *target2Objects, unsigned int count);
 
-int main(int argc, const char * argv[]) {
+#define IPMAXSTRSIZE    16
+#define BUFFERSIZE      80
+#define MSGMAXSIZE      512
 
-    CAN_ARS308_TARGET_1 vehicle1_t1;
-    CAN_ARS308_TARGET_2 vehicle1_t2;
-    CreateVehicle(40,
-                  3,
-                  5,
-                  1.5,
-                  2,
-                  &vehicle1_t1,
-                  &vehicle1_t2);
+
+//##########################################################
+// main
+//##########################################################
+
+int main() {
     
-    CAN_ARS308_TARGET_1 vehicle2_t1;
-    CAN_ARS308_TARGET_2 vehicle2_t2;
+    CAN_ARS308_TARGET_1 vehicle_t1[MAX_CARS];
+    CAN_ARS308_TARGET_2 vehicle_t2[MAX_CARS];
     
-    CreateVehicle(50,
-                  5,
-                  1,
-                  1.5,
-                  2,
-                  &vehicle2_t1,
-                  &vehicle2_t2);
-    
-    char buffer1[3000];
-    char buffer2[3000];
-    CAN_ARS308_TARGET_1 *target1Objects[2] = {&vehicle1_t1, &vehicle2_t1};
-    CAN_ARS308_TARGET_2 *target2Objects[2] = {&vehicle1_t2, &vehicle2_t2};
-    
+    float distance, angle, velocity;
+    float v_r, v_th, a_r, a_th;
+    char buffer1[8000], buffer2[8000];
     int sd1, sd2;
+    int count = -1;
     
-    int stepUs = 30E3;
-    float step = stepUs * 1E-6;
+    int                sd;                 // socket descriptor
+    int                status;             // estado
+    int                size;
+    char               buffer[BUFFERSIZE]; // buffer temporario
+    char               msg[MSGMAXSIZE];       // buffer temporario
+    int                serverport;         // porta (formato host)
+    struct sockaddr_in mysocketaddr;
+    struct sockaddr_in fromaddr;
+    struct hostent   * hostentryp;         // host entry (p/ traducao nome<->ip)
+    struct servent   * serventryp;         // host entry (p/ traducao nome<->ip)
     
-    float a = -6; //m/s^2
+    mysocketaddr.sin_family = AF_INET;
+    mysocketaddr.sin_addr.s_addr = INADDR_ANY;
     
-    for (int i = 0; i <= 300; i++) {
-        float newDist = ContinentalDistanceFromInt(vehicle1_t1.Tar_Dist) + ContinentalVelocityFromInt(vehicle1_t1.Tar_Vrel) * step;
-        float newVel = ContinentalVelocityFromInt(vehicle1_t1.Tar_Vrel) + a * step;
-        newVel = newVel < -20 ? -20 : newVel;
+    //####################
+    // servico/porta
+    //####################
+    
+    // Requisita nome do servico
+    /*printf("Port: ");
+     scanf("%s",buffer);
+     
+     // Verifica se string informada representa um inteiro
+     serverport = atoi(buffer);*/
+    serverport = 8081;
+    if (serverport > 65535) {
+        printf("Valor de porta invalido. \n");
+        exit(1);
+    }
+    else if (serverport > 0)
+        mysocketaddr.sin_port = htons((unsigned short int) serverport);
+    else if (serverport <= 0) {
+        // String informada nao e' um inteiro
+        serventryp = getservbyname(buffer,"udp");
+        if (serventryp != NULL) {
+            mysocketaddr.sin_port = serventryp->s_port;
+        }
+        else {
+            printf("Nome do servico (ou porta) invalido. \n");
+            exit(1);
+        }
+    }
+    
+    //####################
+    // imprime IP e porta
+    //####################
+    printf("Endereco IP do servidor = %s \n", inet_ntop(AF_INET,&mysocketaddr.sin_addr,buffer,BUFFERSIZE));
+    printf("Porta do servidor = %hu \n", ntohs(mysocketaddr.sin_port));
+    
+    /****************************************************************/
+    /* Socket(): Criacao do socket                                  */
+    /****************************************************************/
+    sd = socket(PF_INET,SOCK_DGRAM,0);
+    if (sd < 0) {
+        printf("Erro na criacao do socket. \n");
+        perror("Descricao do erro");
+        exit(1);
+    }
+    
+    /****************************************************************/
+    /* Bind(): associa o socket a um IP e a uma porta               */
+    /****************************************************************/
+    status = bind(sd,(struct sockaddr *)&mysocketaddr,sizeof(struct sockaddr_in));
+    if (status < 0) {
+        perror("Erro na chamada bind()");
+        exit(1);
+    }
+    
+    while (1) {
         
-        vehicle1_t1.Tar_Dist = ContinentalIntFromDistance(newDist);
-        vehicle1_t1.Tar_Vrel = ContinentalIntFromVelocity(newVel);
+        size = sizeof(fromaddr);
+        status = recvfrom(sd, msg, MSGMAXSIZE, 0, (struct sockaddr *)&fromaddr, &size);
+        if (status < 0) {
+            perror("ERRO no recebimento de datagramas UDP \n");
+            exit(1);
+        }
         
-        JSONArrayWithTarget1Objects(buffer1, target1Objects, 2);
-        JSONArrayWithTarget2Objects(buffer2, target2Objects, 2);
+        char* line = strtok(strdup(buffer), "\n");
+        while (line) {
+            if (count < 0)
+                sscanf(line, "%d", &count);
+            else
+                sscanf(line, "%f,%f,%f,%f,%f,%f", &distance, &angle, &v_r, &v_th, &a_r, &a_th);
+            line  = strtok(NULL, "\n");
+        }
+        
+        velocity = v_r * cos(v_th - angle);
+        
+        for (int i = 0; i < count; i++) {
+            CreateVehicle(distance, angle, velocity, CAR_WIDTH, CAR_LENGTH, &vehicle_t1[i], &vehicle_t2[i]);
+        }
+        
+        JSONArrayWithTarget1Objects(buffer1, vehicle_t1, count);
+        JSONArrayWithTarget2Objects(buffer2, vehicle_t2, count);
         
         connectTo("127.0.0.1", 25000, &sd1); //Object1
         sendMessage(buffer1, sd1);
         
         usleep(1E3);
+        
         connectTo("127.0.0.1", 25001, &sd2); //Object2
         sendMessage(buffer2, sd2);
         
-        closeSocket(sd1);
-        closeSocket(sd2);
+        fflush(stdout);
         
-        usleep(stepUs);
     }
+    
+    closeSocket(sd1);
+    closeSocket(sd2);
+    
 }
+
 
 #pragma mark - Creation utilities
 
@@ -109,12 +188,12 @@ void CreateVehicle(float distance,
 
 #pragma mark - JSON utilities
 
-unsigned long JSONArrayWithTarget1Objects(char *buffer, CAN_ARS308_TARGET_1 **target1Objects, unsigned int count)
+unsigned long JSONArrayWithTarget1Objects(char *buffer, CAN_ARS308_TARGET_1 *target1Objects, unsigned int count)
 {
     unsigned int len = 0;
     buffer[len++] = '[';
     for (unsigned int i = 0; i < count; i++) {
-        CAN_ARS308_TARGET_1 target1 = *target1Objects[i];
+        CAN_ARS308_TARGET_1 target1 = target1Objects[i];
         len += ContinentalStructTarget1ToJSON(target1, &buffer[len]);
         if (i < count - 1) {
             buffer[len++] = ',';
@@ -125,12 +204,12 @@ unsigned long JSONArrayWithTarget1Objects(char *buffer, CAN_ARS308_TARGET_1 **ta
     return len;
 }
 
-unsigned long JSONArrayWithTarget2Objects(char *buffer, CAN_ARS308_TARGET_2 **target2Objects, unsigned int count)
+unsigned long JSONArrayWithTarget2Objects(char *buffer, CAN_ARS308_TARGET_2 *target2Objects, unsigned int count)
 {
     unsigned int len = 0;
     buffer[len++] = '[';
     for (unsigned int i = 0; i < count; i++) {
-        CAN_ARS308_TARGET_2 target2 = *target2Objects[i];
+        CAN_ARS308_TARGET_2 target2 = target2Objects[i];
         len += ContinentalStructTarget2ToJSON(target2, &buffer[len]);
     }
     buffer[len++] = ']';
