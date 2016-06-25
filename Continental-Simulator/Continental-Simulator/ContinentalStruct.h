@@ -101,6 +101,14 @@ unsigned int ContinentalStructStatusToJSON(CAN_ARS308_TARGET_STATUS object, char
 unsigned int ContinentalStructTarget1ToJSON(CAN_ARS308_TARGET_1 object, char *buffer);
 unsigned int ContinentalStructTarget2ToJSON(CAN_ARS308_TARGET_2 object, char *buffer);
 
+void CreateVehicle(float distance,
+                   float angle,
+                   float velocity,
+                   float width,
+                   float length,
+                   CAN_ARS308_TARGET_1 *target1,
+                   CAN_ARS308_TARGET_2 *target2);
+
 #pragma mark - Helper functions
 
 //Velocity

@@ -17,8 +17,46 @@
 #include <pthread.h>
 #include <unistd.h>
 
-int initClient (int *sd) {
+unsigned char client_quit = 0;
+
+char *broadcastAddress = "192.168.1.150";
+
+int initClient (int *sd);
+int closeSocket (int sd);
+
+int connectTo(char *serverIP, int serverPort, int *socketDescriptor);
+int sendDouble(double val, int socketDescriptor);
+
+int broadcast()
+{
+    int dsd, asd, vsd;
+    initClient(&dsd);
+    initClient(&asd);
+    initClient(&vsd);
     
+    connectTo(broadcastAddress, CLIENT_PORT_DISTANCE, &dsd);
+    connectTo(broadcastAddress, CLIENT_PORT_ANGLE, &asd);
+    connectTo(broadcastAddress, CLIENT_PORT_VELOCITY, &vsd);
+    
+    while (client_quit == 0) {
+        sendDouble(distance, dsd);
+        sendDouble(velocity, vsd);
+        sendDouble(angle, asd);
+        
+        usleep(30E3);
+    }
+    
+    closeSocket(dsd);
+    closeSocket(vsd);
+    closeSocket(asd);
+    
+    return OK;
+}
+
+#pragma mark - Socket
+
+int initClient (int *sd)
+{
     //Opens socket connection using UDP
     *sd = socket(PF_INET, SOCK_DGRAM, 0);
     
@@ -30,14 +68,18 @@ int initClient (int *sd) {
     return OK;
 }
 
-int closeSocket (int sd) {
+int closeSocket (int sd)
+{
     int status = close(sd);
     if (status < 0)
         exit(ERROR_CLOSE);
     return status;
 }
 
-int connectTo(char *serverIP, int serverPort, int *socketDescriptor) {
+#pragma mark - Messages
+
+int connectTo(char *serverIP, int serverPort, int *socketDescriptor)
+{
     int status;
     initClient(socketDescriptor);
     
@@ -59,14 +101,8 @@ int connectTo(char *serverIP, int serverPort, int *socketDescriptor) {
     return OK;
 }
 
-int sendMessage(char *message, int socketDescriptor) {
-    return (send(socketDescriptor,
-                 message,
-                 strlen(message) + 1, //Add 1 to include \0
-                 0) >= 0) ? OK : ERROR_SEND;
-}
-
-int receiveMessage(char *buffer, int socketDescriptor) {
-    unsigned int status = recv(socketDescriptor, buffer, BUFFER_LEN, 0) >= 0 ? OK : ERROR_RECEIVE;
-    return status;
+int sendDouble(double val, int socketDescriptor)
+{
+    ssize_t len =  send(socketDescriptor, &val, sizeof(double), 0);
+    return len > 0 ? OK : ERROR_SEND;
 }

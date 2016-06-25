@@ -6,8 +6,6 @@
 //  Copyright © 2016 Victor Maraccini. All rights reserved.
 //
 
-#define VALBUFFSIZE 50
-
 //Stats
 #define NoOfTargetsNear_key "NoOfTargetsNear"
 #define NoOfTargetsFar_key "NoOfTargetsFar"
@@ -83,39 +81,57 @@ unsigned int ContinentalStructTarget2ToJSON(CAN_ARS308_TARGET_2 object, char *bu
     return len;
 }
 
-#pragma mark - JSON helper
+#pragma mark - JSON utilities
 
-unsigned int AddFloatToJSON(char *buffer, char *key, float value, char isLast)
+unsigned long JSONArrayWithTarget1Objects(char *buffer, CAN_ARS308_TARGET_1 **target1Objects, unsigned int count)
 {
-    char valString[VALBUFFSIZE];
-    sprintf(valString, "%f", value);
-    return AddToJSON(buffer, key, valString, isLast);
-}
-
-unsigned int AddIntToJSON(char *buffer, char *key, unsigned int value, char isLast)
-{
-    char valString[VALBUFFSIZE];
-    sprintf(valString, "%d", value);
-    return AddToJSON(buffer, key, valString, isLast);
-}
-
-unsigned int AddToJSON(char *buffer, char *key, char *value, char isLast)
-{
-    unsigned len = 0;
-
-    //"key": value (as ASCII number)
-    buffer[len++] = '"';
-    strcpy(&buffer[len], key);
-    len += strlen(key);
-    buffer[len++] = '"';
-    buffer[len++] = ':';
-    buffer[len++] = ' ';
-    strcpy(&buffer[len], value);
-    len += strlen(value);
-    
-    if (!isLast) {
-        buffer[len++] = ',';
+    unsigned int len = 0;
+    buffer[len++] = '[';
+    for (unsigned int i = 0; i < count; i++) {
+        CAN_ARS308_TARGET_1 target1 = *target1Objects[i];
+        len += ContinentalStructTarget1ToJSON(target1, &buffer[len]);
+        if (i < count - 1) {
+            buffer[len++] = ',';
+        }
     }
-
+    buffer[len++] = ']';
+    buffer[len++] = '\0';
     return len;
 }
+
+unsigned long JSONArrayWithTarget2Objects(char *buffer, CAN_ARS308_TARGET_2 **target2Objects, unsigned int count)
+{
+    unsigned int len = 0;
+    buffer[len++] = '[';
+    for (unsigned int i = 0; i < count; i++) {
+        CAN_ARS308_TARGET_2 target2 = *target2Objects[i];
+        len += ContinentalStructTarget2ToJSON(target2, &buffer[len]);
+    }
+    buffer[len++] = ']';
+    buffer[len++] = '\0';
+    return len;
+}
+
+#pragma mark - Creation Helpers
+
+void CreateVehicle(float distance,
+                   float angle,
+                   float velocity,
+                   float width,
+                   float length,
+                   CAN_ARS308_TARGET_1 *target1,
+                   CAN_ARS308_TARGET_2 *target2)
+{
+    target1->Tar_Dist = ContinentalIntFromDistance(distance);
+    target1->Tar_Vrel = ContinentalIntFromVelocity(velocity);
+    target1->Tar_Dist_rms = ContinentalIntFromDistanceRMS(0);
+    target1->Tar_Ang_rms = ContinentalIntFromAngleRMS(0);
+    target1->Tar_Vrel_rms = ContinentalIntFromVelocityRMS(0);
+    
+    target2->Tar_Ang = ContinentalIntFromAngle(angle);
+    target2->Tar_Width = ContinentalIntFromWidth(width);
+    target2->Tar_Length = ContinentalIntFromLength(length);
+    target2->Tar_Ang_stat = CAN_ARS308_ANGLE_STATUS_EXPANDED;
+    target2->Tar_Type = velocity < 0 ? CAN_ARS308_TARGET_TYPE_INCOMING : CAN_ARS308_TARGET_TYPE_TRAFFIC;
+}
+

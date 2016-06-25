@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		984BF2901D1DD8CE006D8326 /* ContinentalSimulatorServer.c in Sources */ = {isa = PBXBuildFile; fileRef = 984BF28E1D1DD8CE006D8326 /* ContinentalSimulatorServer.c */; };
 		985517B41D178A2900348069 /* ContinentalUDPClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 985517B21D178A2900348069 /* ContinentalUDPClient.c */; };
 		985517B71D178AB000348069 /* Common.c in Sources */ = {isa = PBXBuildFile; fileRef = 985517B51D178AB000348069 /* Common.c */; };
 		98FF45931D133B0600062A40 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 98FF45921D133B0600062A40 /* main.c */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		984BF28E1D1DD8CE006D8326 /* ContinentalSimulatorServer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ContinentalSimulatorServer.c; sourceTree = "<group>"; };
+		984BF28F1D1DD8CE006D8326 /* ContinentalSimulatorServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinentalSimulatorServer.h; sourceTree = "<group>"; };
 		985517B21D178A2900348069 /* ContinentalUDPClient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ContinentalUDPClient.c; sourceTree = "<group>"; };
 		985517B31D178A2900348069 /* ContinentalUDPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinentalUDPClient.h; sourceTree = "<group>"; };
 		985517B51D178AB000348069 /* Common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Common.c; sourceTree = "<group>"; };
@@ -73,6 +76,8 @@
 				985517B31D178A2900348069 /* ContinentalUDPClient.h */,
 				985517B51D178AB000348069 /* Common.c */,
 				985517B61D178AB000348069 /* Common.h */,
+				984BF28E1D1DD8CE006D8326 /* ContinentalSimulatorServer.c */,
+				984BF28F1D1DD8CE006D8326 /* ContinentalSimulatorServer.h */,
 			);
 			path = "Continental-Simulator";
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 				985517B41D178A2900348069 /* ContinentalUDPClient.c in Sources */,
 				98FF459B1D133B2F00062A40 /* ContinentalStruct.c in Sources */,
 				985517B71D178AB000348069 /* Common.c in Sources */,
+				984BF2901D1DD8CE006D8326 /* ContinentalSimulatorServer.c in Sources */,
 				98FF45931D133B0600062A40 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

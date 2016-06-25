@@ -12,22 +12,13 @@
 #include <stdio.h>
 #include "Common.h"
 
-#define BUFFER_LEN 300
+//Constants
+#define CLIENT_PORT_DISTANCE   25000
+#define CLIENT_PORT_ANGLE      25001
+#define CLIENT_PORT_VELOCITY   25002
 
-typedef enum {
-    ERROR_OPENSOCKET = 1,
-    ERROR_CONVERTIPV4ADDRESS,
-    ERROR_CONNECT,
-    ERROR_SEND,
-    ERROR_RECEIVE,
-    ERROR_CLOSE,
-    ERROR_BIND,
-    ERROR_ECHO,
-} CLIENT_ERROR;
+extern unsigned char client_quit;
 
-int connectTo(char *serverIP, int serverPort, int *socketDescriptor);
-int closeSocket (int sd);
-int sendMessage(char *message, int socketDescriptor);
-int receiveMessage(char *buffer, int socketDescriptor);
+int broadcast();
 
 #endif /* ContinentalUDPClient_h */
