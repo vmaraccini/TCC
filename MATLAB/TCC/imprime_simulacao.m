@@ -41,7 +41,7 @@ xlabel('Tempo (s)','FontSize',15.4);
 title('Distância e velocidade relativa do veículo de referência',...
     'FontSize',15.4);
 
-xlim(axes1,[95 140]);
+xlim(axes1,[17 40]);
 box(axes1,'on');
 % Set the remaining axes properties
 set(axes1,'FontSize',14,'XColor',[0 0 0],'ZColor',[0 0 0]);
