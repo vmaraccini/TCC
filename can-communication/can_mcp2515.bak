@@ -32,6 +32,8 @@ void CanWrite (int end, int dado) {
 
 void CanFilter (Can_Id id) {
 
+   CanWrite (0x0F, 0b10000000); // CANCTRL, coloca em modo de configuração
+
    int mask_on = 0;
    if (id == 0) mask_on |= 0b01100000;
 
@@ -41,7 +43,7 @@ void CanFilter (Can_Id id) {
    
     //Mascaras em 1
    CanWrite(0x20, 0xFF);
-   CanWrite(0x21, 0xFF);
+   //CanWrite(0x21, 0xFF);
    
    unsigned char IDR0_filter = 0; // Contem a mascara para o registrador IDR0
    unsigned char IDR1_filter = 0; // Contem a mascara para o registrador IDR1
@@ -51,6 +53,8 @@ void CanFilter (Can_Id id) {
    //Filtrar mensagem desejada
    CanWrite(0x00, IDR0_filter);
    CanWrite(0x01, IDR1_filter);
+   
+   CanWrite (0x0F, 0x00); // CANCTRL, coloca em modo de trabalho
 }
 
 void CanReset(void) {
@@ -107,7 +111,7 @@ void CanConfig (void) {
 
 void CanSetSendAddress(unsigned long int address) {
    // Set message id
-   int idHigh = (unsigned char)(address >> 3);
+   int idHigh = (unsigned char)((address >> 3) & 0xFF);
    int idLow = (unsigned char)((address & 0b0000000000000111) << 5);
    
    CanWrite(0x31, idHigh);

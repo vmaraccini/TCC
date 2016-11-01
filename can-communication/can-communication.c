@@ -42,7 +42,7 @@ void ReadLoop() {
    WriteLCDLine0(&lcdBuffer);
    
    while (1) {
-      if (ReadMessage(0x1, &message, &id)) {
+      if (ReadMessage(0x590, &message, &id)) {
          PrintVelocity(message.velocidade, id);
       }
       
