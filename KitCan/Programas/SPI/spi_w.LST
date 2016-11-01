@@ -1,0 +1,376 @@
+CCS PCM C Compiler, Version 3.203, 16465
+
+               Filename: spi_w.LST
+
+               ROM used: 287 words (4%)
+                         Largest free fragment is 2048
+               RAM used: 8 (5%) at main() level
+                         9 (5%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   017
+0003:  NOP
+....................  #include <16f877a.h> 
+....................  //////// Standard Header file for the PIC16F877A device ////////////////  
+.................... #device PIC16F877A  
+.................... #list  
+....................  
+.................... #fuses NOLVP, NOWDT, NOPROTECT, hs  
+.................... #use delay(clock=20000000)  
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  MOVF   00,W
+0007:  BTFSC  03.2
+0008:  GOTO   016
+0009:  MOVLW  06
+000A:  MOVWF  78
+000B:  CLRF   77
+000C:  DECFSZ 77,F
+000D:  GOTO   00C
+000E:  DECFSZ 78,F
+000F:  GOTO   00B
+0010:  MOVLW  7B
+0011:  MOVWF  77
+0012:  DECFSZ 77,F
+0013:  GOTO   012
+0014:  DECFSZ 00,F
+0015:  GOTO   009
+0016:  RETLW  00
+....................   
+.................... void main (void)  
+.................... {  
+0017:  CLRF   04
+0018:  MOVLW  1F
+0019:  ANDWF  03,F
+001A:  BSF    03.5
+001B:  BSF    1F.0
+001C:  BSF    1F.1
+001D:  BSF    1F.2
+001E:  BCF    1F.3
+001F:  MOVLW  07
+0020:  BCF    03.5
+0021:  MOVWF  1F
+....................   
+....................    int data;  
+....................    set_TRIS_B (0b11011011); // pinos RS e RB2(CS CAB) como saída  
+*
+0024:  MOVLW  DB
+0025:  BSF    03.5
+0026:  MOVWF  06
+....................    set_TRIS_C (0b10010111);// RC6 como saida (TX232) RC3 e RC5 (SCK e SO CAN)  
+*
+0022:  MOVLW  FF
+0023:  MOVWF  20
+*
+0027:  MOVLW  97
+0028:  MOVWF  07
+0029:  BCF    03.5
+002A:  MOVWF  20
+....................    setup_spi(SPI_MASTER | SPI_L_TO_H | SPI_XMIT_L_TO_H | SPI_CLK_DIV_16); // Configura a comunicação SPI como Master, com uma atuação na borda de subida e com uma divisão de 16 no clock  
+002B:  BCF    14.5
+002C:  BCF    20.5
+002D:  MOVF   20,W
+002E:  BSF    03.5
+002F:  MOVWF  07
+0030:  BCF    03.5
+0031:  BCF    20.3
+0032:  MOVF   20,W
+0033:  BSF    03.5
+0034:  MOVWF  07
+0035:  MOVLW  21
+0036:  BCF    03.5
+0037:  MOVWF  14
+0038:  MOVLW  40
+0039:  BSF    03.5
+003A:  MOVWF  14
+....................    setup_timer_0(RTCC_INTERNAL|RTCC_DIV_32); // Define timer 0  
+003B:  MOVF   01,W
+003C:  ANDLW  C0
+003D:  IORLW  04
+003E:  MOVWF  01
+....................    enable_interrupts(global|int_timer0); // Habilita interrupções  
+003F:  MOVLW  E0
+0040:  BCF    03.5
+0041:  IORWF  0B,F
+....................    output_high (pin_e0);  
+0042:  BSF    03.5
+0043:  BCF    09.0
+0044:  BCF    03.5
+0045:  BSF    09.0
+....................    output_high (pin_e1);  
+0046:  BSF    03.5
+0047:  BCF    09.1
+0048:  BCF    03.5
+0049:  BSF    09.1
+....................    output_high (pin_e2);  
+004A:  BSF    03.5
+004B:  BCF    09.2
+004C:  BCF    03.5
+004D:  BSF    09.2
+....................    delay_ms (3000);  
+004E:  MOVLW  0C
+004F:  MOVWF  22
+0050:  MOVLW  FA
+0051:  MOVWF  23
+0052:  CALL   004
+0053:  DECFSZ 22,F
+0054:  GOTO   050
+....................    output_low (pin_e0);  
+0055:  BSF    03.5
+0056:  BCF    09.0
+0057:  BCF    03.5
+0058:  BCF    09.0
+....................    output_low (pin_e1);  
+0059:  BSF    03.5
+005A:  BCF    09.1
+005B:  BCF    03.5
+005C:  BCF    09.1
+....................    output_low (pin_e2);  
+005D:  BSF    03.5
+005E:  BCF    09.2
+005F:  BCF    03.5
+0060:  BCF    09.2
+....................   
+....................    while(true)  
+....................    {  
+....................    output_high (pin_e0);  
+0061:  BSF    03.5
+0062:  BCF    09.0
+0063:  BCF    03.5
+0064:  BSF    09.0
+....................    output_high (pin_e1);  
+0065:  BSF    03.5
+0066:  BCF    09.1
+0067:  BCF    03.5
+0068:  BSF    09.1
+....................    output_high (pin_e2);  
+0069:  BSF    03.5
+006A:  BCF    09.2
+006B:  BCF    03.5
+006C:  BSF    09.2
+....................    delay_ms (3000);  
+006D:  MOVLW  0C
+006E:  MOVWF  22
+006F:  MOVLW  FA
+0070:  MOVWF  23
+0071:  CALL   004
+0072:  DECFSZ 22,F
+0073:  GOTO   06F
+....................    output_low (pin_e0);  
+0074:  BSF    03.5
+0075:  BCF    09.0
+0076:  BCF    03.5
+0077:  BCF    09.0
+....................    output_low (pin_e1);  
+0078:  BSF    03.5
+0079:  BCF    09.1
+007A:  BCF    03.5
+007B:  BCF    09.1
+....................    output_low (pin_e2);  
+007C:  BSF    03.5
+007D:  BCF    09.2
+007E:  BCF    03.5
+007F:  BCF    09.2
+....................    delay_ms (3000);  
+0080:  MOVLW  0C
+0081:  MOVWF  22
+0082:  MOVLW  FA
+0083:  MOVWF  23
+0084:  CALL   004
+0085:  DECFSZ 22,F
+0086:  GOTO   082
+.................... // Escrita  
+....................    output_high (pin_b2);  
+0087:  BSF    03.5
+0088:  BCF    06.2
+0089:  BCF    03.5
+008A:  BSF    06.2
+....................    output_low(PIN_b2);  
+008B:  BSF    03.5
+008C:  BCF    06.2
+008D:  BCF    03.5
+008E:  BCF    06.2
+....................    output_high(PIN_b2);  
+008F:  BSF    03.5
+0090:  BCF    06.2
+0091:  BCF    03.5
+0092:  BSF    06.2
+....................    delay_us (10);  
+0093:  MOVLW  10
+0094:  MOVWF  77
+0095:  DECFSZ 77,F
+0096:  GOTO   095
+0097:  NOP
+....................    output_low(PIN_b2);  
+0098:  BSF    03.5
+0099:  BCF    06.2
+009A:  BCF    03.5
+009B:  BCF    06.2
+....................    spi_write(0b00000010);  
+009C:  MOVF   13,W
+009D:  MOVLW  02
+009E:  MOVWF  13
+009F:  BSF    03.5
+00A0:  BTFSC  14.0
+00A1:  GOTO   0A4
+00A2:  BCF    03.5
+00A3:  GOTO   09F
+....................    spi_write(0x2A);  
+00A4:  BCF    03.5
+00A5:  MOVF   13,W
+00A6:  MOVLW  2A
+00A7:  MOVWF  13
+00A8:  BSF    03.5
+00A9:  BTFSC  14.0
+00AA:  GOTO   0AD
+00AB:  BCF    03.5
+00AC:  GOTO   0A8
+....................    spi_write(0xAA);  
+00AD:  BCF    03.5
+00AE:  MOVF   13,W
+00AF:  MOVLW  AA
+00B0:  MOVWF  13
+00B1:  BSF    03.5
+00B2:  BTFSC  14.0
+00B3:  GOTO   0B6
+00B4:  BCF    03.5
+00B5:  GOTO   0B1
+....................    output_high(PIN_b2);  
+00B6:  BCF    06.2
+00B7:  BCF    03.5
+00B8:  BSF    06.2
+....................    delay_us (10);  
+00B9:  MOVLW  10
+00BA:  MOVWF  77
+00BB:  DECFSZ 77,F
+00BC:  GOTO   0BB
+00BD:  NOP
+....................    output_high (pin_e0);  
+00BE:  BSF    03.5
+00BF:  BCF    09.0
+00C0:  BCF    03.5
+00C1:  BSF    09.0
+....................    delay_ms (2000);  
+00C2:  MOVLW  08
+00C3:  MOVWF  22
+00C4:  MOVLW  FA
+00C5:  MOVWF  23
+00C6:  CALL   004
+00C7:  DECFSZ 22,F
+00C8:  GOTO   0C4
+....................   
+....................   
+.................... // Leitura  
+....................    output_high (pin_b2);  
+00C9:  BSF    03.5
+00CA:  BCF    06.2
+00CB:  BCF    03.5
+00CC:  BSF    06.2
+....................    output_low(PIN_b2);  
+00CD:  BSF    03.5
+00CE:  BCF    06.2
+00CF:  BCF    03.5
+00D0:  BCF    06.2
+....................    output_high (pin_b2);  
+00D1:  BSF    03.5
+00D2:  BCF    06.2
+00D3:  BCF    03.5
+00D4:  BSF    06.2
+....................    delay_us (10);  
+00D5:  MOVLW  10
+00D6:  MOVWF  77
+00D7:  DECFSZ 77,F
+00D8:  GOTO   0D7
+00D9:  NOP
+....................    output_low(PIN_b2);  
+00DA:  BSF    03.5
+00DB:  BCF    06.2
+00DC:  BCF    03.5
+00DD:  BCF    06.2
+....................    spi_write(0b00000011);  
+00DE:  MOVF   13,W
+00DF:  MOVLW  03
+00E0:  MOVWF  13
+00E1:  BSF    03.5
+00E2:  BTFSC  14.0
+00E3:  GOTO   0E6
+00E4:  BCF    03.5
+00E5:  GOTO   0E1
+....................    spi_write(0x2A);  
+00E6:  BCF    03.5
+00E7:  MOVF   13,W
+00E8:  MOVLW  2A
+00E9:  MOVWF  13
+00EA:  BSF    03.5
+00EB:  BTFSC  14.0
+00EC:  GOTO   0EF
+00ED:  BCF    03.5
+00EE:  GOTO   0EA
+....................    data = spi_read(0);  
+00EF:  BCF    03.5
+00F0:  MOVF   13,W
+00F1:  CLRF   13
+00F2:  BSF    03.5
+00F3:  BTFSC  14.0
+00F4:  GOTO   0F7
+00F5:  BCF    03.5
+00F6:  GOTO   0F2
+00F7:  BCF    03.5
+00F8:  MOVF   13,W
+00F9:  MOVWF  21
+....................    output_high(PIN_b2);  
+00FA:  BSF    03.5
+00FB:  BCF    06.2
+00FC:  BCF    03.5
+00FD:  BSF    06.2
+....................    delay_us (10);  
+00FE:  MOVLW  10
+00FF:  MOVWF  77
+0100:  DECFSZ 77,F
+0101:  GOTO   100
+0102:  NOP
+....................    output_high (pin_e1);  
+0103:  BSF    03.5
+0104:  BCF    09.1
+0105:  BCF    03.5
+0106:  BSF    09.1
+....................    delay_ms (2000);  
+0107:  MOVLW  08
+0108:  MOVWF  22
+0109:  MOVLW  FA
+010A:  MOVWF  23
+010B:  CALL   004
+010C:  DECFSZ 22,F
+010D:  GOTO   109
+....................   
+....................    if ( 0x55 == data )  
+010E:  MOVF   21,W
+010F:  SUBLW  55
+0110:  BTFSS  03.2
+0111:  GOTO   11D
+....................    {  
+....................       output_low (pin_e0);  
+0112:  BSF    03.5
+0113:  BCF    09.0
+0114:  BCF    03.5
+0115:  BCF    09.0
+....................       delay_ms (2000);  
+0116:  MOVLW  08
+0117:  MOVWF  22
+0118:  MOVLW  FA
+0119:  MOVWF  23
+011A:  CALL   004
+011B:  DECFSZ 22,F
+011C:  GOTO   118
+....................    }  
+....................    }  
+011D:  GOTO   061
+.................... }  
+....................  
+011E:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F7A   HS NOWDT NOPUT NODEBUG NOPROTECT BROWNOUT NOLVP NOCPD NOWRT
