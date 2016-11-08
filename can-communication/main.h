@@ -14,7 +14,7 @@ void SetupCommunication() {
    set_TRIS_B (0b11011011); // pinos RS e RB2(CS CAB) como saída
    set_TRIS_C (0b10010111); // RC6 como saida (TX232) RC3 e RC5 (SCK e SO CAN)
    setup_spi(SPI_MASTER | SPI_L_TO_H | SPI_XMIT_L_TO_H | SPI_CLK_DIV_16); // Configura a comunicação SPI como Master, com uma atuação na borda de subida e com uma divisão de 16 no clock
-   enable_interrupts(global|int_timer0); // Habilita interrupções
+   enable_interrupts(global|int_timer0|int_rda); // Habilita interrupções
 }
 
 void SetupTimers() {
