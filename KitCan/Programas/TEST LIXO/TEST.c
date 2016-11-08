@@ -1,0 +1,61 @@
+#include <16f877a.h>
+#fuses NOLVP, NOWDT, NOPROTECT, hs
+#use delay(clock=20000000)
+
+void main (void)
+{
+
+   int data;
+   set_TRIS_B (0b11011011); // pinos RS e RB2(CS CAB) como saída
+   set_TRIS_C (0b10010111);// RC6 como saida (TX232) RC3 e RC5 (SCK e SO CAN)
+   setup_spi(SPI_MASTER | SPI_L_TO_H | SPI_XMIT_L_TO_H | SPI_CLK_DIV_16); // Configura a comunicação SPI como Master, com uma atuação na borda de subida e com uma divisão de 16 no clock
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_32); // Define timer 0
+   enable_interrupts(global|int_timer0); // Habilita interrupções
+   output_high (pin_e0);
+   output_high (pin_e1);
+   output_high (pin_e2);
+   delay_ms (3000);
+   output_low (pin_e0);
+   output_low (pin_e1);
+   output_low (pin_e2);
+
+   while(true)
+   {
+   output_high (pin_e0);
+   output_high (pin_e1);
+   output_high (pin_e2);
+   delay_ms (3000);
+   output_low (pin_e0);
+   output_low (pin_e1);
+   output_low (pin_e2);
+   delay_ms (3000);
+// Escrita
+   output_high (pin_b2);
+   output_low(PIN_b2);
+   output_high(PIN_b2);
+   delay_us (10);
+   output_low(PIN_b2);
+   output_high(PIN_b2);
+   delay_us (10);
+   output_high (pin_e0);
+   delay_ms (2000);
+
+
+// Leitura
+   output_high (pin_b2);
+   output_low(PIN_b2);
+   output_high (pin_b2);
+   delay_us (10);
+   output_low(PIN_b2);
+   output_high(PIN_b2);
+   delay_us (10);
+   output_high (pin_e1);
+   delay_ms (2000);
+
+   if ( 0x55 == data )
+   {
+      output_low (pin_e0);
+      delay_ms (2000);
+   }
+   }
+}

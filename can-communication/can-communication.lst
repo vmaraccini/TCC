@@ -1,0 +1,2105 @@
+CCS PCM C Compiler, Version 5.021, 29682               30-out-16 23:09
+
+               Filename:   C:\Users\Administrator\Desktop\can-communication\can-communication.lst
+
+               ROM used:   1335 words (16%)
+                           Largest free fragment is 2048
+               RAM used:   25 (7%) at main() level
+                           57 (15%) worst case
+               Stack used: 3 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  05
+0001:  MOVWF  0A
+0002:  GOTO   50C
+0003:  NOP
+.................... #include <main.h> 
+.................... #include <16F877A.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+0004:  DATA CE,27
+0005:  DATA 20,22
+0006:  DATA 41,2A
+0007:  DATA 41,00
+0008:  DATA D6,22
+0009:  DATA 4C,1D
+000A:  DATA A0,12
+000B:  DATA EC,3A
+000C:  DATA FC,12
+000D:  DATA EC,3A
+000E:  DATA 00,00
+000F:  DATA C8,22
+0010:  DATA 4C,26
+0011:  DATA 4F,10
+0012:  DATA D7,27
+0013:  DATA 52,26
+0014:  DATA 44,00
+0015:  DATA 52,2C
+0016:  DATA 20,27
+0017:  DATA 4F,22
+0018:  DATA 45,00
+0019:  DATA 54,2C
+001A:  DATA 20,27
+001B:  DATA 4F,22
+001C:  DATA 45,00
+*
+019A:  MOVF   31,W
+019B:  MOVWF  04
+019C:  BCF    03.7
+019D:  BTFSC  32.0
+019E:  BSF    03.7
+019F:  MOVF   4A,W
+01A0:  MOVWF  00
+01A1:  INCF   04,F
+01A2:  CLRF   00
+01A3:  INCF   31,F
+01A4:  BTFSC  03.2
+01A5:  INCF   32,F
+01A6:  RETURN
+01A7:  MOVF   0B,W
+01A8:  MOVWF  3D
+01A9:  BCF    0B.7
+01AA:  BSF    03.5
+01AB:  BSF    03.6
+01AC:  BSF    0C.7
+01AD:  BSF    0C.0
+01AE:  NOP
+01AF:  NOP
+01B0:  BCF    03.5
+01B1:  BCF    03.6
+01B2:  BTFSC  3D.7
+01B3:  BSF    0B.7
+01B4:  BSF    03.6
+01B5:  MOVF   0C,W
+01B6:  ANDLW  7F
+01B7:  BTFSC  03.2
+01B8:  GOTO   1FB
+01B9:  BCF    03.6
+01BA:  MOVWF  3D
+01BB:  BSF    03.6
+01BC:  MOVF   0D,W
+01BD:  BCF    03.6
+01BE:  MOVWF  3E
+01BF:  BSF    03.6
+01C0:  MOVF   0F,W
+01C1:  BCF    03.6
+01C2:  MOVWF  3F
+01C3:  MOVF   3D,W
+01C4:  MOVWF  4A
+01C5:  CALL   19A
+01C6:  MOVF   3E,W
+01C7:  BSF    03.6
+01C8:  MOVWF  0D
+01C9:  BCF    03.6
+01CA:  MOVF   3F,W
+01CB:  BSF    03.6
+01CC:  MOVWF  0F
+01CD:  BCF    03.6
+01CE:  MOVF   0B,W
+01CF:  MOVWF  40
+01D0:  BCF    0B.7
+01D1:  BSF    03.5
+01D2:  BSF    03.6
+01D3:  BSF    0C.7
+01D4:  BSF    0C.0
+01D5:  NOP
+01D6:  NOP
+01D7:  BCF    03.5
+01D8:  BCF    03.6
+01D9:  BTFSC  40.7
+01DA:  BSF    0B.7
+01DB:  BSF    03.6
+01DC:  RLF    0C,W
+01DD:  RLF    0E,W
+01DE:  ANDLW  7F
+01DF:  BTFSC  03.2
+01E0:  GOTO   1FB
+01E1:  BCF    03.6
+01E2:  MOVWF  3D
+01E3:  BSF    03.6
+01E4:  MOVF   0D,W
+01E5:  BCF    03.6
+01E6:  MOVWF  3E
+01E7:  BSF    03.6
+01E8:  MOVF   0F,W
+01E9:  BCF    03.6
+01EA:  MOVWF  3F
+01EB:  MOVF   3D,W
+01EC:  MOVWF  4A
+01ED:  CALL   19A
+01EE:  MOVF   3E,W
+01EF:  BSF    03.6
+01F0:  MOVWF  0D
+01F1:  BCF    03.6
+01F2:  MOVF   3F,W
+01F3:  BSF    03.6
+01F4:  MOVWF  0F
+01F5:  INCF   0D,F
+01F6:  BTFSC  03.2
+01F7:  INCF   0F,F
+01F8:  BCF    03.6
+01F9:  GOTO   1A7
+01FA:  BSF    03.6
+01FB:  BCF    03.6
+01FC:  RETURN
+*
+02C5:  CLRF   49
+02C6:  MOVF   04,W
+02C7:  MOVWF  48
+02C8:  BCF    49.0
+02C9:  BTFSC  03.7
+02CA:  BSF    49.0
+02CB:  SWAPF  42,W
+02CC:  IORLW  F0
+02CD:  MOVWF  44
+02CE:  ADDWF  44,F
+02CF:  ADDLW  E2
+02D0:  MOVWF  45
+02D1:  ADDLW  32
+02D2:  MOVWF  47
+02D3:  MOVF   42,W
+02D4:  ANDLW  0F
+02D5:  ADDWF  45,F
+02D6:  ADDWF  45,F
+02D7:  ADDWF  47,F
+02D8:  ADDLW  E9
+02D9:  MOVWF  46
+02DA:  ADDWF  46,F
+02DB:  ADDWF  46,F
+02DC:  SWAPF  41,W
+02DD:  ANDLW  0F
+02DE:  ADDWF  46,F
+02DF:  ADDWF  47,F
+02E0:  RLF    46,F
+02E1:  RLF    47,F
+02E2:  COMF   47,F
+02E3:  RLF    47,F
+02E4:  MOVF   41,W
+02E5:  ANDLW  0F
+02E6:  ADDWF  47,F
+02E7:  RLF    44,F
+02E8:  MOVLW  07
+02E9:  MOVWF  43
+02EA:  MOVLW  0A
+02EB:  ADDWF  47,F
+02EC:  DECF   46,F
+02ED:  BTFSS  03.0
+02EE:  GOTO   2EB
+02EF:  ADDWF  46,F
+02F0:  DECF   45,F
+02F1:  BTFSS  03.0
+02F2:  GOTO   2EF
+02F3:  ADDWF  45,F
+02F4:  DECF   44,F
+02F5:  BTFSS  03.0
+02F6:  GOTO   2F3
+02F7:  ADDWF  44,F
+02F8:  DECF   43,F
+02F9:  BTFSS  03.0
+02FA:  GOTO   2F7
+02FB:  MOVLW  43
+02FC:  MOVWF  04
+02FD:  BCF    03.7
+02FE:  MOVLW  07
+02FF:  ANDWF  48,W
+0300:  BCF    48.6
+0301:  ADDWF  04,F
+0302:  MOVLW  47
+0303:  SUBWF  04,W
+0304:  BTFSC  03.2
+0305:  BSF    48.6
+0306:  MOVF   00,W
+0307:  MOVWF  77
+0308:  BTFSS  03.2
+0309:  GOTO   312
+030A:  BTFSC  48.6
+030B:  GOTO   312
+030C:  BTFSC  48.4
+030D:  GOTO   324
+030E:  BTFSC  48.3
+030F:  GOTO   312
+0310:  MOVLW  20
+0311:  GOTO   315
+0312:  BSF    48.3
+0313:  BCF    48.4
+0314:  MOVLW  30
+0315:  ADDWF  77,F
+0316:  CLRF   42
+0317:  MOVF   04,W
+0318:  MOVWF  41
+0319:  BCF    42.0
+031A:  BTFSC  03.7
+031B:  BSF    42.0
+031C:  MOVF   77,W
+031D:  MOVWF  4A
+031E:  CALL   19A
+031F:  MOVF   41,W
+0320:  MOVWF  04
+0321:  BCF    03.7
+0322:  BTFSC  42.0
+0323:  BSF    03.7
+0324:  INCF   04,F
+0325:  BTFSS  48.6
+0326:  GOTO   302
+0327:  RETURN
+*
+0491:  MOVF   0B,W
+0492:  MOVWF  42
+0493:  BCF    0B.7
+0494:  BSF    03.5
+0495:  BSF    03.6
+0496:  BSF    0C.7
+0497:  BSF    0C.0
+0498:  NOP
+0499:  NOP
+049A:  BCF    03.5
+049B:  BCF    03.6
+049C:  BTFSC  42.7
+049D:  BSF    0B.7
+049E:  BTFSC  03.0
+049F:  GOTO   4C8
+04A0:  BSF    03.6
+04A1:  MOVF   0C,W
+04A2:  ANDLW  7F
+04A3:  BCF    03.6
+04A4:  MOVWF  42
+04A5:  BSF    03.6
+04A6:  MOVF   0D,W
+04A7:  BCF    03.6
+04A8:  MOVWF  43
+04A9:  BSF    03.6
+04AA:  MOVF   0F,W
+04AB:  BCF    03.6
+04AC:  MOVWF  44
+04AD:  MOVF   42,W
+04AE:  MOVWF  4A
+04AF:  CALL   19A
+04B0:  MOVF   43,W
+04B1:  BSF    03.6
+04B2:  MOVWF  0D
+04B3:  BCF    03.6
+04B4:  MOVF   44,W
+04B5:  BSF    03.6
+04B6:  MOVWF  0F
+04B7:  BCF    03.6
+04B8:  MOVF   0B,W
+04B9:  MOVWF  45
+04BA:  BCF    0B.7
+04BB:  BSF    03.5
+04BC:  BSF    03.6
+04BD:  BSF    0C.7
+04BE:  BSF    0C.0
+04BF:  NOP
+04C0:  NOP
+04C1:  BCF    03.5
+04C2:  BCF    03.6
+04C3:  BTFSC  45.7
+04C4:  BSF    0B.7
+04C5:  DECFSZ 41,F
+04C6:  GOTO   4C8
+04C7:  GOTO   4E7
+04C8:  BSF    03.6
+04C9:  RLF    0C,W
+04CA:  RLF    0E,W
+04CB:  ANDLW  7F
+04CC:  BCF    03.6
+04CD:  MOVWF  42
+04CE:  BSF    03.6
+04CF:  MOVF   0D,W
+04D0:  BCF    03.6
+04D1:  MOVWF  43
+04D2:  BSF    03.6
+04D3:  MOVF   0F,W
+04D4:  BCF    03.6
+04D5:  MOVWF  44
+04D6:  MOVF   42,W
+04D7:  MOVWF  4A
+04D8:  CALL   19A
+04D9:  MOVF   43,W
+04DA:  BSF    03.6
+04DB:  MOVWF  0D
+04DC:  BCF    03.6
+04DD:  MOVF   44,W
+04DE:  BSF    03.6
+04DF:  MOVWF  0F
+04E0:  INCF   0D,F
+04E1:  BTFSC  03.2
+04E2:  INCF   0F,F
+04E3:  BCF    03.0
+04E4:  BCF    03.6
+04E5:  DECFSZ 41,F
+04E6:  GOTO   491
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(crystal=20000000) 
+*
+0079:  MOVLW  47
+007A:  MOVWF  04
+007B:  BCF    03.7
+007C:  MOVF   00,W
+007D:  BTFSC  03.2
+007E:  GOTO   08C
+007F:  MOVLW  06
+0080:  MOVWF  78
+0081:  CLRF   77
+0082:  DECFSZ 77,F
+0083:  GOTO   082
+0084:  DECFSZ 78,F
+0085:  GOTO   081
+0086:  MOVLW  7B
+0087:  MOVWF  77
+0088:  DECFSZ 77,F
+0089:  GOTO   088
+008A:  DECFSZ 00,F
+008B:  GOTO   07F
+008C:  RETURN
+....................  
+.................... void SetupCommunication() { 
+....................    set_tris_a(0xff); 
+*
+001D:  MOVLW  FF
+001E:  BSF    03.5
+001F:  MOVWF  05
+....................    set_tris_d(0x00); 
+0020:  MOVLW  00
+0021:  MOVWF  08
+....................    set_tris_e(0x00); 
+0022:  BCF    09.0
+0023:  BCF    09.1
+0024:  BCF    09.2
+....................    set_TRIS_B (0b11011011); // pinos RS e RB2(CS CAB) como saída 
+0025:  MOVLW  DB
+0026:  MOVWF  06
+....................    set_TRIS_C (0b10010111); // RC6 como saida (TX232) RC3 e RC5 (SCK e SO CAN) 
+0027:  MOVLW  97
+0028:  MOVWF  07
+0029:  BCF    03.5
+002A:  MOVWF  20
+....................    setup_spi(SPI_MASTER | SPI_L_TO_H | SPI_XMIT_L_TO_H | SPI_CLK_DIV_16); // Configura a comunicação SPI como Master, com uma atuação na borda de subida e com uma divisão de 16 no clock 
+002B:  BCF    14.5
+002C:  BCF    20.5
+002D:  MOVF   20,W
+002E:  BSF    03.5
+002F:  MOVWF  07
+0030:  BCF    03.5
+0031:  BSF    20.4
+0032:  MOVF   20,W
+0033:  BSF    03.5
+0034:  MOVWF  07
+0035:  BCF    03.5
+0036:  BCF    20.3
+0037:  MOVF   20,W
+0038:  BSF    03.5
+0039:  MOVWF  07
+003A:  MOVLW  21
+003B:  BCF    03.5
+003C:  MOVWF  14
+003D:  MOVLW  40
+003E:  BSF    03.5
+003F:  MOVWF  14
+....................    enable_interrupts(global|int_timer0); // Habilita interrupções 
+0040:  MOVLW  E0
+0041:  BCF    03.5
+0042:  IORWF  0B,F
+0043:  BCF    0A.3
+0044:  BCF    0A.4
+0045:  GOTO   51D (RETURN)
+.................... } 
+....................  
+.................... void SetupTimers() { 
+....................    setup_timer_0(RTCC_INTERNAL|RTCC_DIV_32); // Define timer 0 
+.................... } 
+....................  
+....................  
+.................... #include "lcd.h" 
+.................... #include <regs_16f87x.h> 
+.................... #include "regs_16.h" 
+.................... // Este arquivo contém as definições dos registradores SFR comuns a série 16 
+....................  
+.................... #BYTE INDF		= 0x00 
+.................... #BYTE TMR0		= 0x01 
+.................... #BYTE PCL		= 0x02 
+.................... #BYTE STATUS		= 0x03 
+.................... 	#BIT IRP	= STATUS.7 
+.................... 	#BIT RP1	= STATUS.6 
+.................... 	#BIT RP0	= STATUS.5 
+.................... 	#BIT TO		= STATUS.4 
+.................... 	#BIT PD		= STATUS.3 
+.................... 	#BIT Z		= STATUS.2 
+.................... 	#BIT DC		= STATUS.1 
+.................... 	#BIT C		= STATUS.0 
+.................... #BYTE FSR		= 0x04 
+.................... #BYTE PORTA		= 0x05 
+.................... #BYTE PORTB		= 0x06 
+.................... #BYTE PORTC		= 0x07 
+.................... #BYTE PORTD		= 0x08 
+.................... #BYTE PORTE		= 0x09 
+.................... #BYTE PCLATH		= 0x0A 
+.................... #BYTE INTCON		= 0x0B 
+.................... 	#BIT GIE	= INTCON.7 
+.................... 	#BIT PEIE	= INTCON.6 
+.................... 	#BIT TMR0IE 	= INTCON.5 
+.................... 	#BIT T0IE	= INTCON.5 
+.................... 	#BIT INTE	= INTCON.4 
+.................... 	#BIT RBIE	= INTCON.3 
+.................... 	#BIT TMR0IF 	= INTCON.2 
+.................... 	#BIT T0IF	= INTCON.2 
+.................... 	#BIT INTF	= INTCON.1 
+.................... 	#BIT RBIF	= INTCON.0 
+.................... #BYTE PIR1		= 0x0C 
+.................... #BYTE PIR2		= 0x0D 
+.................... #BYTE TMR1L		= 0x0E 
+.................... #BYTE TMR1H		= 0x0F 
+.................... #BYTE T1CON		= 0x10 
+.................... 	#BIT T1CKPS1	= T1CON.5 
+.................... 	#BIT T1CKPS0	= T1CON.4 
+.................... 	#BIT T1OSCEN	= T1CON.3 
+.................... 	#BIT T1SYNC	= T1CON.2 
+.................... 	#BIT TMR1CS	= T1CON.1 
+.................... 	#BIT TMR1ON	= T1CON.0 
+.................... #BYTE TMR2		= 0x11 
+.................... #BYTE T2CON		= 0x12 
+.................... 	#BIT TOUTPS3	= T2CON.6 
+.................... 	#BIT TOUTPS2	= T2CON.5 
+.................... 	#BIT TOUTPS1	= T2CON.4 
+.................... 	#BIT TOUTPS0	= T2CON.3 
+.................... 	#BIT TMR2ON	= T2CON.2 
+.................... 	#BIT T2CKPS1	= T2CON.1 
+.................... 	#BIT T2CKPS0	= T2CON.0 
+.................... #BYTE CCPR1L		= 0x15 
+.................... #BYTE CCPR1H		= 0x16 
+.................... #BYTE CCP1CON		= 0x17 
+.................... 	#BIT CCP1X	= CCP1CON.5 
+.................... 	#BIT CCP1Y	= CCP1CON.4 
+.................... 	#BIT CCP1M3	= CCP1CON.3 
+.................... 	#BIT CCP1M2	= CCP1CON.2 
+.................... 	#BIT CCP1M1	= CCP1CON.1 
+.................... 	#BIT CCP1M0	= CCP1CON.0 
+.................... #BYTE CCPR2L		= 0x1B 
+.................... #BYTE CCPR2H		= 0x1C 
+.................... #BYTE CCP2CON		= 0x1D 
+.................... 	#BIT CCP2X	= CCP2CON.5 
+.................... 	#BIT CCP2Y	= CCP2CON.4 
+.................... 	#BIT CCP2M3	= CCP2CON.3 
+.................... 	#BIT CCP2M2	= CCP2CON.2 
+.................... 	#BIT CCP2M1	= CCP2CON.1 
+.................... 	#BIT CCP2M0	= CCP2CON.0 
+.................... #BYTE OPTION		= 0x81 
+.................... 	#BIT RBPU	= OPTION.7 
+.................... 	#BIT INTEDG 	= OPTION.6 
+.................... 	#BIT T0CS	= OPTION.5 
+.................... 	#BIT T0SE	= OPTION.4 
+.................... 	#BIT PSA	= OPTION.3 
+.................... 	#BIT PS2	= OPTION.2 
+.................... 	#BIT PS1	= OPTION.1 
+.................... 	#BIT PS0	= OPTION.0 
+.................... #BYTE TRISA		= 0x85 
+.................... #BYTE TRISB		= 0x86 
+.................... #BYTE TRISC		= 0x87 
+.................... #BYTE TRISD		= 0x88 
+.................... #BYTE TRISE		= 0x89 
+.................... 	#BIT IBF	= TRISE.7 
+.................... 	#BIT OBF	= TRISE.6 
+.................... 	#BIT IBOV	= TRISE.5 
+.................... 	#BIT PSPMODE	= TRISE.4 
+.................... #BYTE PCON		= 0x8E 
+.................... 	#BIT OSCF	= PCON.3 
+.................... 	#BIT POR	= PCON.1 
+.................... 	#BIT BOD	= PCON.0 
+.................... #BYTE PIE1		= 0x8C 
+.................... #BYTE PIE2		= 0x8D 
+.................... #BYTE OSCCAL		= 0x90 
+.................... #BYTE PR2		= 0x92 
+.................... #BYTE WPU		= 0x95 
+.................... #BYTE IOCB		= 0x96 
+....................  
+....................  
+.................... // definições válidas para os PICs da série 16F87x e 16F87xA 
+.................... // Autor: Fábio Pereira 
+....................  
+.................... // PIR1 
+.................... 	#BIT PSPIF	= PIR1.7 
+.................... 	#BIT ADIF	= PIR1.6 
+.................... 	#BIT RCIF	= PIR1.5 
+.................... 	#BIT TXIF	= PIR1.4 
+.................... 	#BIT SSPIF	= PIR1.3 
+.................... 	#BIT CCP1IF	= PIR1.2 
+.................... 	#BIT TMR2IF	= PIR1.1 
+.................... 	#BIT TMR1IF	= PIR1.0 
+.................... // PIR2 
+.................... 	#BIT CMIF	= PIR2.6 
+.................... 	#BIT EEIF	= PIR2.4 
+.................... 	#BIT BCLIF	= PIR2.3 
+.................... 	#BIT CCP2IF	= PIR2.0 
+.................... #BYTE SSPBUF		= 0x13 
+.................... #BYTE SSPCON		= 0x14 
+.................... 	#BIT WCOL	= SSPCON.7 
+.................... 	#BIT SSPOV	= SSPCON.6 
+.................... 	#BIT SSPEN	= SSPCON.5 
+.................... 	#BIT CKP	= SSPCON.4 
+.................... 	#BIT SSPM3	= SSPCON.3 
+.................... 	#BIT SSPM2	= SSPCON.2 
+.................... 	#BIT SSPM1	= SSPCON.1 
+.................... 	#BIT SSPM0	= SSPCON.0 
+.................... #BYTE RCSTA		= 0x18 
+.................... 	#BIT SPEN	= RCSTA.7 
+.................... 	#BIT RX9	= RCSTA.6 
+.................... 	#BIT SREN	= RCSTA.5 
+.................... 	#BIT CREN	= RCSTA.4 
+.................... 	#BIT ADDEN	= RCSTA.3 
+.................... 	#BIT FERR	= RCSTA.2 
+.................... 	#BIT OERR	= RCSTA.1 
+.................... 	#BIT RX9D	= RCSTA.0 
+.................... #BYTE TXREG		= 0x19 
+.................... #BYTE RCREG		= 0x1A 
+.................... #BYTE ADRESH		= 0x1E 
+.................... #BYTE ADCON0		= 0x1F 
+.................... 	#BIT ADCS1	= ADCON0.7 
+.................... 	#BIT ADCS0	= ADCON0.6 
+.................... 	#BIT CHS2	= ADCON0.5 
+.................... 	#BIT CHS1	= ADCON0.4 
+.................... 	#BIT CHS0	= ADCON0.3 
+.................... 	#BIT GO_DONE	= ADCON0.2 
+.................... 	#BIT ADON	= ADCON0.0 
+.................... // PIE1 
+.................... 	#BIT PSPIE	= PIE1.7 
+.................... 	#BIT ADIE	= PIE1.6 
+.................... 	#BIT RCIE	= PIE1.5 
+.................... 	#BIT TXIE	= PIE1.4 
+.................... 	#BIT SSPIE	= PIE1.3 
+.................... 	#BIT CCP1IE	= PIE1.2 
+.................... 	#BIT TMR2IE	= PIE1.1 
+.................... 	#BIT TMR1IE	= PIE1.0 
+.................... // PIE2 
+.................... 	#BIT CMIE	= PIE2.6 
+.................... 	#BIT EEIE	= PIE2.4 
+.................... 	#BIT BCLIE	= PIE2.3 
+.................... 	#BIT CCP2IE	= PIE2.0 
+.................... #BYTE SSPCON2		= 0x91 
+.................... 	#BIT GCEN	= SSPCON2.7 
+.................... 	#BIT ACKSTAT	= SSPCON2.6 
+.................... 	#BIT ACKDT	= SSPCON2.5 
+.................... 	#BIT ACKEN	= SSPCON2.4 
+.................... 	#BIT RCEN	= SSPCON2.3 
+.................... 	#BIT PEN	= SSPCON2.2 
+.................... 	#BIT RSEN	= SSPCON2.1 
+.................... 	#BIT SEN	= SSPCON2.0 
+.................... #BYTE SSPADD		= 0x93 
+.................... #BYTE SSPSTAT		= 0x94 
+.................... 	#BIT SMP	= SSPSTAT.7 
+.................... 	#BIT CKE	= SSPSTAT.6 
+.................... 	#BIT D_A	= SSPSTAT.5 
+.................... 	#BIT P		= SSPSTAT.4 
+.................... 	#BIT S		= SSPSTAT.3 
+.................... 	#BIT R_W	= SSPSTAT.2 
+.................... 	#BIT UA		= SSPSTAT.1 
+.................... 	#BIT BF		= SSPSTAT.0 
+.................... #BYTE TXSTA		= 0x98 
+.................... 	#BIT CSRC	= TXSTA.7 
+.................... 	#BIT TX9	= TXSTA.6 
+.................... 	#BIT TXEN	= TXSTA.5 
+.................... 	#BIT SYNC	= TXSTA.4 
+.................... 	#BIT BRGH	= TXSTA.2 
+.................... 	#BIT TRMT	= TXSTA.1 
+.................... 	#BIT TX9D	= TXSTA.0 
+.................... #BYTE SPBRG		= 0x99 
+.................... #BYTE CMCON		= 0x9C 
+.................... //	#BIT C2OUT	= CMCON.7	// Já definido nos arquivos pic16f87xa.h 
+.................... //	#BIT C1OUT	= CMCON.6	// Já definido nos arquivos pic16f87xa.h 
+.................... 	#BIT C2INV	= CMCON.5 
+.................... 	#BIT C1INV	= CMCON.4 
+.................... 	#BIT CIS	= CMCON.3 
+.................... 	#BIT CM2	= CMCON.2 
+.................... 	#BIT CM1	= CMCON.1 
+.................... 	#BIT CM0	= CMCON.0 
+.................... #BYTE CVRCON		= 0x9D 
+.................... 	#BIT CVREN	= CVRCON.7 
+.................... 	#BIT CVROE	= CVRCON.6 
+.................... 	#BIT CVRR	= CVRCON.5 
+.................... 	#BIT CVR3	= CVRCON.3 
+.................... 	#BIT CVR2	= CVRCON.2 
+.................... 	#BIT CVR1	= CVRCON.1 
+.................... 	#BIT CVR0	= CVRCON.0 
+.................... #BYTE ADRESL		= 0x9E 
+.................... #BYTE ADCON1		= 0x9F 
+.................... 	#BIT ADFM	= ADCON1.7 
+.................... 	#BIT ADCS2	= ADCON1.6 
+.................... 	#BIT PCFG3	= ADCON1.3 
+.................... 	#BIT PCFG2	= ADCON1.2 
+.................... 	#BIT PCFG1	= ADCON1.1 
+.................... 	#BIT PCFG0	= ADCON1.0 
+.................... #BYTE EEDATA		= 0x10C 
+.................... #BYTE EEADR		= 0x10D 
+.................... #BYTE EEDATH		= 0x10E 
+.................... #BYTE EEADRH		= 0x10F 
+.................... #BYTE EECON1		= 0x18C 
+.................... 	#BIT EEPGD	= EECON1.7 
+.................... 	#BIT WRERR	= EECON1.3 
+.................... 	#BIT WREN	= EECON1.2 
+.................... 	#BIT WR		= EECON1.1 
+.................... 	#BIT RD		= EECON1.0 
+.................... #BYTE EECON2		= 0x18D 
+....................  
+....................  
+.................... #define LINE0_ADDRESS 0X80 
+.................... #define LINE1_ADDRESS 0XAF 
+....................  
+....................   // ENTRADAS                               * 
+.................... // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+.................... // As entradas devem ser associadas a nomes para facilitar a programação e 
+.................... // futuras alterações do hardware. 
+.................... #bit  C1   = portd.0                     // definições das chaves 
+.................... #bit  C2   = portd.1                     // chave aberta  = 1 
+.................... #bit  C3   = portd.2                     // chave fechada = 0 
+.................... #bit  C4   = portd.3 
+....................  
+.................... ///* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+.................... // *                               SAÍDAS                                * 
+.................... // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+.................... // As saídas devem ser associadas a nomes para facilitar a programação e 
+.................... // futuras alterações do hardware. 
+.................... #bit  RS          = portb.5 
+.................... #bit  E           = portd.4 
+.................... #bit  DATA_PIN_7  = portd.3 
+.................... #bit  DATA_PIN_6  = portd.2 
+.................... #bit  DATA_PIN_5  = portd.1 
+.................... #bit  DATA_PIN_4  = portd.0 
+....................  
+.................... //********************* LOW LEVEL FUNCTIONS ********************* 
+....................  
+.................... void LcdCommand(char data) { 
+....................    RS = 0;                  // seleciona o envio de um comando 
+*
+00DD:  BCF    06.5
+....................  
+....................    TRISD = TRISD & 0xF0;      // configura pinos D0..D3 como saídas 
+00DE:  MOVLW  F0
+00DF:  BSF    03.5
+00E0:  ANDWF  08,F
+....................  
+....................    DATA_PIN_7 = (unsigned char)((data & 0x80)>>7);   //acerta dado 
+00E1:  BCF    03.5
+00E2:  MOVF   43,W
+00E3:  ANDLW  80
+00E4:  MOVWF  77
+00E5:  RLF    77,W
+00E6:  CLRF   77
+00E7:  BTFSC  03.0
+00E8:  BSF    77.0
+00E9:  BTFSS  77.0
+00EA:  BCF    08.3
+00EB:  BTFSC  77.0
+00EC:  BSF    08.3
+....................    DATA_PIN_6 = (unsigned char)((data & 0x40)>>6);   //no barramento 
+00ED:  MOVF   43,W
+00EE:  ANDLW  40
+00EF:  MOVWF  77
+00F0:  SWAPF  77,F
+00F1:  RRF    77,F
+00F2:  RRF    77,F
+00F3:  MOVLW  03
+00F4:  ANDWF  77,F
+00F5:  BTFSS  77.0
+00F6:  BCF    08.2
+00F7:  BTFSC  77.0
+00F8:  BSF    08.2
+....................    DATA_PIN_5 = (unsigned char)((data & 0x20)>>5); 
+00F9:  MOVF   43,W
+00FA:  ANDLW  20
+00FB:  MOVWF  77
+00FC:  SWAPF  77,F
+00FD:  RRF    77,F
+00FE:  MOVLW  07
+00FF:  ANDWF  77,F
+0100:  BTFSS  77.0
+0101:  BCF    08.1
+0102:  BTFSC  77.0
+0103:  BSF    08.1
+....................    DATA_PIN_4 = (unsigned char)((data & 0x10)>>4); 
+0104:  MOVF   43,W
+0105:  ANDLW  10
+0106:  MOVWF  77
+0107:  SWAPF  77,F
+0108:  MOVLW  0F
+0109:  ANDWF  77,F
+010A:  BTFSS  77.0
+010B:  BCF    08.0
+010C:  BTFSC  77.0
+010D:  BSF    08.0
+....................     
+....................    E = 1;                  // envia pulso de enable 
+010E:  BSF    08.4
+....................    delay_us(1); 
+010F:  GOTO   110
+0110:  GOTO   111
+0111:  NOP
+....................    E = 0; 
+0112:  BCF    08.4
+....................     
+....................    DATA_PIN_7 = (unsigned char)((data & 0x08)>>3);   // acerta dado 
+0113:  MOVF   43,W
+0114:  ANDLW  08
+0115:  MOVWF  77
+0116:  RRF    77,F
+0117:  RRF    77,F
+0118:  RRF    77,F
+0119:  MOVLW  1F
+011A:  ANDWF  77,F
+011B:  BTFSS  77.0
+011C:  BCF    08.3
+011D:  BTFSC  77.0
+011E:  BSF    08.3
+....................    DATA_PIN_6 = (unsigned char)((data & 0x04)>>2);   // no barramento 
+011F:  MOVF   43,W
+0120:  ANDLW  04
+0121:  MOVWF  77
+0122:  RRF    77,F
+0123:  RRF    77,F
+0124:  MOVLW  3F
+0125:  ANDWF  77,F
+0126:  BTFSS  77.0
+0127:  BCF    08.2
+0128:  BTFSC  77.0
+0129:  BSF    08.2
+....................    DATA_PIN_5 = (unsigned char)((data & 0x02)>>1); 
+012A:  MOVF   43,W
+012B:  ANDLW  02
+012C:  MOVWF  77
+012D:  BCF    03.0
+012E:  RRF    77,F
+012F:  BTFSS  77.0
+0130:  BCF    08.1
+0131:  BTFSC  77.0
+0132:  BSF    08.1
+....................    DATA_PIN_4 = (unsigned char)(data & 0x01); 
+0133:  MOVF   43,W
+0134:  ANDLW  01
+0135:  MOVWF  78
+0136:  BTFSS  78.0
+0137:  BCF    08.0
+0138:  BTFSC  78.0
+0139:  BSF    08.0
+....................     
+....................    E = 1;                  // envia pulso de enable 
+013A:  BSF    08.4
+....................    delay_us(1); 
+013B:  GOTO   13C
+013C:  GOTO   13D
+013D:  NOP
+....................    E = 0; 
+013E:  BCF    08.4
+....................     
+....................    delay_us(40); 
+013F:  MOVLW  42
+0140:  MOVWF  77
+0141:  DECFSZ 77,F
+0142:  GOTO   141
+0143:  NOP
+....................    TRISD = TRISD | 0x0F;      // configura pinos D0..D3 como entradas 
+0144:  MOVLW  0F
+0145:  BSF    03.5
+0146:  IORWF  08,F
+0147:  BCF    03.5
+0148:  RETURN
+.................... } 
+....................  
+.................... void LcdClear(void) { 
+....................    LcdCommand(0x01);         // limpa lcd 
+*
+017D:  MOVLW  01
+017E:  MOVWF  43
+017F:  CALL   0DD
+....................    delay_ms(2); 
+0180:  MOVLW  02
+0181:  MOVWF  47
+0182:  CALL   079
+.................... } 
+....................  
+.................... void LcdInitialize(void) { 
+....................    delay_ms(100);            // espera 100 milisengundos 
+*
+0149:  MOVLW  64
+014A:  MOVWF  47
+014B:  CALL   079
+....................    TRISD = TRISD & 0xE0;      // configura pinos D0..D3 como saídas 
+014C:  MOVLW  E0
+014D:  BSF    03.5
+014E:  ANDWF  08,F
+....................     
+....................    PORTD = 0x03; 
+014F:  MOVLW  03
+0150:  BCF    03.5
+0151:  MOVWF  08
+....................    
+....................    E = 1 ;                    // gera pulso no enable 
+0152:  BSF    08.4
+....................    delay_us(1);            // espera 1 microsegundo 
+0153:  GOTO   154
+0154:  GOTO   155
+0155:  NOP
+....................    E = 0;                    // desce o pino de enable 
+0156:  BCF    08.4
+....................     
+....................    delay_ms(5);            // espera 5 milisengundos 
+0157:  MOVLW  05
+0158:  MOVWF  47
+0159:  CALL   079
+....................     
+....................    E = 1 ;                  // gera pulso no enable 
+015A:  BSF    08.4
+....................    delay_us(1);            // espera 1 microsegundo 
+015B:  GOTO   15C
+015C:  GOTO   15D
+015D:  NOP
+....................    E = 0;                  // desce o pino de enable 
+015E:  BCF    08.4
+....................     
+....................    delay_us(100);            // espera 100 microsengundos 
+015F:  MOVLW  A6
+0160:  MOVWF  77
+0161:  DECFSZ 77,F
+0162:  GOTO   161
+0163:  NOP
+....................     
+....................    E = 1 ;                  // gera pulso no enable 
+0164:  BSF    08.4
+....................    delay_us(1);            // espera 1 microsegundo 
+0165:  GOTO   166
+0166:  GOTO   167
+0167:  NOP
+....................    E = 0;                  // desce o pino de enable 
+0168:  BCF    08.4
+....................     
+....................    delay_us(40);            // espera 40 microsegundos 
+0169:  MOVLW  42
+016A:  MOVWF  77
+016B:  DECFSZ 77,F
+016C:  GOTO   16B
+016D:  NOP
+....................     
+....................    PORTD = 0x02; 
+016E:  MOVLW  02
+016F:  MOVWF  08
+....................     
+....................    E = 1 ;                  // gera pulso no enable 
+0170:  BSF    08.4
+....................    delay_us(1);            // espera 1 microsegundo 
+0171:  GOTO   172
+0172:  GOTO   173
+0173:  NOP
+....................    E = 0;                  // desce o pino de enable 
+0174:  BCF    08.4
+....................     
+....................    delay_us(40);            // espera 40 microsegundos 
+0175:  MOVLW  42
+0176:  MOVWF  77
+0177:  DECFSZ 77,F
+0178:  GOTO   177
+0179:  NOP
+....................     
+....................    LcdCommand(0x28);         // liga o display, sem cursor e sem blink (4 vias) 
+017A:  MOVLW  28
+017B:  MOVWF  43
+017C:  CALL   0DD
+....................     
+....................    LcdClear();            // limpa lcd 
+....................     
+....................    LcdCommand(0x0C);         // display sem cursor 
+*
+0183:  MOVLW  0C
+0184:  MOVWF  43
+0185:  CALL   0DD
+....................     
+....................    LcdCommand(0x06);         // desloca cursor para a direita 
+0186:  MOVLW  06
+0187:  MOVWF  43
+0188:  CALL   0DD
+0189:  BCF    0A.3
+018A:  BCF    0A.4
+018B:  GOTO   51F (RETURN)
+.................... } 
+....................  
+.................... void LcdWrite(char data) 
+.................... { 
+....................    RS = 1;                  // seleciona o envio de um comando 
+*
+020C:  BSF    06.5
+....................     
+....................    TRISD = TRISD & 0xF0;      // configura pinos D0..D3 como saídas 
+020D:  MOVLW  F0
+020E:  BSF    03.5
+020F:  ANDWF  08,F
+....................     
+....................    DATA_PIN_7 = (char)((data & 0x80)>>7);   // acerta dado 
+0210:  BCF    03.5
+0211:  MOVF   48,W
+0212:  ANDLW  80
+0213:  MOVWF  77
+0214:  RLF    77,W
+0215:  CLRF   77
+0216:  BTFSC  03.0
+0217:  BSF    77.0
+0218:  BTFSS  77.0
+0219:  BCF    08.3
+021A:  BTFSC  77.0
+021B:  BSF    08.3
+....................    DATA_PIN_6 = (char)((data & 0x40)>>6);   // no barramento 
+021C:  MOVF   48,W
+021D:  ANDLW  40
+021E:  MOVWF  77
+021F:  SWAPF  77,F
+0220:  RRF    77,F
+0221:  RRF    77,F
+0222:  MOVLW  03
+0223:  ANDWF  77,F
+0224:  BTFSS  77.0
+0225:  BCF    08.2
+0226:  BTFSC  77.0
+0227:  BSF    08.2
+....................    DATA_PIN_5 = (char)((data & 0x20)>>5); 
+0228:  MOVF   48,W
+0229:  ANDLW  20
+022A:  MOVWF  77
+022B:  SWAPF  77,F
+022C:  RRF    77,F
+022D:  MOVLW  07
+022E:  ANDWF  77,F
+022F:  BTFSS  77.0
+0230:  BCF    08.1
+0231:  BTFSC  77.0
+0232:  BSF    08.1
+....................    DATA_PIN_4 = (char)((data & 0x10)>>4); 
+0233:  MOVF   48,W
+0234:  ANDLW  10
+0235:  MOVWF  77
+0236:  SWAPF  77,F
+0237:  MOVLW  0F
+0238:  ANDWF  77,F
+0239:  BTFSS  77.0
+023A:  BCF    08.0
+023B:  BTFSC  77.0
+023C:  BSF    08.0
+....................     
+....................    E = 1;            // envia pulso de enable 
+023D:  BSF    08.4
+....................    delay_us(1); 
+023E:  GOTO   23F
+023F:  GOTO   240
+0240:  NOP
+....................    E = 0; 
+0241:  BCF    08.4
+....................     
+....................    DATA_PIN_7 = (char)((data & 0x08)>>3);   // acerta dado 
+0242:  MOVF   48,W
+0243:  ANDLW  08
+0244:  MOVWF  77
+0245:  RRF    77,F
+0246:  RRF    77,F
+0247:  RRF    77,F
+0248:  MOVLW  1F
+0249:  ANDWF  77,F
+024A:  BTFSS  77.0
+024B:  BCF    08.3
+024C:  BTFSC  77.0
+024D:  BSF    08.3
+....................    DATA_PIN_6 = (char)((data & 0x04)>>2);   // no barramento 
+024E:  MOVF   48,W
+024F:  ANDLW  04
+0250:  MOVWF  77
+0251:  RRF    77,F
+0252:  RRF    77,F
+0253:  MOVLW  3F
+0254:  ANDWF  77,F
+0255:  BTFSS  77.0
+0256:  BCF    08.2
+0257:  BTFSC  77.0
+0258:  BSF    08.2
+....................    DATA_PIN_5 = (char)((data & 0x02)>>1); 
+0259:  MOVF   48,W
+025A:  ANDLW  02
+025B:  MOVWF  77
+025C:  BCF    03.0
+025D:  RRF    77,F
+025E:  BTFSS  77.0
+025F:  BCF    08.1
+0260:  BTFSC  77.0
+0261:  BSF    08.1
+....................    DATA_PIN_4 = (char)(data & 0x01); 
+0262:  MOVF   48,W
+0263:  ANDLW  01
+0264:  MOVWF  78
+0265:  BTFSS  78.0
+0266:  BCF    08.0
+0267:  BTFSC  78.0
+0268:  BSF    08.0
+....................     
+....................    E = 1;            // envia pulso de enable 
+0269:  BSF    08.4
+....................    delay_us(1); 
+026A:  GOTO   26B
+026B:  GOTO   26C
+026C:  NOP
+....................    E = 0; 
+026D:  BCF    08.4
+....................     
+....................    delay_us(40); 
+026E:  MOVLW  42
+026F:  MOVWF  77
+0270:  DECFSZ 77,F
+0271:  GOTO   270
+0272:  NOP
+....................    TRISD = TRISD | 0x0F;      // configura pinos D0..D3 como entradas 
+0273:  MOVLW  0F
+0274:  BSF    03.5
+0275:  IORWF  08,F
+.................... } 
+....................  
+.................... //********************* HIGH LEVEL FUNCTIONS ********************* 
+....................  
+.................... void WriteLCD(char* msg, int length) { 
+....................    for(int i = 0; i < length; i++) { 
+*
+01FD:  CLRF   46
+01FE:  MOVF   45,W
+01FF:  SUBWF  46,W
+0200:  BTFSC  03.0
+0201:  GOTO   27C
+....................       LcdWrite(msg[i]); 
+0202:  MOVF   46,W
+0203:  ADDWF  43,W
+0204:  MOVWF  04
+0205:  BCF    03.7
+0206:  BTFSC  44.0
+0207:  BSF    03.7
+0208:  MOVF   00,W
+0209:  MOVWF  47
+020A:  MOVF   47,W
+020B:  MOVWF  48
+....................       delay_ms(5); 
+*
+0276:  MOVLW  05
+0277:  BCF    03.5
+0278:  MOVWF  47
+0279:  CALL   079
+027A:  INCF   46,F
+027B:  GOTO   1FE
+....................    } 
+027C:  RETURN
+.................... } 
+....................  
+.................... void WriteLCDLine0(char* line) { 
+....................    LcdCommand(LINE0_ADDRESS); 
+027D:  MOVLW  80
+027E:  MOVWF  43
+027F:  CALL   0DD
+....................    WriteLCD(line, 16); 
+0280:  MOVF   3E,W
+0281:  MOVWF  44
+0282:  MOVF   3D,W
+0283:  MOVWF  43
+0284:  MOVLW  10
+0285:  MOVWF  45
+0286:  CALL   1FD
+0287:  RETURN
+.................... } 
+....................  
+.................... void WriteLCDLine1(char* line) { 
+....................    LcdCommand(LINE1_ADDRESS); 
+*
+04FB:  MOVLW  AF
+04FC:  MOVWF  43
+04FD:  CALL   0DD
+....................    WriteLCD(line, 16); 
+04FE:  MOVF   42,W
+04FF:  MOVWF  44
+0500:  MOVF   41,W
+0501:  MOVWF  43
+0502:  MOVLW  10
+0503:  MOVWF  45
+0504:  CALL   1FD
+.................... } 
+....................  
+.................... char lcdBuffer[16]; 
+....................  
+.................... void ClearLCDBuffer() { 
+....................    for (int i = 0; i < 16; i++) { 
+*
+018C:  CLRF   41
+018D:  MOVF   41,W
+018E:  SUBLW  0F
+018F:  BTFSS  03.0
+0190:  GOTO   199
+....................       lcdBuffer[i] = ' '; 
+0191:  MOVLW  21
+0192:  ADDWF  41,W
+0193:  MOVWF  04
+0194:  BCF    03.7
+0195:  MOVLW  20
+0196:  MOVWF  00
+0197:  INCF   41,F
+0198:  GOTO   18D
+....................    } 
+0199:  RETURN
+.................... } 
+....................  
+....................  
+.................... #include <can-communication.h> 
+.................... #include <can_mcp2515.h> 
+.................... typedef unsigned long int Can_Id; 
+....................  
+.................... //******************** BASE ROUTINES ******************** 
+....................  
+.................... int CanKbhit(void) { 
+....................    int teste; 
+....................    output_high (PIN_B2); // Configuração do Chip Select 
+*
+0391:  BSF    03.5
+0392:  BCF    06.2
+0393:  BCF    03.5
+0394:  BSF    06.2
+....................    output_low(PIN_B2); // Configuração do Chip Select 
+0395:  BSF    03.5
+0396:  BCF    06.2
+0397:  BCF    03.5
+0398:  BCF    06.2
+....................    output_high (PIN_B2); // Configuração do Chip Select 
+0399:  BSF    03.5
+039A:  BCF    06.2
+039B:  BCF    03.5
+039C:  BSF    06.2
+....................    delay_us (10); 
+039D:  MOVLW  10
+039E:  MOVWF  77
+039F:  DECFSZ 77,F
+03A0:  GOTO   39F
+03A1:  NOP
+....................    output_low(PIN_B2); // Configuração do Chip Select 
+03A2:  BSF    03.5
+03A3:  BCF    06.2
+03A4:  BCF    03.5
+03A5:  BCF    06.2
+....................    spi_write(0b00000011); // Manda a instrução de leitura para o transceiver 
+03A6:  MOVF   13,W
+03A7:  MOVLW  03
+03A8:  MOVWF  13
+03A9:  BSF    03.5
+03AA:  RRF    14,W
+03AB:  BTFSS  03.0
+03AC:  GOTO   3AA
+....................    spi_write(0x2C); // Envia o endereço no qual deseja receber a informação 
+03AD:  BCF    03.5
+03AE:  MOVF   13,W
+03AF:  MOVLW  2C
+03B0:  MOVWF  13
+03B1:  BSF    03.5
+03B2:  RRF    14,W
+03B3:  BTFSS  03.0
+03B4:  GOTO   3B2
+....................    teste = spi_read(0); //informa se chegou um dado no receptor, registrador CANINTF 
+03B5:  BCF    03.5
+03B6:  MOVF   13,W
+03B7:  CLRF   13
+03B8:  BSF    03.5
+03B9:  RRF    14,W
+03BA:  BTFSS  03.0
+03BB:  GOTO   3B9
+03BC:  BCF    03.5
+03BD:  MOVF   13,W
+03BE:  MOVWF  4C
+....................    output_high(PIN_B2); 
+03BF:  BSF    03.5
+03C0:  BCF    06.2
+03C1:  BCF    03.5
+03C2:  BSF    06.2
+....................    delay_us (10); 
+03C3:  MOVLW  10
+03C4:  MOVWF  77
+03C5:  DECFSZ 77,F
+03C6:  GOTO   3C5
+03C7:  NOP
+....................    return teste&0x01; 
+03C8:  MOVF   4C,W
+03C9:  ANDLW  01
+03CA:  MOVWF  78
+.................... } 
+....................  
+.................... void CanWrite (int end, int dado) { 
+....................    output_high (PIN_B2); // Configuração do Chip Select 
+*
+0046:  BSF    03.5
+0047:  BCF    06.2
+0048:  BCF    03.5
+0049:  BSF    06.2
+....................    output_low(PIN_B2); // Configuração do Chip Select 
+004A:  BSF    03.5
+004B:  BCF    06.2
+004C:  BCF    03.5
+004D:  BCF    06.2
+....................    output_high(PIN_B2); // Configuração do Chip Select 
+004E:  BSF    03.5
+004F:  BCF    06.2
+0050:  BCF    03.5
+0051:  BSF    06.2
+....................    delay_us (10); 
+0052:  MOVLW  10
+0053:  MOVWF  77
+0054:  DECFSZ 77,F
+0055:  GOTO   054
+0056:  NOP
+....................    output_low(PIN_B2); // Configuração do Chip Select 
+0057:  BSF    03.5
+0058:  BCF    06.2
+0059:  BCF    03.5
+005A:  BCF    06.2
+....................    spi_write(0b00000010); // Manda a instrução de escrita para o transceiver 
+005B:  MOVF   13,W
+005C:  MOVLW  02
+005D:  MOVWF  13
+005E:  BSF    03.5
+005F:  RRF    14,W
+0060:  BTFSS  03.0
+0061:  GOTO   05F
+....................    spi_write(end); // Envia o endereço no qual se deseja guardar o dado 
+0062:  BCF    03.5
+0063:  MOVF   52,W
+0064:  MOVWF  13
+0065:  BSF    03.5
+0066:  RRF    14,W
+0067:  BTFSS  03.0
+0068:  GOTO   066
+....................    spi_write(dado); // Envia o dado 
+0069:  BCF    03.5
+006A:  MOVF   53,W
+006B:  MOVWF  13
+006C:  BSF    03.5
+006D:  RRF    14,W
+006E:  BTFSS  03.0
+006F:  GOTO   06D
+....................    output_high(PIN_B2); // Configuração do Chip Select 
+0070:  BCF    06.2
+0071:  BCF    03.5
+0072:  BSF    06.2
+....................    delay_us (10); 
+0073:  MOVLW  10
+0074:  MOVWF  77
+0075:  DECFSZ 77,F
+0076:  GOTO   075
+0077:  NOP
+0078:  RETURN
+.................... } 
+....................  
+.................... void CanFilter (Can_Id id) { 
+*
+0344:  CLRF   4E
+....................  
+....................    int mask_on = 0; 
+....................    if (id == 0) mask_on |= 0b01100000; 
+0345:  MOVF   4C,F
+0346:  BTFSS  03.2
+0347:  GOTO   34D
+0348:  MOVF   4D,F
+0349:  BTFSS  03.2
+034A:  GOTO   34D
+034B:  MOVLW  60
+034C:  IORWF  4E,F
+....................  
+....................    //Setar filtros 
+....................    CanWrite(0x60, 0b00000000 | mask_on); 
+034D:  MOVF   4E,W
+034E:  MOVWF  51
+034F:  MOVLW  60
+0350:  MOVWF  52
+0351:  MOVF   4E,W
+0352:  MOVWF  53
+0353:  CALL   046
+....................    CanWrite(0x70, 0b00000000 | mask_on); 
+0354:  MOVF   4E,W
+0355:  MOVWF  51
+0356:  MOVLW  70
+0357:  MOVWF  52
+0358:  MOVF   4E,W
+0359:  MOVWF  53
+035A:  CALL   046
+....................     
+....................     //Mascaras em 1 
+....................    CanWrite(0x20, 0xFF); 
+035B:  MOVLW  20
+035C:  MOVWF  52
+035D:  MOVLW  FF
+035E:  MOVWF  53
+035F:  CALL   046
+....................    CanWrite(0x21, 0xFF); 
+0360:  MOVLW  21
+0361:  MOVWF  52
+0362:  MOVLW  FF
+0363:  MOVWF  53
+0364:  CALL   046
+....................     
+....................    unsigned char IDR0_filter = 0; // Contem a mascara para o registrador IDR0 
+....................    unsigned char IDR1_filter = 0; // Contem a mascara para o registrador IDR1 
+0365:  CLRF   4F
+0366:  CLRF   50
+....................    IDR0_filter |= (unsigned char)((id >> 3) & 0xFF); // ID10 a ID3 
+0367:  RRF    4D,W
+0368:  MOVWF  52
+0369:  RRF    4C,W
+036A:  MOVWF  51
+036B:  RRF    52,F
+036C:  RRF    51,F
+036D:  RRF    52,F
+036E:  RRF    51,F
+036F:  MOVLW  1F
+0370:  ANDWF  52,F
+0371:  CLRF   7A
+0372:  MOVF   51,W
+0373:  IORWF  4F,F
+....................    IDR1_filter |= (unsigned char)((id & 0b0000000000000111) << 5); // ID2 a ID0 + (IDE = 0) 
+0374:  MOVF   4C,W
+0375:  ANDLW  07
+0376:  MOVWF  51
+0377:  CLRF   52
+0378:  RLF    51,W
+0379:  MOVWF  79
+037A:  RLF    52,W
+037B:  MOVWF  7A
+037C:  RLF    79,F
+037D:  RLF    7A,F
+037E:  RLF    79,F
+037F:  RLF    7A,F
+0380:  RLF    79,F
+0381:  RLF    7A,F
+0382:  RLF    79,F
+0383:  RLF    7A,F
+0384:  MOVLW  E0
+0385:  ANDWF  79,F
+0386:  MOVF   79,W
+0387:  IORWF  50,F
+....................     
+....................    //Filtrar mensagem desejada 
+....................    CanWrite(0x00, IDR0_filter); 
+0388:  CLRF   52
+0389:  MOVF   4F,W
+038A:  MOVWF  53
+038B:  CALL   046
+....................    CanWrite(0x01, IDR1_filter); 
+038C:  MOVLW  01
+038D:  MOVWF  52
+038E:  MOVF   50,W
+038F:  MOVWF  53
+0390:  CALL   046
+.................... } 
+....................  
+.................... void CanReset(void) { 
+....................    output_high (PIN_B2); // Configuração do Chip Select 
+*
+008D:  BSF    03.5
+008E:  BCF    06.2
+008F:  BCF    03.5
+0090:  BSF    06.2
+....................    output_low(PIN_B2); // Configuração do Chip Select 
+0091:  BSF    03.5
+0092:  BCF    06.2
+0093:  BCF    03.5
+0094:  BCF    06.2
+....................    output_high(PIN_B2); // Configuração do Chip Select 
+0095:  BSF    03.5
+0096:  BCF    06.2
+0097:  BCF    03.5
+0098:  BSF    06.2
+....................    delay_us (10); 
+0099:  MOVLW  10
+009A:  MOVWF  77
+009B:  DECFSZ 77,F
+009C:  GOTO   09B
+009D:  NOP
+....................    output_low(PIN_B2); // Configuração do Chip Select 
+009E:  BSF    03.5
+009F:  BCF    06.2
+00A0:  BCF    03.5
+00A1:  BCF    06.2
+....................    spi_write(0b11000000); 
+00A2:  MOVF   13,W
+00A3:  MOVLW  C0
+00A4:  MOVWF  13
+00A5:  BSF    03.5
+00A6:  RRF    14,W
+00A7:  BTFSS  03.0
+00A8:  GOTO   0A6
+....................    output_high(PIN_B2); // Configuração do Chip Select 
+00A9:  BCF    06.2
+00AA:  BCF    03.5
+00AB:  BSF    06.2
+....................    delay_us (10); 
+00AC:  MOVLW  10
+00AD:  MOVWF  77
+00AE:  DECFSZ 77,F
+00AF:  GOTO   0AE
+00B0:  NOP
+.................... } 
+....................                
+.................... //******************** RX ROUTINES ******************** 
+....................  
+.................... int CanRead (int end) { 
+....................    int data; 
+....................    CanWrite (0x2C, 0x00); // Habilita a leitura novamente zerando o CANINTF 
+*
+0288:  MOVLW  2C
+0289:  MOVWF  52
+028A:  CLRF   53
+028B:  CALL   046
+....................    output_high (PIN_B2); // Configuração do Chip Select 
+028C:  BSF    03.5
+028D:  BCF    06.2
+028E:  BCF    03.5
+028F:  BSF    06.2
+....................    output_low(PIN_B2); // Configuração do Chip Select 
+0290:  BSF    03.5
+0291:  BCF    06.2
+0292:  BCF    03.5
+0293:  BCF    06.2
+....................    output_high (PIN_B2); // Configuração do Chip Select 
+0294:  BSF    03.5
+0295:  BCF    06.2
+0296:  BCF    03.5
+0297:  BSF    06.2
+....................    delay_us (10); 
+0298:  MOVLW  10
+0299:  MOVWF  77
+029A:  DECFSZ 77,F
+029B:  GOTO   29A
+029C:  NOP
+....................    output_low(PIN_B2); // Configuração do Chip Select 
+029D:  BSF    03.5
+029E:  BCF    06.2
+029F:  BCF    03.5
+02A0:  BCF    06.2
+....................    spi_write(0b00000011); // Manda a instrução de leitura para o transceiver 
+02A1:  MOVF   13,W
+02A2:  MOVLW  03
+02A3:  MOVWF  13
+02A4:  BSF    03.5
+02A5:  RRF    14,W
+02A6:  BTFSS  03.0
+02A7:  GOTO   2A5
+....................    spi_write(end); // Envia o endereço no qual deseja receber a informação 
+02A8:  BCF    03.5
+02A9:  MOVF   50,W
+02AA:  MOVWF  13
+02AB:  BSF    03.5
+02AC:  RRF    14,W
+02AD:  BTFSS  03.0
+02AE:  GOTO   2AC
+....................    data = spi_read(0); 
+02AF:  BCF    03.5
+02B0:  MOVF   13,W
+02B1:  CLRF   13
+02B2:  BSF    03.5
+02B3:  RRF    14,W
+02B4:  BTFSS  03.0
+02B5:  GOTO   2B3
+02B6:  BCF    03.5
+02B7:  MOVF   13,W
+02B8:  MOVWF  51
+....................    output_high (PIN_B2); 
+02B9:  BSF    03.5
+02BA:  BCF    06.2
+02BB:  BCF    03.5
+02BC:  BSF    06.2
+....................    delay_us (10); 
+02BD:  MOVLW  10
+02BE:  MOVWF  77
+02BF:  DECFSZ 77,F
+02C0:  GOTO   2BF
+02C1:  NOP
+....................    return data; 
+02C2:  MOVF   51,W
+02C3:  MOVWF  78
+02C4:  RETURN
+.................... } 
+....................  
+.................... void CanConfig (void) { 
+....................    //Configuração do modo de operação 
+....................    CanWrite (0x0F, 0b10000000); // CANCTRL, coloca em modo de configuração 
+*
+00B1:  MOVLW  0F
+00B2:  MOVWF  52
+00B3:  MOVLW  80
+00B4:  MOVWF  53
+00B5:  CALL   046
+....................    delay_ms (100); 
+00B6:  MOVLW  64
+00B7:  MOVWF  47
+00B8:  CALL   079
+....................  
+....................    //Configuração dos modos de sincronismo 
+....................    CanWrite (0x28, 0x02); // CNF3, filtro desabilitado, clock out habilitado, ps2 3 tqs 
+00B9:  MOVLW  28
+00BA:  MOVWF  52
+00BB:  MOVLW  02
+00BC:  MOVWF  53
+00BD:  CALL   046
+....................    CanWrite (0x29, 0xA0); // CNF2, progseg 1tqs, ps5 3 tqs 
+00BE:  MOVLW  29
+00BF:  MOVWF  52
+00C0:  MOVLW  A0
+00C1:  MOVWF  53
+00C2:  CALL   046
+....................    CanWrite (0x2A, 0x01); // CNF1, sjw 1tqs    baud rate 500khz, osc 20mhz ->10tqs 
+00C3:  MOVLW  2A
+00C4:  MOVWF  52
+00C5:  MOVLW  01
+00C6:  MOVWF  53
+00C7:  CALL   046
+....................     
+....................    // Interrupções 
+....................    CanWrite (0x2B, 0x01); //  interrupção ligada 
+00C8:  MOVLW  2B
+00C9:  MOVWF  52
+00CA:  MOVLW  01
+00CB:  MOVWF  53
+00CC:  CALL   046
+....................    CanWrite (0x2C, 0x00); // Habilita a leitura 
+00CD:  MOVLW  2C
+00CE:  MOVWF  52
+00CF:  CLRF   53
+00D0:  CALL   046
+....................  
+....................    // Modo de funcionamento normal 
+....................    CanWrite (0x0F, 0x00); // CANCTRL, coloca em modo de trabalho 
+00D1:  MOVLW  0F
+00D2:  MOVWF  52
+00D3:  CLRF   53
+00D4:  CALL   046
+....................     
+....................    //Seta DLC da Mensagem de Transmissão 8 bytes 
+....................    CanWrite (0x35,0x08); 
+00D5:  MOVLW  35
+00D6:  MOVWF  52
+00D7:  MOVLW  08
+00D8:  MOVWF  53
+00D9:  CALL   046
+.................... } 
+....................  
+.................... //******************** TX ROUTINES ******************** 
+....................  
+.................... void CanSetSendAddress(unsigned long int address) { 
+....................    // Set message id 
+....................    int idHigh = (unsigned char)((address >> 3) & 0xFF); 
+....................    int idLow = (unsigned char)((address & 0b0000000000000111) << 5); 
+....................     
+....................    CanWrite(0x31, idHigh); 
+....................    CanWrite(0x32, idLow); 
+.................... } 
+....................  
+.................... void CanSend(void) { 
+....................    CanWrite (0x30, 0b00001000); // Instrução para enviar a mensagem, TXrequest 
+....................    CanWrite (0x30, 0b00000000); // Instrução para não enviar mais mensagem 
+....................    CanWrite (0x2C, 0x00); // Habilita a leitura novamente zerando o CANINTF 
+.................... } 
+....................  
+.................... //Sends a char[8] message 
+.................... void SendCanFrame(char* frame) { 
+....................    for (int i = 0; i < 8; i++) { 
+....................       CanWrite(0x36 + i, frame[i]); 
+....................    } 
+....................    CanSend(); 
+.................... } 
+....................  
+....................  
+....................  
+.................... typedef struct CAN_MESSAGE { 
+....................    char d0; 
+....................    char d1; 
+....................    char d2; 
+....................    char d3; 
+....................    char d4; 
+....................    char d5; 
+....................    char d6; 
+....................    char d7; 
+.................... } CAN_MESSAGE; 
+....................  
+.................... typedef struct CAN_590 { 
+....................    unsigned long int ref_torque; // ref torque: 0 - 100 %. fator: 0.01 
+....................    unsigned long int velocidade; // fator: 0.1 
+....................    int marcha; // 0: neutro - 5 
+....................    int reserved:2; 
+....................    int pedal_embreagem:1; // 1: press, 0: solto 
+....................    int pedal_freio:1; 
+....................    int modo_cruzeiro:1; 
+....................    int modo_pedal_simulado:1; 
+....................    int ref_cruzeiro; // fator: 1 
+....................    int erro; // 0: sem erro 
+.................... } CAN_590; 
+....................  
+.................... typedef struct CAN_SIGNED { 
+....................    char e; 
+....................    char c; 
+....................    char u; 
+.................... } CAN_SIGNED; 
+....................  
+.................... typedef struct CAN_200 { 
+....................    char e; 
+....................    char c; 
+....................    char u; 
+....................    int pedal_simulado; 
+....................    char reserved[4]; 
+.................... } CAN_200; 
+....................  
+.................... typedef struct CAN_201 { 
+....................    char e; 
+....................    char c; 
+....................    char u; 
+....................    int modo_pedal_sim; // 1: liga, 0: desliga 
+....................    int modo_operacao; // 1: econom, 0: normal 
+....................    int ref_marcha_lenta; // 0 - 11; 0 = 800, MLenta = 600 + (dado - 1)*50 
+.................... } CAN_201; 
+....................   
+.................... void CanStructInit(CAN_SIGNED* val) { 
+....................    val->e = 'e'; 
+....................    val->c = 'c'; 
+....................    val->u = 'u'; 
+.................... } 
+....................  
+.................... //Blocking function that reads a single message with a given id. 
+.................... #define READ_TIMEOUT 10000 //us 
+.................... #define READ_POLLING 100 //us 
+.................... #define TIMEOUT_COUNT READ_TIMEOUT / READ_POLLING 
+.................... int ReadMessage(Can_Id id, CAN_MESSAGE* buffer, Can_Id *recvId) { 
+....................    //Enable hardware filter 
+....................    CanFilter(id); 
+*
+0340:  MOVF   3E,W
+0341:  MOVWF  4D
+0342:  MOVF   3D,W
+0343:  MOVWF  4C
+....................     
+....................    //Wait for message 
+....................    /*unsigned long timeout = 0; 
+....................    while (!CanKbhit() && timeout <= TIMEOUT_COUNT) {   
+....................       delay_us(READ_POLLING);  
+....................       timeout++; 
+....................    }; 
+....................     
+....................    if (timeout >= TIMEOUT_COUNT) return 0; 
+....................    */ 
+....................     
+....................    if (!CanKbhit()) return 0; 
+*
+03CB:  MOVF   78,F
+03CC:  BTFSS  03.2
+03CD:  GOTO   3D1
+03CE:  MOVLW  00
+03CF:  MOVWF  78
+03D0:  GOTO   479
+....................     
+....................    //Read 8 bytes 
+....................    char temp[8]; 
+....................    for (int i = 0; i < 8; i++) { 
+03D1:  CLRF   4B
+03D2:  MOVF   4B,W
+03D3:  SUBLW  07
+03D4:  BTFSS  03.0
+03D5:  GOTO   3EE
+....................       temp[i] = CanRead(0x66 + i); 
+03D6:  MOVLW  43
+03D7:  ADDWF  4B,W
+03D8:  MOVWF  78
+03D9:  CLRF   7A
+03DA:  BTFSC  03.0
+03DB:  INCF   7A,F
+03DC:  MOVF   78,W
+03DD:  MOVWF  4C
+03DE:  MOVF   7A,W
+03DF:  MOVWF  4D
+03E0:  MOVLW  66
+03E1:  ADDWF  4B,W
+03E2:  MOVWF  4E
+03E3:  MOVWF  50
+03E4:  CALL   288
+03E5:  MOVF   4C,W
+03E6:  MOVWF  04
+03E7:  BCF    03.7
+03E8:  BTFSC  4D.0
+03E9:  BSF    03.7
+03EA:  MOVF   78,W
+03EB:  MOVWF  00
+03EC:  INCF   4B,F
+03ED:  GOTO   3D2
+....................    } 
+....................     
+....................    //Save read address, if needed 
+....................    if (recvId > 0) { 
+03EE:  MOVF   41,F
+03EF:  BTFSS  03.2
+03F0:  GOTO   3F4
+03F1:  MOVF   42,F
+03F2:  BTFSC  03.2
+03F3:  GOTO   458
+....................       *recvId = 0; 
+03F4:  MOVF   41,W
+03F5:  MOVWF  04
+03F6:  BCF    03.7
+03F7:  BTFSC  42.0
+03F8:  BSF    03.7
+03F9:  INCF   04,F
+03FA:  CLRF   00
+03FB:  DECF   04,F
+03FC:  CLRF   00
+....................       *recvId |= (unsigned long)(CanRead(0x61)) << 3; 
+03FD:  MOVF   42,W
+03FE:  MOVWF  7A
+03FF:  MOVF   41,W
+0400:  MOVWF  4C
+0401:  MOVF   42,W
+0402:  MOVWF  4D
+0403:  MOVF   41,W
+0404:  MOVWF  04
+0405:  BCF    03.7
+0406:  BTFSC  42.0
+0407:  BSF    03.7
+0408:  INCF   04,F
+0409:  MOVF   00,W
+040A:  MOVWF  4F
+040B:  DECF   04,F
+040C:  MOVF   00,W
+040D:  MOVWF  4E
+040E:  MOVLW  61
+040F:  MOVWF  50
+0410:  CALL   288
+0411:  CLRF   51
+0412:  RLF    78,W
+0413:  MOVWF  79
+0414:  RLF    51,W
+0415:  MOVWF  7A
+0416:  RLF    79,F
+0417:  RLF    7A,F
+0418:  RLF    79,F
+0419:  RLF    7A,F
+041A:  MOVLW  F8
+041B:  ANDWF  79,F
+041C:  MOVF   79,W
+041D:  IORWF  4E,W
+041E:  MOVWF  77
+041F:  MOVF   7A,W
+0420:  IORWF  4F,W
+0421:  MOVWF  7A
+0422:  MOVF   4C,W
+0423:  MOVWF  04
+0424:  BCF    03.7
+0425:  BTFSC  4D.0
+0426:  BSF    03.7
+0427:  INCF   04,F
+0428:  MOVF   7A,W
+0429:  MOVWF  00
+042A:  DECF   04,F
+042B:  MOVF   77,W
+042C:  MOVWF  00
+....................       *recvId |= (CanRead(0x62) & 0b11100000) >> 5; 
+042D:  MOVF   42,W
+042E:  MOVWF  7A
+042F:  MOVF   41,W
+0430:  MOVWF  4C
+0431:  MOVF   42,W
+0432:  MOVWF  4D
+0433:  MOVF   41,W
+0434:  MOVWF  04
+0435:  BCF    03.7
+0436:  BTFSC  42.0
+0437:  BSF    03.7
+0438:  INCF   04,F
+0439:  MOVF   00,W
+043A:  MOVWF  4F
+043B:  DECF   04,F
+043C:  MOVF   00,W
+043D:  MOVWF  4E
+043E:  MOVLW  62
+043F:  MOVWF  50
+0440:  CALL   288
+0441:  MOVF   78,W
+0442:  ANDLW  E0
+0443:  MOVWF  77
+0444:  SWAPF  77,F
+0445:  RRF    77,F
+0446:  MOVLW  07
+0447:  ANDWF  77,F
+0448:  MOVF   77,W
+0449:  IORWF  4E,W
+044A:  MOVWF  77
+044B:  MOVF   4F,W
+044C:  MOVWF  7A
+044D:  MOVF   4C,W
+044E:  MOVWF  04
+044F:  BCF    03.7
+0450:  BTFSC  4D.0
+0451:  BSF    03.7
+0452:  INCF   04,F
+0453:  MOVF   4F,W
+0454:  MOVWF  00
+0455:  DECF   04,F
+0456:  MOVF   77,W
+0457:  MOVWF  00
+....................    } 
+....................     
+....................    memcpy(buffer, temp, 8); 
+0458:  MOVF   40,W
+0459:  MOVWF  4D
+045A:  MOVF   3F,W
+045B:  MOVWF  4C
+045C:  CLRF   4F
+045D:  MOVLW  43
+045E:  MOVWF  4E
+045F:  MOVLW  08
+0460:  MOVWF  78
+0461:  MOVF   4E,W
+0462:  MOVWF  04
+0463:  BCF    03.7
+0464:  BTFSC  4F.0
+0465:  BSF    03.7
+0466:  MOVF   00,W
+0467:  MOVWF  77
+0468:  MOVF   4C,W
+0469:  MOVWF  04
+046A:  BCF    03.7
+046B:  BTFSC  4D.0
+046C:  BSF    03.7
+046D:  MOVF   77,W
+046E:  MOVWF  00
+046F:  INCF   4C,F
+0470:  BTFSC  03.2
+0471:  INCF   4D,F
+0472:  INCF   4E,F
+0473:  BTFSC  03.2
+0474:  INCF   4F,F
+0475:  DECFSZ 78,F
+0476:  GOTO   461
+....................     
+....................    return 1; 
+0477:  MOVLW  01
+0478:  MOVWF  78
+.................... } 
+....................  
+.................... void SetupCan() { 
+....................    CanReset(); 
+....................    CanConfig(); 
+*
+00DA:  BCF    0A.3
+00DB:  BCF    0A.4
+00DC:  GOTO   51E (RETURN)
+.................... } 
+....................  
+....................  
+....................  
+.................... //Prototypes 
+.................... void ReadLoop(); 
+.................... void WriteLoop(); 
+....................  
+.................... void PrintNoData() { 
+....................    ClearLCDBuffer(); 
+....................    sprintf(lcdBuffer, "NO DATA"); 
+....................    WriteLCDLine1(&lcdBuffer); 
+.................... } 
+....................  
+.................... void PrintVelocity(unsigned long int velocity, Can_ID id) { 
+....................    ClearLCDBuffer(); 
+*
+0484:  CALL   18C
+....................    sprintf(lcdBuffer, "VEL: %lu|%lu", velocity, id); 
+0485:  CLRF   32
+0486:  MOVLW  21
+0487:  MOVWF  31
+0488:  MOVLW  08
+0489:  BSF    03.6
+048A:  MOVWF  0D
+048B:  MOVLW  00
+048C:  MOVWF  0F
+048D:  BCF    03.0
+048E:  MOVLW  05
+048F:  BCF    03.6
+0490:  MOVWF  41
+*
+04E7:  MOVLW  10
+04E8:  MOVWF  04
+04E9:  MOVF   3E,W
+04EA:  MOVWF  42
+04EB:  MOVF   3D,W
+04EC:  MOVWF  41
+04ED:  CALL   2C5
+04EE:  MOVLW  7C
+04EF:  MOVWF  4A
+04F0:  CALL   19A
+04F1:  MOVLW  10
+04F2:  MOVWF  04
+04F3:  MOVF   40,W
+04F4:  MOVWF  42
+04F5:  MOVF   3F,W
+04F6:  MOVWF  41
+04F7:  CALL   2C5
+....................    WriteLCDLine1(&lcdBuffer); 
+04F8:  CLRF   42
+04F9:  MOVLW  21
+04FA:  MOVWF  41
+.................... } 
+....................  
+.................... void main() { 
+*
+050C:  MOVF   03,W
+050D:  ANDLW  1F
+050E:  MOVWF  03
+050F:  MOVLW  FF
+0510:  MOVWF  20
+0511:  CLRF   32
+0512:  CLRF   31
+0513:  BSF    03.5
+0514:  BSF    1F.0
+0515:  BSF    1F.1
+0516:  BSF    1F.2
+0517:  BCF    1F.3
+0518:  MOVLW  07
+0519:  MOVWF  1C
+051A:  BCF    03.7
+....................    SetupCommunication(); 
+051B:  BCF    03.5
+051C:  GOTO   01D
+....................    SetupCan(); 
+051D:  GOTO   08D
+....................    //SetupTimers(); 
+....................    LCDInitialize(); 
+051E:  GOTO   149
+....................     
+....................    ClearLCDBuffer(); 
+051F:  CALL   18C
+....................    sprintf(lcdBuffer, "HELLO WORLD"); 
+0520:  CLRF   32
+0521:  MOVLW  21
+0522:  MOVWF  31
+0523:  MOVLW  0F
+0524:  BSF    03.6
+0525:  MOVWF  0D
+0526:  MOVLW  00
+0527:  MOVWF  0F
+0528:  BCF    03.6
+0529:  CALL   1A7
+....................    WriteLCDLine0(&lcdBuffer); 
+052A:  CLRF   3E
+052B:  MOVLW  21
+052C:  MOVWF  3D
+052D:  CALL   27D
+....................     
+....................    delay_ms(500); 
+052E:  MOVLW  02
+052F:  MOVWF  33
+0530:  MOVLW  FA
+0531:  MOVWF  47
+0532:  CALL   079
+0533:  DECFSZ 33,F
+0534:  GOTO   530
+....................     
+....................    ReadLoop(); 
+0535:  GOTO   328
+.................... } 
+....................  
+0536:  SLEEP
+.................... void ReadLoop() { 
+....................    CAN_590 message; 
+....................    Can_Id id; 
+....................     
+....................    ClearLCDBuffer(); 
+*
+0328:  CALL   18C
+....................    sprintf(lcdBuffer, "RX NODE"); 
+0329:  CLRF   32
+032A:  MOVLW  21
+032B:  MOVWF  31
+032C:  MOVLW  15
+032D:  BSF    03.6
+032E:  MOVWF  0D
+032F:  MOVLW  00
+0330:  MOVWF  0F
+0331:  BCF    03.6
+0332:  CALL   1A7
+....................    WriteLCDLine0(&lcdBuffer); 
+0333:  CLRF   3E
+0334:  MOVLW  21
+0335:  MOVWF  3D
+0336:  CALL   27D
+....................     
+....................    while (1) { 
+....................       if (ReadMessage(0x1, &message, &id)) { 
+0337:  CLRF   3E
+0338:  MOVLW  01
+0339:  MOVWF  3D
+033A:  CLRF   40
+033B:  MOVLW  33
+033C:  MOVWF  3F
+033D:  CLRF   42
+033E:  MOVLW  3B
+033F:  MOVWF  41
+*
+0479:  MOVF   78,F
+047A:  BTFSC  03.2
+047B:  GOTO   505
+....................          PrintVelocity(message.velocidade, id); 
+047C:  MOVF   36,W
+047D:  MOVWF  3E
+047E:  MOVF   35,W
+047F:  MOVWF  3D
+0480:  MOVF   3C,W
+0481:  MOVWF  40
+0482:  MOVF   3B,W
+0483:  MOVWF  3F
+....................       } 
+....................        
+....................       delay_ms(10); 
+*
+0505:  MOVLW  0A
+0506:  MOVWF  47
+0507:  CALL   079
+0508:  GOTO   337
+....................    } 
+0509:  BCF    0A.3
+050A:  BCF    0A.4
+050B:  GOTO   536 (RETURN)
+.................... } 
+....................  
+.................... void WriteLoop() { 
+....................    CAN_590 message; 
+....................     
+....................    ClearLCDBuffer(); 
+....................    sprintf(lcdBuffer, "TX NODE"); 
+....................    WriteLCDLine0(&lcdBuffer); 
+....................     
+....................    message.velocidade = 100; 
+....................    CanSetSendAddress(0x590); 
+....................     
+....................    delay_ms(50); 
+....................        
+....................    while (1) { 
+....................       SendCanFrame(&message); 
+....................        
+....................       PrintVelocity(message.velocidade, 0); 
+....................       delay_ms(100); 
+....................       message.velocidade += 1; 
+....................       if (message.velocidade > 500) message.velocidade = 0; 
+....................    } 
+.................... } 
+....................  
+
+Configuration Fuses:
+   Word  1: 3F32   HS NOWDT PUT NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

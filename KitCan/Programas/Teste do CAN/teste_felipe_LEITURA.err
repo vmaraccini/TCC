@@ -1,0 +1,5 @@
+>>> Warning 203 "teste_felipe_LEITURA.c" Line 308(1,1): Condition always TRUE
+>>> Warning 202 "teste_felipe_LEITURA.c" Line 12(11,12): Variable never used:   b
+>>> Warning 202 "teste_felipe_LEITURA.c" Line 12(14,15): Variable never used:   i
+      Memory usage:   ROM=12%      RAM=9% - 10%
+      0 Errors,  3 Warnings.

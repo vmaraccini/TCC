@@ -1,0 +1,42 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+FAROL_ALTO::PIN_e2	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	226;"	d	line:226	file:
+FAROL_BAIXO::PIN_C0	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	225;"	d	line:225	file:
+IGN::PIN_d0	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	222;"	d	line:222	file:
+LANTERNA::PIN_e0	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	224;"	d	line:224	file:
+SETA::PIN_e1	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	223;"	d	line:223	file:
+b	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	12;"	v	line:12
+bit_0::0x01	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	228;"	d	line:228	file:
+bit_1::0x04	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	229;"	d	line:229	file:
+bit_2::0x10	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	230;"	d	line:230	file:
+bit_3::0x40	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	231;"	d	line:231	file:
+bit_4::0x03	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	232;"	d	line:232	file:
+can_reset	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	160;"	f	line:160
+choice	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	12;"	v	line:12
+comando_lcd	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	43;"	f	line:43	signature:(char dado)
+configuracao	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	193;"	f	line:193
+cont	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	12;"	v	line:12
+data	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	12;"	v	line:12
+escreve_lcd	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	75;"	f	line:75	signature:(char dado)
+farol_alto1	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	290;"	f	line:290
+farol_baixo1	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	283;"	f	line:283
+i	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	12;"	v	line:12
+ignicao	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	11;"	v	line:11
+inicializa_lcd	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	116;"	f	line:116	signature:(void)
+init_hw	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	257;"	f	line:257	signature:(void)
+lanterna1	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	276;"	f	line:276
+led	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	11;"	v	line:11
+limpa_lcd	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	107;"	f	line:107	signature:(void)
+main	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	295;"	f	line:295	signature:(void)
+temp	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	13;"	v	line:13
+temp_a	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	13;"	v	line:13
+teste	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	11;"	v	line:11
+timer_a	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	13;"	v	line:13
+trata_timer	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	238;"	f	line:238	signature:(void)
+write	C:\Documents and Settings\Note\Meus documentos\Bruno\Redes de Comunicação\KIT CAN 16F (E)\Programas\Teste do CAN\teste_felipe_LEITURA.c	174;"	f	line:174	signature:(int end, int dado)

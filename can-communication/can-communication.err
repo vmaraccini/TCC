@@ -1,0 +1,2 @@
+>>> Warning 203 "can-communication.c" Line 44(1,1): Condition always TRUE
+>>> Warning 203 "can-communication.c" Line 65(1,1): Condition always TRUE
