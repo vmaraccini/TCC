@@ -18,7 +18,7 @@ void main_json(){
         }
 
         /* print some text */
-        fprintf(f, "max = %f\n", maxSpeed);
+//        fprintf(f, "max = %f\n", maxSpeed);
 
         usleep(1E6);
 

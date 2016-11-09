@@ -13,7 +13,7 @@ void sendData() {
 void main_rs232(){
     usleep(2E6);
     for (;;) {
-        sendData()
+        sendData();
         usleep(1E4);
     }
 }

@@ -17,6 +17,7 @@
 #define EXIT 6
 
 #include "Comum.h"
+#include "Cliente-UDP.h"
 
 #include <stdio.h>
 #include <netdb.h>
