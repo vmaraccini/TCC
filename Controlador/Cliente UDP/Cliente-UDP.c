@@ -41,7 +41,7 @@ int conecta(char *serverIP, int serverPort, int socketDescriptor);
 int enviaMensagem(char *message, int socketDescriptor);
 int recebeMensagem(char *message, int socketDescriptor);
 
-int main_maxSpeed(int argc, const char * argv[])
+int main_udpMaxSpeed(int argc, const char * argv[])
 {
     printf("ProDAV - Cliente UDP - Max speed\n\n");
     
@@ -57,7 +57,7 @@ int main_maxSpeed(int argc, const char * argv[])
     return OK;
 }
 
-int main_distance(int argc, const char * argv[])
+int main_udpDistance(int argc, const char * argv[])
 {
     printf("ProDAV - Cliente UDP - Distance\n\n");
     
@@ -133,6 +133,7 @@ char menu(int client_sd)
     } else {
         //printf("Resposta do servidor: %s", mensagem);
         //maxSpeed = getValueFrom(mensagem)
+        //distance = getValueFrom(mensagem)
     }
     
     return OK;
