@@ -12,6 +12,11 @@
 #include <stdio.h>
 #include "../Comum.h"
 
+
+int main_udpMaxVelocity();
+int main_udpDistance();
+
+
 int iniciaCliente(int *client_sd, int port);
 char finalizaCliente(int *client_sd);
 char menu(int client_sd);

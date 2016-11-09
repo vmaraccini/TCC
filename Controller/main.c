@@ -33,7 +33,7 @@ int main(int argc, const char * argv[]) {
     pthread_create(&udpMaxVelocityThread, NULL, (void*) main_udpMaxVelocity, NULL);
     pthread_create(&udpDistanceThread, NULL, (void*) main_udpDistance, NULL);
     pthread_create(&controladorThread, NULL, (void*) main_controlador, NULL);
-    pthread_create(&jsonSaveThread, NULL, (void*) main_jsonSave, NULL);
+    pthread_create(&jsonSaveThread, NULL, (void*) main_json, NULL);
     pthread_create(&rs232Thread, NULL, (void*) main_rs232, NULL);
     
     //Seguir as threads
@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
     pthread_join(udpDistanceThread, NULL);
     pthread_join(controladorThread, NULL);
     pthread_join(jsonSaveThread, NULL);
-    pthread_join(rs232SaveThread, NULL);
+    pthread_join(rs232Thread, NULL);
     
     return OK;
 }
