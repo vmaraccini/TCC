@@ -14,7 +14,7 @@ int main_controlador() {
         car.velocity = leaderVelocity;
 
         double output = controlLoop(car.velocity, leaderVelocity, maxVelocity, car.distance);
-        double pedal = controller(output);
+        pedal = controller(output);
 
         updateCar(pedal);
 
