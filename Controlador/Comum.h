@@ -78,8 +78,11 @@ typedef enum {
 
 //Declaracao de variaveis expostas globalmente
 extern volatile int pedal;
-extern volatile int maxSpeed;
-extern volatile int distance;
+extern volatile int maxVelocity;
+extern volatile int leaderDistance;
+extern volatile int leaderVelocity;
+extern volatile int currentDistance;
+extern volatile int currentVelocity;
 
 //Funcoes auxiliares
 char alteraParametro(PARAMETRO parametro, int valor);

@@ -12,8 +12,11 @@
 
 //Variaveis (valores)
 volatile int pedal;
-volatile int maxSpeed;
-volatile int distance;
+volatile int maxVelocity;
+volatile int leaderDistance;
+volatile int leaderVelocity;
+volatile int currentDistance;
+volatile int currentVelocity;
 
 //Threads
 pthread_t jsonSaveThread;
