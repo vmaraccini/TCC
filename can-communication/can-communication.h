@@ -24,10 +24,30 @@ typedef struct CAN_590 {
    int erro; // 0: sem erro
 } CAN_590;
 
+typedef struct CAN_470 {
+   int seta_esquerda:1;
+   int seta_direita:1;
+   int reserved0:1;
+   int pisca_alerta:1;
+   int reserved1:1;
+   int luz_re:1;
+   int reserved2:2;
+   int porta_motorista:1;
+   int porta_passageiro:1;
+   int porta_TE:1;
+   int porta_TD:1;
+   int capo:1;
+   int porta_malas:1;
+   int reserved3:2;
+   int backlight_painel;
+   char ignore[5];
+} CAN_470;
+
 typedef struct CAN_SIGNED {
    char e;
    char c;
    char u;
+   char reserved[5];
 } CAN_SIGNED;
 
 typedef struct CAN_200 {
@@ -48,9 +68,9 @@ typedef struct CAN_201 {
 } CAN_201;
  
 void CanStructInit(CAN_SIGNED* val) {
-   val->e = 'e';
-   val->c = 'c';
-   val->u = 'u';
+   val->e = 'E';
+   val->c = 'C';
+   val->u = 'U';
 }
 
 //Blocking function that reads a single message with a given id.
