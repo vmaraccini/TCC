@@ -77,21 +77,9 @@ typedef enum {
 } RESPOSTA;
 
 //Declaracao de variaveis expostas globalmente
-
-extern volatile int temperatura;
-extern volatile int luminosidade;
-extern volatile int intensidade;
-
-extern volatile char estado; // 0 = Desligar / 1 = Ligar
-extern volatile char modo; // 0 = Manual / Automatico
-
-extern volatile int limiar_luminosidade; // 0 - 100
-extern volatile int limiar_temperatura; // 0 - 100
-
-//Variaveis de sincronizacao
-
-extern pthread_mutex_t valorLock;
-extern pthread_mutex_t paramLock;
+extern volatile int pedal;
+extern volatile int maxSpeed;
+extern volatile int distance;
 
 //Funcoes auxiliares
 char alteraParametro(PARAMETRO parametro, int valor);
