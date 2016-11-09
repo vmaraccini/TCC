@@ -132,6 +132,8 @@ char menu(int client_sd)
         return OK;
     } else {
         //printf("Resposta do servidor: %s", mensagem);
+        
+        // TODO MARACCINI
         //maxSpeed = getValueFrom(mensagem)
         //distance = getValueFrom(mensagem)
     }
