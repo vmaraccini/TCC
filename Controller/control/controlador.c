@@ -9,25 +9,24 @@
 
 void main_controlador() {
     
-    car.distance = leaderDistance;
-    
     for (;;) {
-
-        double output = controlLoop(car.velocity, leaderVelocity, maxVelocity, car.distance);
-        double pedalDouble = controller(output);
+        
+        // car.distance = Distância do carro da frente (m)
+        // car.velocity = velocidade atual em relação ao chão (m/s);
+        // leaderVelocity: Velocidade relativa do carro da frente (m/s)
+        // maxVelocity: Velocidade da via em relação ao chão (m/s)
+        
+        car.distance = leaderDistance/100;
+        
+        double output = controlLoop(car.velocity, leaderVelocity/100, maxVelocity/100, car.distance);
+        double pedal = controller(output);
 
         updateCar(pedal);
 
-        printf("--------------\n");
-        printf("Current output: %f\n", pedalDouble);
-        printf("Current car distance: %f\n", car.distance);
-        printf("Current car velocity: %f\n", car.velocity);
-        printf("Leader car velocity: %d\n", leaderVelocity);
-        printf("--------------\n");
-
         currentDistance = car.distance;
         currentVelocity = car.velocity;
-        pedal = (int) pedalDouble * 100;
+        
+        pedalByte = (pedal*100) * 0xFF;
     }
 }
 

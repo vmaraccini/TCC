@@ -14,7 +14,7 @@
 //Definicoes
 
 //Variaveis (valores)
-volatile int pedal;
+volatile char pedalByte;
 volatile int maxVelocity;
 volatile int leaderDistance;
 volatile int leaderVelocity;

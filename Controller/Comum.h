@@ -26,7 +26,7 @@ typedef enum {
 } STATUS;
 
 //Declaracao de variaveis expostas globalmente
-extern volatile int pedal;
+extern volatile char pedalByte;
 extern volatile int maxVelocity;
 extern volatile int leaderDistance;
 extern volatile int leaderVelocity;
