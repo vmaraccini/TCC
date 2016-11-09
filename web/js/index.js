@@ -10,4 +10,4 @@
    });
 }
 
-load()
+setInterval(function() { load(); }, 1500);
