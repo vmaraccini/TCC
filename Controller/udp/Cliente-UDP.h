@@ -12,21 +12,15 @@
 #include <stdio.h>
 #include "../Comum.h"
 
+#define UDP_STEREO_PORT
+#define UPD_MAXVELOCITY_PORT
+
 
 int main_udpMaxVelocity();
 int main_udpDistance();
 
 char read_maxVelocity();
 char read_distance();
-
-int iniciaCliente(int *client_sd, int port);
-char finalizaCliente(int client_sd);
-char menu(int client_sd);
-
-int conecta(char *serverIP, int serverPort, int socketDescriptor);
-
-int enviaMensagem(char *message, int socketDescriptor);
-int recebeMensagem(char *message, int socketDescriptor);
 
 typedef struct PLACA_MSG {
    int maxVelocity;
