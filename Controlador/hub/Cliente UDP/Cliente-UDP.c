@@ -26,38 +26,54 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-int client_sd; //Socket descriptor
+//Socket descriptors
+int client_sd_maxSpeed; 
+int client_sd_distance;
 
 //------------------ Functions ------------------
 
-int iniciaCliente();
-char finalizaCliente();
+int iniciaCliente(int *client_sd, int port);
+char finalizaCliente(int *client_sd);
+char menu(int client_sd);
 
 int conecta(char *serverIP, int serverPort, int socketDescriptor);
 
 int enviaMensagem(char *message, int socketDescriptor);
-
 int recebeMensagem(char *message, int socketDescriptor);
 
-char menu();
-
-int main(int argc, const char * argv[])
+int main_maxSpeed(int argc, const char * argv[])
 {
-    printf("Projeto Lumiar - Controlador UDP\n\n");
+    printf("ProDAV - Cliente UDP - Max speed\n\n");
     
-    iniciaCliente();
+    iniciaCliente(&client_sd_maxSpeed, 3031);
     
     char status = OK;
     while (status == OK) {
-        status = menu();
+        status = menu(&client_sd_maxSpeed);
     }
     
-    finalizaCliente();
+    finalizaCliente(client_sd_maxSpeed);
     
     return OK;
 }
 
-int iniciaCliente()
+int main_distance(int argc, const char * argv[])
+{
+    printf("ProDAV - Cliente UDP - Distance\n\n");
+    
+    iniciaCliente(&client_sd_distance, 3032);
+    
+    char status = OK;
+    while (status == OK) {
+        status = menu(&client_sd_distance);
+    }
+    
+    finalizaCliente(client_sd_distance);
+    
+    return OK;
+}
+
+int iniciaCliente(int *client_sd, int port)
 {
     int status;
     
@@ -70,12 +86,12 @@ int iniciaCliente()
         exit(ERROR_OPENSOCKET);
     }
     
-    printf("Entre com o IP do Lumiar: ");
-    char ipString[BUFFER_LEN];
-    scanf("%s", ipString);
+    //printf("Entre com o IP do Lumiar: ");
+    char ipString[BUFFER_LEN] = "127.0.0.1";
+    //scanf("%s", ipString);
     
-    printf("Entre com a porta: ");
-    int port;
+    //printf("Entre com a porta: ");
+    //int port;
     scanf("%d", &port);
     
     status = conecta(ipString, port, client_sd);
@@ -85,7 +101,7 @@ int iniciaCliente()
     return OK;
 }
 
-char finalizaCliente()
+char finalizaCliente(int *client_sd)
 {
     int status = close(client_sd);
     if (status < 0)
@@ -96,153 +112,27 @@ char finalizaCliente()
 
 #pragma mark - Menu
 
-char menu()
+char menu(int client_sd)
 {
-    printf("\n----- Menu Principal -----\n");
-    printf("1 - Consultar\n");
-    printf("2 - Alterar\n");
-    printf("3 - Sair\n");
-    printf("--------------------------\n");
-    
     int comando;
     char mensagem[BUFFER_LEN];
-    scanf("%d", &comando);
+    // mensage = ...
     
-    switch (comando) {
-        case 1: {
-            printf("1 - Parametro\n");
-            printf("2 - Valor\n");
-            printf("3 - Voltar\n");
-            printf("--------------------------\n");
-            
-            scanf("%d", &comando);
-            if (comando == 3)
-                return OK;
-            
-            char *consulta;
-            if (comando == 1) {
-                printf("1 - Estado\n");
-                printf("2 - Modo\n");
-                printf("3 - Intensidade\n");
-                printf("4 - Limiar de luminosidade\n");
-                printf("5 - Limiar de temperatura\n");
-                printf("--------------------------\n");
-                
-                scanf("%d", &comando);
-                switch (comando) {
-                    case 1:
-                        consulta = PAR_ESTADO_STR;
-                        break;
-                    case 2:
-                        consulta = PAR_MODO_STR;
-                        break;
-                    case 3:
-                        consulta = PAR_INTENSIDADE_STR;
-                        break;
-                    case 4:
-                        consulta = PAR_LIMIAR_LUMI_STR;
-                        break;
-                    case 5:
-                        consulta = PAR_LIMIAR_TEMP_STR;
-                        break;
-                    default:
-                        printf("Comando inválido");
-                        return OK;
-                        break;
-                }
-                
-            } else if (comando == 2) {
-                printf("1 - Temperatura\n");
-                printf("2 - Luminosidade\n");
-                printf("3 - Intensidade\n");
-                printf("--------------------------\n");
-                
-                scanf("%d", &comando);
-                switch (comando) {
-                    case 1:
-                        consulta = VAL_TEMPERATURA_STR;
-                        break;
-                    case 2:
-                        consulta = VAL_LUMINOSIDADE_STR;
-                        break;
-                    case 3:
-                        consulta = VAL_INTENSIDADE_STR;
-                        break;
-                    default:
-                        printf("Comando inválido");
-                        return OK;
-                        break;
-                }
-                
-            } else {
-                printf("Comando inválido");
-                return OK;
-            }
-            
-            sprintf(mensagem, "CONS%s", consulta);
-            
-        }
-            break;
-        case 2:
-            printf("1 - Estado\n");
-            printf("2 - Modo\n");
-            printf("3 - Intensidade\n");
-            printf("4 - Limiar de luminosidade\n");
-            printf("5 - Limiar de temperatura\n");
-            printf("--------------------------\n");
-            
-            scanf("%d", &comando);
-            char *parametro;
-            switch (comando) {
-                case 1:
-                    parametro = PAR_ESTADO_STR;
-                    break;
-                case 2:
-                    parametro = PAR_MODO_STR;
-                    break;
-                case 3:
-                    parametro = PAR_INTENSIDADE_STR;
-                    break;
-                case 4:
-                    parametro = PAR_LIMIAR_LUMI_STR;
-                    break;
-                case 5:
-                    parametro = PAR_LIMIAR_TEMP_STR;
-                    break;
-                default:
-                    printf("Comando inválido");
-                    return OK;
-                    break;
-            }
-            
-            int valor;
-            printf("Entre com o valor: ");
-            scanf("%d", &valor);
-            
-            sprintf(mensagem, "ALTE%s%d", parametro, valor);
-            
-            break;
-            case 3:
-            return EXIT;
-            
-        default:
-            printf("Comando inválido");
-            return OK;
-            break;
-    }
-    
+    /*
     int status = enviaMensagem(mensagem, client_sd);
     if (status != OK) {
         printf("Erro ao enviar mensagem.");
         return OK;
     }
+    */
     
     status = recebeMensagem(mensagem, client_sd);
     if (status != OK) {
         printf("Erro ao enviar mensagem.");
         return OK;
     } else {
-        printf("Resposta do servidor: %s", mensagem);
+        //printf("Resposta do servidor: %s", mensagem);
+        //maxSpeed = getValueFrom(mensagem)
     }
     
     return OK;
