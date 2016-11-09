@@ -4,7 +4,10 @@
 
 #include "Comum.h"
 
-#include "Controlador/Controlador.h"
+#include "control/controlador.h"
+#include "udp/Cliente-UDP.h"
+#include "json/json.h"
+#include "rs232/rs232.h"
 
 #include <stdio.h>
 
