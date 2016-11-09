@@ -4,16 +4,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include <netdb.h>
+#include "semaphore.h"
+
+extern sem_t cts;
 
 void sendData() {
-    // TODO
-    // foo(pedal);
+    
 }
 
 void main_rs232(){
-    usleep(2E6);
     for (;;) {
+        //Wait for new data
+        sem_wait(&cts);
         sendData();
-        usleep(1E4);
     }
 }
