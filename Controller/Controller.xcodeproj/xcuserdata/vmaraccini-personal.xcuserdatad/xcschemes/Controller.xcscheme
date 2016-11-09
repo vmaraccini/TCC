@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "98C93A1E1DBB963E00588DFE"
-               BuildableName = "Controlador"
-               BlueprintName = "Controlador"
-               ReferencedContainer = "container:Controlador.xcodeproj">
+               BlueprintIdentifier = "929A1E221DD3C27D001924A9"
+               BuildableName = "Controller"
+               BlueprintName = "Controller"
+               ReferencedContainer = "container:Controller.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98C93A1E1DBB963E00588DFE"
-            BuildableName = "Controlador"
-            BlueprintName = "Controlador"
-            ReferencedContainer = "container:Controlador.xcodeproj">
+            BlueprintIdentifier = "929A1E221DD3C27D001924A9"
+            BuildableName = "Controller"
+            BlueprintName = "Controller"
+            ReferencedContainer = "container:Controller.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98C93A1E1DBB963E00588DFE"
-            BuildableName = "Controlador"
-            BlueprintName = "Controlador"
-            ReferencedContainer = "container:Controlador.xcodeproj">
+            BlueprintIdentifier = "929A1E221DD3C27D001924A9"
+            BuildableName = "Controller"
+            BlueprintName = "Controller"
+            ReferencedContainer = "container:Controller.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98C93A1E1DBB963E00588DFE"
-            BuildableName = "Controlador"
-            BlueprintName = "Controlador"
-            ReferencedContainer = "container:Controlador.xcodeproj">
+            BlueprintIdentifier = "929A1E221DD3C27D001924A9"
+            BuildableName = "Controller"
+            BlueprintName = "Controller"
+            ReferencedContainer = "container:Controller.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
