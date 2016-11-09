@@ -37,7 +37,7 @@ Count=5
 4=can-communication.h
 5=can_mcp2515.h
 6=..\can-comm\main.h
-7=..\can-comm\main.c
+7=
 8=
 [can-communication.c]
 Type=4

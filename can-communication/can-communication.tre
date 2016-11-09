@@ -24,7 +24,7 @@
       ³  ÃÄLcdCommand  0/108  Ram=2
       ³  ÀÄLcdCommand  0/108  Ram=2
       ÃÄClearLCDBuffer  0/14  Ram=2
-      ÃÄ@PSTRINGC7_943  0/86  Ram=4
+      ÃÄ@PSTRINGC7_962  0/86  Ram=4
       ³  ÃÄ@SPRINTF  0/13  Ram=1
       ³  ÀÄ@SPRINTF  0/13  Ram=1
       ÃÄWriteLCDLine0  0/11  Ram=2
@@ -33,39 +33,41 @@
       ³     ÃÄLcdWrite  (Inline)  Ram=2
       ³     ÀÄ@delay_ms1  0/20  Ram=1
       ÃÄ@delay_ms1  0/20  Ram=1
-      ÀÄReadLoop  0/484  Ram=10
+      ÀÄWriteLoop  0/203  Ram=14
          ÃÄClearLCDBuffer  0/14  Ram=2
-         ÃÄ@PSTRINGC7_943  0/86  Ram=4
+         ÃÄ@PSTRINGC7_962  0/86  Ram=4
          ³  ÀÄ*
          ÃÄWriteLCDLine0  0/11  Ram=2
          ³  ÀÄ*
-         ÃÄReadMessage  (Inline)  Ram=12
-         ³  ÃÄCanFilter  (Inline)  Ram=5
-         ³  ³  ÃÄCanWrite  0/51  Ram=2
-         ³  ³  ÃÄCanWrite  0/51  Ram=2
-         ³  ³  ÃÄCanWrite  0/51  Ram=2
-         ³  ³  ÃÄCanWrite  0/51  Ram=2
-         ³  ³  ÃÄCanWrite  0/51  Ram=2
-         ³  ³  ÀÄCanWrite  0/51  Ram=2
-         ³  ÃÄCanKbhit  (Inline)  Ram=1
-         ³  ÃÄCanRead  0/61  Ram=2
-         ³  ³  ÀÄCanWrite  0/51  Ram=2
-         ³  ÃÄCanRead  0/61  Ram=2
-         ³  ³  ÀÄ*
-         ³  ÀÄCanRead  0/61  Ram=2
-         ³     ÀÄ*
-         ÃÄPrintVelocity  (Inline)  Ram=4
+         ÃÄCanStructInit  0/24  Ram=4
+         ÃÄCanStructInit  0/24  Ram=4
+         ÃÄ@delay_ms1  0/20  Ram=1
+         ÃÄCanSetSendAddress  0/46  Ram=6
+         ³  ÃÄCanWrite  0/51  Ram=2
+         ³  ÀÄCanWrite  0/51  Ram=2
+         ÃÄSendCanFrame  0/37  Ram=4
+         ³  ÃÄCanWrite  0/51  Ram=2
+         ³  ÀÄCanSend  (Inline)  Ram=0
+         ³     ÃÄCanWrite  0/51  Ram=2
+         ³     ÃÄCanWrite  0/51  Ram=2
+         ³     ÀÄCanWrite  0/51  Ram=2
+         ÃÄPrintPedal  (Inline)  Ram=4
          ³  ÃÄClearLCDBuffer  0/14  Ram=2
-         ³  ÃÄ@PSTRINGCN7_943  (Inline)  Ram=5
+         ³  ÃÄ@PSTRINGCN7_962  (Inline)  Ram=5
          ³  ³  ÃÄ@SPRINTF  0/13  Ram=1
          ³  ³  ÀÄ@SPRINTF  0/13  Ram=1
-         ³  ÃÄ@PRINTF_LU_943  0/99  Ram=9
+         ³  ÃÄ@PRINTF_LU_962  0/99  Ram=9
          ³  ³  ÀÄ@SPRINTF  0/13  Ram=1
          ³  ÃÄ@SPRINTF  0/13  Ram=1
-         ³  ÃÄ@PRINTF_LU_943  0/99  Ram=9
+         ³  ÃÄ@PRINTF_LU_962  0/99  Ram=9
          ³  ³  ÀÄ*
          ³  ÀÄWriteLCDLine1  (Inline)  Ram=2
          ³     ÃÄLcdCommand  0/108  Ram=2
          ³     ÀÄWriteLCD  0/128  Ram=4
          ³        ÀÄ*
+         ÃÄ@delay_ms1  0/20  Ram=1
+         ÃÄCanSetSendAddress  0/46  Ram=6
+         ³  ÀÄ*
+         ÃÄSendCanFrame  0/37  Ram=4
+         ³  ÀÄ*
          ÀÄ@delay_ms1  0/20  Ram=1

@@ -1,7 +1,7 @@
-D G "__PCM__" 0 76 ""5.021""
-D G "__DEVICE__" 0 76 "877"
-D G "__DATE__" 0 76 ""30-out-16""
-D G "__TIME__" 0 76 ""23:09:25"" "Standard Header file for the PIC16F877A device ////////////////"
+D G "__PCM__" 0 88 ""5.021""
+D G "__DEVICE__" 0 88 "877"
+D G "__DATE__" 0 88 ""04-nov-16""
+D G "__TIME__" 0 88 ""12:32:47"" "Standard Header file for the PIC16F877A device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 v L "value" 2 37 "int8" `54 
 f B "set_tris_a" 2 37 "void(int8 value)" `53 
@@ -871,88 +871,95 @@ C L "CanWrite" 7 7 1 "FUNCTION"
 C L "CanWrite" 7 7 1 "FUNCTION"
 V L "id" 7 33 "Can_Id" `870 
 F G "CanFilter" 7 33 "void(Can_Id id)" `869 
-V L "mask_on" 7 35 "int8" `871 
+C L "CanFilter" 7 7 1 "FUNCTION"
+V L "mask_on" 7 37 "int8" `871 
 C L "CanFilter" 7 7 1 "FUNCTION"
 C L "CanFilter" 7 7 1 "FUNCTION"
-V L "IDR0_filter" 7 46 "int8" `872 
 C L "CanFilter" 7 7 1 "FUNCTION"
-V L "IDR1_filter" 7 47 "int8" `873 
+V L "IDR0_filter" 7 48 "int8" `872 
+C L "CanFilter" 7 7 1 "FUNCTION"
+V L "IDR1_filter" 7 49 "int8" `873 
 C L "CanFilter" 7 7 1 "FUNCTION"
 C L "CanFilter" 7 7 1 "FUNCTION"
 C L "CanFilter" 7 7 2 "FUNCTION"
-F G "CanReset" 7 56 "void()" `874 
+C L "CanFilter" 7 7 1 "FUNCTION"
+F G "CanReset" 7 60 "void()" `874 
 C L "CanReset" 7 7 1 "FUNCTION"
 C L "CanReset" 7 7 1 "FUNCTION"
 C L "CanReset" 7 7 1 "FUNCTION"
 C L "CanReset" 7 7 1 "FUNCTION"
 C L "CanReset" 7 7 1 "FUNCTION"
-C L "CanRead" 7 67 1 "*"
-V L "end" 7 69 "int8" `876 
-F G "CanRead" 7 69 "int8(int8 end)" `875 
-V L "data" 7 70 "int8" `877 
-C L "CanRead" 7 67 1 "FUNCTION"
-C L "CanRead" 7 67 1 "FUNCTION"
-C L "CanRead" 7 67 1 "FUNCTION"
-C L "CanRead" 7 67 1 "FUNCTION"
-C L "CanRead" 7 67 1 "FUNCTION"
-C L "CanRead" 7 67 1 "FUNCTION"
-C L "CanRead" 7 67 1 "FUNCTION"
-F G "CanConfig" 7 85 "void()" `878  "Configuração do modo de operação"
-C L "CanConfig" 7 67 1 "FUNCTION"
-C L "CanConfig" 7 67 1 "FUNCTION"
-C L "CanConfig" 7 67 1 "FUNCTION"
-C L "CanConfig" 7 67 1 "FUNCTION"
-C L "CanConfig" 7 67 2 "FUNCTION"
-C L "CanConfig" 7 67 1 "FUNCTION"
-C L "CanConfig" 7 67 2 "FUNCTION"
-C L "CanConfig" 7 67 2 "FUNCTION"
-C L "CanSetSendAddress" 7 106 1 "*"
-V L "address" 7 108 "int16" `880 
-F G "CanSetSendAddress" 7 108 "void(int16 address)" `879  "Set message id"
-V L "idHigh" 7 110 "int8" `881 
-V L "idLow" 7 111 "int8" `882 
-F G "CanSend" 7 117 "void()" `883 
-C L "CanSend" 7 106 1 "FUNCTION"
-C L "CanSend" 7 106 1 "FUNCTION"
-C L "CanSend" 7 106 1 "FUNCTION"
-C L "SendCanFrame" 7 106 1 "FUNCTION"
-V L "frame" 7 124 "*int8" `885 
-F G "SendCanFrame" 7 124 "void(*int8 frame)" `884 
-V L "i" 7 125 "int8" `886 
+C L "CanRead" 7 71 1 "*"
+V L "end" 7 73 "int8" `876 
+F G "CanRead" 7 73 "int8(int8 end)" `875 
+V L "data" 7 74 "int8" `877 
+C L "CanRead" 7 71 1 "FUNCTION"
+C L "CanRead" 7 71 1 "FUNCTION"
+C L "CanRead" 7 71 1 "FUNCTION"
+C L "CanRead" 7 71 1 "FUNCTION"
+C L "CanRead" 7 71 1 "FUNCTION"
+C L "CanRead" 7 71 1 "FUNCTION"
+C L "CanRead" 7 71 1 "FUNCTION"
+F G "CanConfig" 7 89 "void()" `878  "Configuração do modo de operação"
+C L "CanConfig" 7 71 1 "FUNCTION"
+C L "CanConfig" 7 71 1 "FUNCTION"
+C L "CanConfig" 7 71 1 "FUNCTION"
+C L "CanConfig" 7 71 1 "FUNCTION"
+C L "CanConfig" 7 71 2 "FUNCTION"
+C L "CanConfig" 7 71 1 "FUNCTION"
+C L "CanConfig" 7 71 2 "FUNCTION"
+C L "CanConfig" 7 71 2 "FUNCTION"
+C L "CanSetSendAddress" 7 110 1 "*"
+V L "address" 7 112 "int16" `880 
+F G "CanSetSendAddress" 7 112 "void(int16 address)" `879  "Set message id"
+V L "idHigh" 7 114 "int8" `881 
+V L "idLow" 7 115 "int8" `882 
+F G "CanSend" 7 121 "void()" `883 
+C L "CanSend" 7 110 1 "FUNCTION"
+C L "CanSend" 7 110 1 "FUNCTION"
+C L "CanSend" 7 110 1 "FUNCTION"
+C L "SendCanFrame" 7 110 1 "FUNCTION"
+V L "frame" 7 128 "*int8" `885 
+F G "SendCanFrame" 7 128 "void(*int8 frame)" `884 
+V L "i" 7 129 "int8" `886 
 T G "CAN_MESSAGE" 6 12 "{int8 d0,int8 d1,int8 d2,int8 d3,int8 d4,int8 d5,int8 d6,int8 d7}" `896 
-T G "CAN_590" 6 25 "{int16 ref_torque,int16 velocidade,int8 marcha,int2 reserved,int1 pedal_embreagem,int1 pedal_freio,int1 modo_cruzeiro,int1 modo_pedal_simulado,int8 ref_cruzeiro,int8 erro}" `908 
-T G "CAN_SIGNED" 6 31 "{int8 E,int8 C,int8 u}" `913 
-T G "CAN_200" 6 39 "{int8 E,int8 C,int8 u,int8 pedal_simulado,int8[4] reserved}" `920 
-T G "CAN_201" 6 48 "{int8 E,int8 C,int8 u,int8 modo_pedal_sim,int8 modo_operacao,int8 ref_marcha_lenta}" `928 
-V L "val" 6 50 "*CAN_SIGNED" `930 
-F G "CanStructInit" 6 50 "void(*CAN_SIGNED val)" `929 
-D G "READ_TIMEOUT" 6 57 "10000" "us"
-D G "READ_POLLING" 6 58 "100" "us"
-D G "TIMEOUT_COUNT" 6 59 "READ_TIMEOUT / READ_POLLING"
-V L "id" 6 60 "Can_Id" `932 
-V L "buffer" 6 60 "*CAN_MESSAGE" `933 
-V L "recvId" 6 60 "*Can_Id" `934 
-F G "ReadMessage" 6 60 "int8(Can_Id id,*CAN_MESSAGE buffer,*Can_Id recvId)" `931  "Enable hardware filter"
+T G "CAN_590" 6 25 "{int16 ref_torque,int16 velocidade,int8 marcha,int2 reserved,int1 pedal_freio,int1 pedal_embreagem,int1 modo_cruzeiro,int1 modo_pedal_simulado,int8 ref_cruzeiro,int8 erro}" `908 
+T G "CAN_470" 6 44 "{int1 seta_esquerda,int1 seta_direita,int1 reserved0,int1 pisca_alerta,int1 reserved1,int1 luz_re,int2 reserved2,int1 porta_motorista,int1 porta_passageiro,int1 porta_TE,int1 porta_TD,int1 capo,int1 porta_malas,int2 reserved3,int8 backlight_painel,int8[5] ignore}" `926 
+T G "CAN_SIGNED" 6 51 "{int8 E,int8 C,int8 u,int8[5] reserved}" `932 
+T G "CAN_200" 6 59 "{int8 E,int8 C,int8 u,int8 pedal_simulado,int8[4] reserved}" `939 
+T G "CAN_201" 6 68 "{int8 E,int8 C,int8 u,int8 modo_pedal_sim,int8 modo_operacao,int8 ref_marcha_lenta}" `947 
+V L "val" 6 70 "*CAN_SIGNED" `949 
+F G "CanStructInit" 6 70 "void(*CAN_SIGNED val)" `948 
+D G "READ_TIMEOUT" 6 77 "10000" "us"
+D G "READ_POLLING" 6 78 "100" "us"
+D G "TIMEOUT_COUNT" 6 79 "READ_TIMEOUT / READ_POLLING"
+V L "id" 6 80 "Can_Id" `951 
+V L "buffer" 6 80 "*CAN_MESSAGE" `952 
+V L "recvId" 6 80 "*Can_Id" `953 
+F G "ReadMessage" 6 80 "int8(Can_Id id,*CAN_MESSAGE buffer,*Can_Id recvId)" `950  "Enable hardware filter"
 C L "ReadMessage" 6 15 7 "FUNCTION"
 C L "ReadMessage" 6 15 1 "FUNCTION"
-V L "temp" 6 77 "int8[8]" `935 
-V L "i" 6 78 "int8" `936 
+V L "temp" 6 97 "int8[8]" `954 
+V L "i" 6 98 "int8" `955 
 C L "ReadMessage" 6 15 1 "FUNCTION"
-F G "SetupCan" 6 94 "void()" `937 
+F G "SetupCan" 6 114 "void()" `956 
 C L "ReadLoop" 0 5 1 "FUNCTION"
-f G "ReadLoop" 0 6 "void()" `938 
-f G "WriteLoop" 0 7 "void()" `939 
-F G "PrintNoData" 0 9 "void()" `940 
-V L "velocity" 0 15 "int16" `947 
-V L "id" 0 15 "Can_Id" `948 
-F G "PrintVelocity" 0 15 "void(int16 velocity,Can_Id id)" `946 
-F G "MAIN" 0 21 "void()" `954 
+f G "ReadLoop" 0 6 "void()" `957 
+f G "WriteLoop" 0 7 "void()" `958 
+F G "PrintNoData" 0 9 "void()" `959 
+V L "velocity" 0 15 "int16" `966 
+V L "id" 0 15 "Can_Id" `967 
+F G "PrintPedal" 0 15 "void(int16 velocity,Can_Id id)" `965 
+F G "MAIN" 0 21 "void()" `973 
 C L "MAIN" 0 5 1 "FUNCTION"
-F G "ReadLoop" 0 36 "void()" `938 
-V L "message" 0 37 "CAN_590" `958 
-V L "id" 0 38 "Can_Id" `959 
-F G "WriteLoop" 0 53 "void()" `939 
-V L "message" 0 54 "CAN_590" `961 
+F G "ReadLoop" 0 36 "void()" `957 
+V L "message" 0 37 "CAN_470" `977 
+V L "id" 0 38 "Can_Id" `978 
+C L "ReadLoop" 0 5 1 "FUNCTION"
+F G "WriteLoop" 0 53 "void()" `958 
+V L "reference" 0 54 "CAN_200" `980 
+V L "enableControl" 0 55 "CAN_201" `981 
+V L "pedal" 0 71 "int8" `983 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

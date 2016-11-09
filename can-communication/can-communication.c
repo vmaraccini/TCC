@@ -12,9 +12,9 @@ void PrintNoData() {
    WriteLCDLine1(&lcdBuffer);
 }
 
-void PrintVelocity(unsigned long int velocity, Can_ID id) {
+void PrintPedal(unsigned long int velocity, Can_ID id) {
    ClearLCDBuffer();
-   sprintf(lcdBuffer, "VEL: %lu|%lu", velocity, id);
+   sprintf(lcdBuffer, "PED: %lu|%lu", velocity, id);
    WriteLCDLine1(&lcdBuffer);
 }
 
@@ -30,11 +30,11 @@ void main() {
    
    delay_ms(500);
    
-   ReadLoop();
+   WriteLoop();
 }
 
 void ReadLoop() {
-   CAN_590 message;
+   CAN_470 message;
    Can_Id id;
    
    ClearLCDBuffer();
@@ -42,8 +42,8 @@ void ReadLoop() {
    WriteLCDLine0(&lcdBuffer);
    
    while (1) {
-      if (ReadMessage(0x590, &message, &id)) {
-         PrintVelocity(message.velocidade, id);
+      if (ReadMessage(0x470, &message, &id)) {
+         //PrintVelocity(message.seta_esquerda, id);
       }
       
       delay_ms(10);
@@ -51,24 +51,36 @@ void ReadLoop() {
 }
 
 void WriteLoop() {
-   CAN_590 message;
+   CAN_200 reference;
+   CAN_201 enableControl;
    
    ClearLCDBuffer();
    sprintf(lcdBuffer, "TX NODE");
    WriteLCDLine0(&lcdBuffer);
    
-   message.velocidade = 100;
-   CanSetSendAddress(0x590);
+   CanStructInit(&reference);
+   reference.pedal_simulado = 5;
+   
+   CanStructInit(&enableControl);
+   enableControl.modo_pedal_sim = 1;
+   enableControl.modo_operacao = 0;
+   enableControl.ref_marcha_lenta = 0;
    
    delay_ms(50);
       
+   int pedal = 0;
    while (1) {
-      SendCanFrame(&message);
+      pedal = pedal + 1;
+      if (pedal >= 40) pedal = 0;
+      reference.pedal_simulado = pedal;
+      CanSetSendAddress(0x200);
+      SendCanFrame(&reference);
+      PrintPedal(pedal, 0x200);
       
-      PrintVelocity(message.velocidade, 0);
-      delay_ms(100);
-      message.velocidade += 1;
-      if (message.velocidade > 500) message.velocidade = 0;
+      delay_ms(150);
+      CanSetSendAddress(0x201);
+      SendCanFrame(&enableControl);
+      delay_ms(150);
    }
 }
 

@@ -1,2 +1,5 @@
 >>> Warning 203 "can-communication.c" Line 44(1,1): Condition always TRUE
->>> Warning 203 "can-communication.c" Line 65(1,1): Condition always TRUE
+>>> Warning 203 "can-communication.c" Line 72(1,1): Condition always TRUE
+      Memory usage:   ROM=13%      RAM=7% - 14%
+      0 Errors,  2 Warnings.
+Build Successful.
