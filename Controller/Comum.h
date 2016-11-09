@@ -4,6 +4,8 @@
 #include <pthread.h>
 #include <stdio.h>
 
+#define BUFFER_LEN 8
+
 typedef enum {
     OK = 0,
     ERRO_PARAMETRO_DESCONHECIDO,

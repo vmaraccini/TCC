@@ -24,6 +24,6 @@ void main_json(){
 
     }
 
-    fclose(f);
+    //fclose(f);
 
 }

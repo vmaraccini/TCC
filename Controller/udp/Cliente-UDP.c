@@ -67,7 +67,7 @@ int iniciaCliente(int *client_sd, int port) {
     int status;
     
     //Opens socket connection using UDP
-    client_sd = socket(PF_INET, SOCK_DGRAM, 0);
+    *client_sd = socket(PF_INET, SOCK_DGRAM, 0);
     
     //Handles socket opening errors
     if (client_sd < 0) {
@@ -76,21 +76,21 @@ int iniciaCliente(int *client_sd, int port) {
     }
     
     //printf("Entre com o IP do Lumiar: ");
-    char ipString[BUFFER_LEN] = "127.0.0.1";
+    char ipString[32] = "127.0.0.1";
     //scanf("%s", ipString);
     
     //printf("Entre com a porta: ");
     //int port;
     scanf("%d", &port);
     
-    status = conecta(ipString, port, client_sd);
+    status = conecta(ipString, port, *client_sd);
     if (status != OK)
         exit(status);
     
     return OK;
 }
 
-char finalizaCliente(int *client_sd) {
+char finalizaCliente(int client_sd) {
     int status = close(client_sd);
     if (status < 0)
         return ERROR_CLOSE;
@@ -104,12 +104,12 @@ char read_maxVelocity() {
     char buffer[BUFFER_LEN];
     PLACA_MSG msg;
     
-    char status = recebeMensagem(buffer, client_sd);
+    char status = recebeMensagem(buffer, clientSd_maxVelocity);
     if (status != OK) {
         printf("Erro ao interpretar mensagem placa.");
         return OK;
     } else {
-        memcpy(msg, buffer, 1);
+        memcpy(&msg, buffer, 4);
         maxVelocity = msg.maxVelocity;
     }
     
@@ -118,14 +118,14 @@ char read_maxVelocity() {
 
 char read_distance() {
     char buffer[BUFFER_LEN];
-    PLACA_STEREO msg;
+    STEREO_MSG msg;
     
-    char status = recebeMensagem(buffer, client_sd);
+    char status = recebeMensagem(buffer, clientSd_distance);
     if (status != OK) {
         printf("Erro ao interpretar mensagem stereo.");
         return OK;
     } else {
-        memcpy(msg, buffer, 2);
+        memcpy(&msg, buffer, 8);
         leaderDistance = msg.distance;
         leaderVelocity = msg.velocity;
     }

@@ -16,9 +16,11 @@
 int main_udpMaxVelocity();
 int main_udpDistance();
 
+char read_maxVelocity();
+char read_distance();
 
 int iniciaCliente(int *client_sd, int port);
-char finalizaCliente(int *client_sd);
+char finalizaCliente(int client_sd);
 char menu(int client_sd);
 
 int conecta(char *serverIP, int serverPort, int socketDescriptor);

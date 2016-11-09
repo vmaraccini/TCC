@@ -8,25 +8,26 @@
 #define MAX_VELOCITY 60 / 3.6
 
 void main_controlador() {
-
+    
+    car.distance = leaderDistance;
+    
     for (;;) {
-        car.distance = leaderDistance;
-        car.velocity = leaderVelocity;
 
         double output = controlLoop(car.velocity, leaderVelocity, maxVelocity, car.distance);
-        pedal = controller(output);
+        double pedalDouble = controller(output);
 
         updateCar(pedal);
 
         printf("--------------\n");
-        printf("Current output: %f\n", pedal);
+        printf("Current output: %f\n", pedalDouble);
         printf("Current car distance: %f\n", car.distance);
         printf("Current car velocity: %f\n", car.velocity);
-        printf("Leader car velocity: %f\n", leaderVelocity);
+        printf("Leader car velocity: %d\n", leaderVelocity);
         printf("--------------\n");
 
         currentDistance = car.distance;
         currentVelocity = car.velocity;
+        pedal = (int) pedalDouble * 100;
     }
 }
 
