@@ -6,12 +6,8 @@
 #include <netdb.h>
 
 void sendData() {
-    char mensagem[2];
-    char* m = (char*)&pedal;
-    memcpy(mensagem, m, 2);
-
     // TODO
-    // foo(mensagem);
+    // foo(pedal);
 }
 
 void main_rs232(){

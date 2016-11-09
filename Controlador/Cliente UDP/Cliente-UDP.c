@@ -27,54 +27,42 @@
 #include <unistd.h>
 
 //Socket descriptors
-int client_sd_maxSpeed; 
-int client_sd_distance;
+int clientSd_maxVelocity; 
+int clientSd_distance;
 
 //------------------ Functions ------------------
 
-int iniciaCliente(int *client_sd, int port);
-char finalizaCliente(int *client_sd);
-char menu(int client_sd);
-
-int conecta(char *serverIP, int serverPort, int socketDescriptor);
-
-int enviaMensagem(char *message, int socketDescriptor);
-int recebeMensagem(char *message, int socketDescriptor);
-
-int main_udpMaxSpeed(int argc, const char * argv[])
-{
+int main_udpMaxVelocity() {
     printf("ProDAV - Cliente UDP - Max speed\n\n");
     
-    iniciaCliente(&client_sd_maxSpeed, 3031);
+    iniciaCliente(&clientSd_maxVelocity, 3031);
     
     char status = OK;
     while (status == OK) {
-        status = menu(&client_sd_maxSpeed);
+        status = read_maxVelocity();
     }
     
-    finalizaCliente(client_sd_maxSpeed);
+    finalizaCliente(clientSd_maxVelocity);
     
     return OK;
 }
 
-int main_udpDistance(int argc, const char * argv[])
-{
-    printf("ProDAV - Cliente UDP - Distance\n\n");
+int main_udpDistance() {
+    printf("ProDAV - Cliente UDP - Stereo\n\n");
     
-    iniciaCliente(&client_sd_distance, 3032);
+    iniciaCliente(&clientSd_distance, 3032);
     
     char status = OK;
     while (status == OK) {
-        status = menu(&client_sd_distance);
+        status = read_distance();
     }
     
-    finalizaCliente(client_sd_distance);
+    finalizaCliente(clientSd_distance);
     
     return OK;
 }
 
-int iniciaCliente(int *client_sd, int port)
-{
+int iniciaCliente(int *client_sd, int port) {
     int status;
     
     //Opens socket connection using UDP
@@ -101,8 +89,7 @@ int iniciaCliente(int *client_sd, int port)
     return OK;
 }
 
-char finalizaCliente(int *client_sd)
-{
+char finalizaCliente(int *client_sd) {
     int status = close(client_sd);
     if (status < 0)
         return ERROR_CLOSE;
@@ -110,32 +97,36 @@ char finalizaCliente(int *client_sd)
     return OK;
 }
 
-#pragma mark - Menu
+#pragma mark - Read
 
-char menu(int client_sd)
-{
-    int comando;
-    char mensagem[BUFFER_LEN];
-    // mensage = ...
+char read_maxVelocity() {
+    char buffer[BUFFER_LEN];
+    PLACA_MSG msg;
     
-    /*
-    int status = enviaMensagem(mensagem, client_sd);
+    char status = recebeMensagem(buffer, client_sd);
     if (status != OK) {
-        printf("Erro ao enviar mensagem.");
-        return OK;
-    }
-    */
-    
-    status = recebeMensagem(mensagem, client_sd);
-    if (status != OK) {
-        printf("Erro ao enviar mensagem.");
+        printf("Erro ao interpretar mensagem placa.");
         return OK;
     } else {
-        //printf("Resposta do servidor: %s", mensagem);
-        
-        // TODO MARACCINI
-        //maxSpeed = getValueFrom(mensagem)
-        //distance = getValueFrom(mensagem)
+        memcpy(msg, buffer, 1);
+        maxVelocity = msg.maxVelocity;
+    }
+    
+    return OK;
+}
+
+char read_distance() {
+    char buffer[BUFFER_LEN];
+    PLACA_STEREO msg;
+    
+    char status = recebeMensagem(buffer, client_sd);
+    if (status != OK) {
+        printf("Erro ao interpretar mensagem stereo.");
+        return OK;
+    } else {
+        memcpy(msg, buffer, 2);
+        leaderDistance = msg.distance;
+        leaderVelocity = msg.velocity;
     }
     
     return OK;
