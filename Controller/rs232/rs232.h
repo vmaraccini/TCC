@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "../Comum.h"
 
-void main_rs232();
+void main_rs232_write();
+void main_rs232_read();
 
 #endif 
