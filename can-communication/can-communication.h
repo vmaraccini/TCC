@@ -77,6 +77,7 @@ void CanStructInit(CAN_SIGNED* val) {
 #define READ_TIMEOUT 10000 //us
 #define READ_POLLING 100 //us
 #define TIMEOUT_COUNT READ_TIMEOUT / READ_POLLING
+
 int ReadMessage(Can_Id id, CAN_MESSAGE* buffer, Can_Id *recvId) {
    //Enable hardware filter
    CanFilter(id);

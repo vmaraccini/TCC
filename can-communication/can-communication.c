@@ -2,60 +2,76 @@
 #include "lcd.h"
 #include <can-communication.h>
 
-//Prototypes
-void ReadLoop();
-void WriteLoop();
+#use rs232(BAUD=19200, XMIT=PIN_C6, RCV=PIN_C7, PARITY=N, BITS=8)
 
-void PrintNoData() {
-   ClearLCDBuffer();
-   sprintf(lcdBuffer, "NO DATA");
-   WriteLCDLine1(&lcdBuffer);
-}
+CAN_200 reference;
+CAN_201 enableControl;
+CAN_470 message;
+Can_Id id;
+char buffer[2];
+char pedal;
 
-void PrintPedal(unsigned long int velocity, Can_ID id) {
-   ClearLCDBuffer();
-   sprintf(lcdBuffer, "PED: %lu|%lu", velocity, id);
-   WriteLCDLine1(&lcdBuffer);
-}
+// Prototypes
+void readCan();
+void writeSerial();
+void readSerial();
+void writeCan();
 
 void main() {
    SetupCommunication();
    SetupCan();
-   //SetupTimers();
    LCDInitialize();
    
    ClearLCDBuffer();
-   sprintf(lcdBuffer, "HELLO WORLD");
+   sprintf(lcdBuffer, "PRODAV");
    WriteLCDLine0(&lcdBuffer);
    
    delay_ms(500);
    
-   WriteLoop();
-}
-
-void ReadLoop() {
-   CAN_470 message;
-   Can_Id id;
-   
-   ClearLCDBuffer();
-   sprintf(lcdBuffer, "RX NODE");
-   WriteLCDLine0(&lcdBuffer);
-   
-   while (1) {
-      if (ReadMessage(0x470, &message, &id)) {
-         //PrintVelocity(message.seta_esquerda, id);
-      }
-      
-      delay_ms(10);
+   for (;;) {
+      readCan();
+      writeSerial();
+      readSerial();
+      writeCan();
    }
 }
 
-void WriteLoop() {
-   CAN_200 reference;
-   CAN_201 enableControl;
-   
+void readCan() {
    ClearLCDBuffer();
-   sprintf(lcdBuffer, "TX NODE");
+   sprintf(lcdBuffer, "READ CAN");
+   WriteLCDLine0(&lcdBuffer);
+   
+   if (ReadMessage(0x590, &message, &id)) {
+      ClearLCDBuffer();
+      sprintf(lcdBuffer, "VEL: %lu", message.velocidade);
+      WriteLCDLine1(&lcdBuffer);
+   }
+}
+
+void writeSerial() {
+   ClearLCDBuffer();
+   sprintf(lcdBuffer, "WRITE SERIAL");
+   WriteLCDLine0(&lcdBuffer);
+
+   sprintf(buffer, "%lu", message.velocidade);
+   putc(buffer);
+}
+
+void readSerial() {
+   ClearLCDBuffer();
+   sprintf(lcdBuffer, "READ SERIAL");
+   WriteLCDLine0(&lcdBuffer);
+
+   pedal = getc();
+
+   ClearLCDBuffer();
+   sprintf(lcdBuffer, "PED: %d", pedal);
+   WriteLCDLine1(&lcdBuffer);
+}
+
+void writeCan() {
+   ClearLCDBuffer();
+   sprintf(lcdBuffer, "WRITE CAN");
    WriteLCDLine0(&lcdBuffer);
    
    CanStructInit(&reference);
@@ -66,21 +82,14 @@ void WriteLoop() {
    enableControl.modo_operacao = 0;
    enableControl.ref_marcha_lenta = 0;
    
-   delay_ms(50);
-      
-   int pedal = 0;
-   while (1) {
-      pedal = pedal + 1;
-      if (pedal >= 40) pedal = 0;
-      reference.pedal_simulado = pedal;
-      CanSetSendAddress(0x200);
-      SendCanFrame(&reference);
-      PrintPedal(pedal, 0x200);
-      
-      delay_ms(150);
-      CanSetSendAddress(0x201);
-      SendCanFrame(&enableControl);
-      delay_ms(150);
-   }
+   delay_ms(30);
+   reference.pedal_simulado = pedal;
+   CanSetSendAddress(0x200);
+   SendCanFrame(&reference);
+   PrintPedal(pedal, 0x200);
+   
+   delay_ms(70);
+   CanSetSendAddress(0x201);
+   SendCanFrame(&enableControl);
 }
 
