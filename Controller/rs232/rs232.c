@@ -10,53 +10,41 @@ extern sem_t cts;
 
 //Function prototypes
 void configureUART(int* fdes, int mode);
-void sendData(char* message, ssize_t length);
+void sendData(void* message, ssize_t length);
 int readData(char* buffer, int length);
 
 //Internal variables
-int uart_read_fd = -1;
-int uart_write_fd = -1;
+int uart_fd = -1;
 
-void main_rs232_write(){
-    configureUART(&uart_write_fd, O_WRONLY | O_NOCTTY | O_NDELAY);
+void main_rs232(){
+    configureUART(&uart_fd, O_RDWR | O_NOCTTY | O_NDELAY);
 
-    for (;;) {
+    for (int i = 48; i < 90; i++) {
         //Wait for new data
         sem_wait(&cts);
-        sendData("1", 1);
-    }
-}
-
-void main_rs232_read() {
-    configureUART(&uart_read_fd, O_RDONLY | O_NOCTTY);
-    
-    char buffer[2];
-    for (;;) {
-        //Performs blocking read
-        if (readData(buffer, 2) < 0) {
-            
-        }
+        sendData(&i, 1);
+        if (i == 90) {i = 48;}
     }
 }
 
 int readData(char* buffer, int length) {
-    ssize_t rx_length = read(uart_read_fd, buffer, length);
+    ssize_t rx_length = read(uart_fd, buffer, length);
     if (rx_length < length) {
         return -1;
     }
     return 0;
 }
 
-void sendData(char* message, ssize_t length) {
-    if (uart_read_fd != -1) {
-        ssize_t count = write(uart_read_fd, message, length);
+void sendData(void* message, ssize_t length) {
+    if (uart_fd != -1) {
+        ssize_t count = write(uart_fd, (void *)message, length);
         if (count < 0) { perror("UART TX error\n"); }
     }
 }
 
 void configureUART(int* fdes, int mode) {
     //Open UART in blocking read/write mode
-    *fdes = open("/dev/ttyAMA0", mode);
+    *fdes = open("/dev/tty.usbserial", mode);
     
     if (*fdes == -1) {
         //ERROR - CAN'T OPEN SERIAL PORT
@@ -64,12 +52,27 @@ void configureUART(int* fdes, int mode) {
     }
     
     //Configure UART
-    struct termios options;
-    tcgetattr(*fdes, &options);
-    options.c_cflag = B19200 | CS8 | CLOCAL | CREAD;
-    options.c_iflag = IGNPAR;
-    options.c_oflag = 0;
-    options.c_lflag = 0;
+    struct termios tty;
+    tcgetattr(*fdes, &tty);
+    
+    cfsetospeed (&tty, B9600);
+    cfsetispeed (&tty, B9600);
+    tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;     // 8-bit chars
+
+    tty.c_iflag &= ~IGNBRK;         // disable break processing
+    tty.c_lflag = 0;                // no signaling chars, no echo,
+    // no canonical processing
+    tty.c_oflag = 0;                // no remapping, no delays
+    tty.c_cc[VMIN]  = 0;            // read doesn't block
+    tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
+    
+    tty.c_iflag &= ~(IXON | IXOFF | IXANY); // shut off xon/xoff ctrl
+    
+    tty.c_cflag |= (CLOCAL | CREAD);// ignore modem controls,
+    // enable reading
+    tty.c_cflag &= ~(PARENB | PARODD);      // shut off parity
+    tty.c_cflag &= ~CSTOPB;
+    tty.c_cflag &= ~CRTSCTS;
     tcflush(*fdes, TCIFLUSH);
-    tcsetattr(*fdes, TCSANOW, &options);
+    tcsetattr(*fdes, TCSANOW, &tty);
 }
