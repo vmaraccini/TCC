@@ -2,8 +2,8 @@
 //  network.c
 //  Controller
 //
-//  Created by Victor Maraccini on 11/9/16.
-//  Copyright © 2016 Denis. All rights reserved.
+//  Created by Victor Gabriel Maraccini & Denis Isidoro de Franca
+//  Copyright © 2016 TCC. All rights reserved.
 //
 
 #include "Comum.h"
@@ -15,7 +15,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-int conecta(char *serverIP, int serverPort, int socketDescriptor) {
+int openConnection(char *serverIP, int serverPort, int socketDescriptor) {
     int status;
     
     //Creates the server descriptor
@@ -38,7 +38,7 @@ int conecta(char *serverIP, int serverPort, int socketDescriptor) {
     return OK;
 }
 
-int enviaMensagem(char *message, int socketDescriptor) {
+int sendMessage(char *message, int socketDescriptor) {
     ssize_t len = send(socketDescriptor,
                        message,
                        strlen(message) + 1, //Add 1 to include \0
@@ -47,12 +47,12 @@ int enviaMensagem(char *message, int socketDescriptor) {
     return len >= 0 ? OK : ERROR_SEND;
 }
 
-int recebeMensagem(char *buffer, int socketDescriptor) {
+int getMessage(char *buffer, int socketDescriptor) {
     ssize_t len = recv(socketDescriptor, buffer, BUFFER_LEN, 0);
     return len >= 0 ? OK : ERROR_RECEIVE;
 }
 
-int iniciaCliente(int *client_sd, int port) {
+int initializeClient(int *client_sd, int port) {
     int status;
     
     //Opens socket connection using UDP
@@ -64,14 +64,14 @@ int iniciaCliente(int *client_sd, int port) {
         exit(ERROR_OPENSOCKET);
     }
     
-    status = conecta("127.0.0.1", port, *client_sd);
+    status = openConnection("127.0.0.1", port, *client_sd);
     if (status != OK)
         exit(status);
     
     return OK;
 }
 
-char finalizaCliente(int client_sd) {
+char closeClient(int client_sd) {
     int status = close(client_sd);
     if (status < 0)
         return ERROR_CLOSE;

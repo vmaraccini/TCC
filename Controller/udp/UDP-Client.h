@@ -1,9 +1,9 @@
 //
-//  Cliente-UDP.h
-//  Lumiar-Final
+//  UDP-Client.h
+//  Controller
 //
-//  Created by Victor Maraccini on 6/19/16.
-//
+//  Created by Victor Gabriel Maraccini & Denis Isidoro de Franca
+//  Copyright © 2016 TCC. All rights reserved.
 //
 
 #ifndef Cliente_UDP_h
@@ -22,9 +22,9 @@ int main_udpDistance();
 char read_maxVelocity();
 char read_distance();
 
-typedef struct PLACA_MSG {
+typedef struct VELOCITY_MSG {
    int maxVelocity;
-} PLACA_MSG;
+} VELOCITY_MSG;
 
 typedef struct STEREO_MSG {
    int distance;

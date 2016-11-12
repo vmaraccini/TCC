@@ -1,17 +1,17 @@
 //
-//  rs232.h
+//  sampler.h
 //  Controller
 //
 //  Created by Victor Gabriel Maraccini & Denis Isidoro de Franca
 //  Copyright © 2016 TCC. All rights reserved.
 //
 
-#ifndef RS232_h
-#define RS232_h
+#ifndef sampler_h
+#define sampler_h
 
 #include <stdio.h>
 #include "../Comum.h"
 
-void main_rs232();
+void main_sampler();
 
-#endif 
+#endif /* sampler_h */
