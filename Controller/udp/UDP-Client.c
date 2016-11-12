@@ -1,13 +1,13 @@
 //
-//  main.c
-//  ClienteServidor
+//  UDP-Client.c
+//  Controller
 //
 //  Created by Victor Gabriel Maraccini & Denis Isidoro de Franca
-//  Copyright © 2016 Denisccini. All rights reserved.
+//  Copyright © 2016 TCC. All rights reserved.
 //
 
 #include "Comum.h"
-#include "Cliente-UDP.h"
+#include "UDP-Client.h"
 
 #include "network.h"
 #include <stdio.h>
@@ -23,14 +23,14 @@ int clientSd_distance;
 int main_udpMaxVelocity() {
     printf("ProDAV - Cliente UDP - Max speed\n\n");
     
-    iniciaCliente(&clientSd_maxVelocity, 3031);
+    initializeClient(&clientSd_maxVelocity, 3031);
     
     char status = OK;
     while (status == OK) {
         status = read_maxVelocity();
     }
     
-    finalizaCliente(clientSd_maxVelocity);
+    closeClient(clientSd_maxVelocity);
     
     return OK;
 }
@@ -38,14 +38,14 @@ int main_udpMaxVelocity() {
 int main_udpDistance() {
     printf("ProDAV - Cliente UDP - Stereo\n\n");
     
-    iniciaCliente(&clientSd_distance, 3032);
+    initializeClient(&clientSd_distance, 3032);
     
     char status = OK;
     while (status == OK) {
         status = read_distance();
     }
     
-    finalizaCliente(clientSd_distance);
+    closeClient(clientSd_distance);
     
     return OK;
 }
@@ -54,11 +54,11 @@ int main_udpDistance() {
 
 char read_maxVelocity() {
     char buffer[BUFFER_LEN];
-    PLACA_MSG msg;
+    VELOCITY_MSG msg;
     
-    char status = recebeMensagem(buffer, clientSd_maxVelocity);
+    char status = getMessage(buffer, clientSd_maxVelocity);
     if (status != OK) {
-        printf("Erro ao interpretar mensagem placa.");
+        printf("Error getting maximum velocity");
         return OK;
     } else {
         memcpy(&msg, buffer, 4);
@@ -72,9 +72,9 @@ char read_distance() {
     char buffer[BUFFER_LEN];
     STEREO_MSG msg;
     
-    char status = recebeMensagem(buffer, clientSd_distance);
+    char status = getMessage(buffer, clientSd_distance);
     if (status != OK) {
-        printf("Erro ao interpretar mensagem stereo.");
+        printf("Error getting current distance");
         return OK;
     } else {
         memcpy(&msg, buffer, 8);

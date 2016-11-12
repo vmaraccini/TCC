@@ -1,8 +1,8 @@
 //
 //  controller.c
-//  Controlador
+//  Controller
 //
-//  Created by Victor Maraccini on 10/22/16.
+//  Created by Victor Gabriel Maraccini & Denis Isidoro de Franca
 //  Copyright © 2016 TCC. All rights reserved.
 //
 
@@ -28,7 +28,6 @@ void updateSample(BUFFER_TYPE newSample, BUFFER_TYPE* buffer);
 BUFFER_TYPE calculateOutput(BUFFER_TYPE* input, BUFFER_TYPE* output);
 
 void printArray(BUFFER_TYPE *array);
-
 
 double controller(double newSample) {
     updateSample(newSample, inputBuffer);
