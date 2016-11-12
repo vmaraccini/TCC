@@ -59,7 +59,7 @@ void LcdClear(void) {
 }
 
 void LcdInitialize(void) {
-   delay_ms(100);            // espera 100 milisengundos
+   delay_ms(200);            // espera 100 milisengundos
    TRISD = TRISD & 0xE0;      // configura pinos D0..D3 como saídas
    
    PORTD = 0x03;
@@ -68,7 +68,7 @@ void LcdInitialize(void) {
    delay_us(1);            // espera 1 microsegundo
    E = 0;                    // desce o pino de enable
    
-   delay_ms(5);            // espera 5 milisengundos
+   delay_ms(5);            // espera 5 milisegundos
    
    E = 1 ;                  // gera pulso no enable
    delay_us(1);            // espera 1 microsegundo
@@ -88,7 +88,7 @@ void LcdInitialize(void) {
    delay_us(1);            // espera 1 microsegundo
    E = 0;                  // desce o pino de enable
    
-   delay_us(40);            // espera 40 microsegundos
+   delay_us(100);            // espera 40 microsegundos
    
    LcdCommand(0x28);         // liga o display, sem cursor e sem blink (4 vias)
    

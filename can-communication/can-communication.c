@@ -1,86 +1,82 @@
 #include <main.h>
 #include "lcd.h"
+#include "rs232.h"
 #include <can-communication.h>
 
-//Prototypes
-void ReadLoop();
-void WriteLoop();
+#use rs232(BAUD=9600, XMIT=PIN_C6, RCV=PIN_C7, PARITY=N, BITS=8)
 
-void PrintNoData() {
-   ClearLCDBuffer();
-   sprintf(lcdBuffer, "NO DATA");
-   WriteLCDLine1(&lcdBuffer);
-}
+CAN_200 reference;
+CAN_201 enableControl;
+CAN_590 message;
 
-void PrintPedal(unsigned long int velocity, Can_ID id) {
-   ClearLCDBuffer();
-   sprintf(lcdBuffer, "PED: %lu|%lu", velocity, id);
-   WriteLCDLine1(&lcdBuffer);
-}
+char pedal;
+
+// Prototypes
+void readCan();
+void writeSerial();
+void readSerial();
+void writeCan();
+
+void enableACC();
+
+void printPedal(int pedal);
 
 void main() {
    SetupCommunication();
+   SetupUART();
    SetupCan();
-   //SetupTimers();
    LCDInitialize();
    
    ClearLCDBuffer();
-   sprintf(lcdBuffer, "HELLO WORLD");
+   sprintf(lcdBuffer, "PRODAV");
    WriteLCDLine0(&lcdBuffer);
    
    delay_ms(500);
    
-   WriteLoop();
-}
-
-void ReadLoop() {
-   CAN_470 message;
-   Can_Id id;
+   //Filter messages to read: 0x590
+   CanFilter(0x590);
    
-   ClearLCDBuffer();
-   sprintf(lcdBuffer, "RX NODE");
-   WriteLCDLine0(&lcdBuffer);
+   //Initialize message structures
+   CanStructInit(&reference);
+   CanStructInit(&enableControl);
    
-   while (1) {
-      if (ReadMessage(0x470, &message, &id)) {
-         //PrintVelocity(message.seta_esquerda, id);
-      }
-      
-      delay_ms(10);
+   enableACC();
+   
+   for (;;) {
+      readCan();
+      writeSerial();
+      readSerial();
+      writeCan();
    }
 }
 
-void WriteLoop() {
-   CAN_200 reference;
-   CAN_201 enableControl;
-   
-   ClearLCDBuffer();
-   sprintf(lcdBuffer, "TX NODE");
-   WriteLCDLine0(&lcdBuffer);
-   
-   CanStructInit(&reference);
-   reference.pedal_simulado = 5;
-   
-   CanStructInit(&enableControl);
+void readCan() {
+   message.velocidade += 1; //Stubbed
+   //ReadMessage(0x590, &message, &id)
+}
+
+void writeSerial() {
+   int msg0 = message.velocidade & 0xFF;
+   int msg1 = (message.velocidade >> 8) & 0xFF;
+   UART_Write(msg0);
+   UART_Write(msg1);
+}
+
+void readSerial() {
+   pedal = UART_Read();
+}
+
+void writeCan() {
+   reference.pedal_simulado = pedal;
+   CanSetSendAddress(0x200);
+   SendCanFrame(&reference);
+}
+
+void enableACC() {
    enableControl.modo_pedal_sim = 1;
    enableControl.modo_operacao = 0;
    enableControl.ref_marcha_lenta = 0;
-   
-   delay_ms(50);
-      
-   int pedal = 0;
-   while (1) {
-      pedal = pedal + 1;
-      if (pedal >= 40) pedal = 0;
-      reference.pedal_simulado = pedal;
-      CanSetSendAddress(0x200);
-      SendCanFrame(&reference);
-      PrintPedal(pedal, 0x200);
-      
-      delay_ms(150);
-      CanSetSendAddress(0x201);
-      SendCanFrame(&enableControl);
-      delay_ms(150);
-   }
+   CanSetSendAddress(0x201);
+   SendCanFrame(&enableControl);
 }
 

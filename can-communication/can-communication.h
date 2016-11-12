@@ -77,33 +77,14 @@ void CanStructInit(CAN_SIGNED* val) {
 #define READ_TIMEOUT 10000 //us
 #define READ_POLLING 100 //us
 #define TIMEOUT_COUNT READ_TIMEOUT / READ_POLLING
-int ReadMessage(Can_Id id, CAN_MESSAGE* buffer, Can_Id *recvId) {
-   //Enable hardware filter
-   CanFilter(id);
-   
-   //Wait for message
-   /*unsigned long timeout = 0;
-   while (!CanKbhit() && timeout <= TIMEOUT_COUNT) {  
-      delay_us(READ_POLLING); 
-      timeout++;
-   };
-   
-   if (timeout >= TIMEOUT_COUNT) return 0;
-   */
-   
+
+int ReadMessage(CAN_MESSAGE* buffer) {
    if (!CanKbhit()) return 0;
    
    //Read 8 bytes
    char temp[8];
    for (int i = 0; i < 8; i++) {
       temp[i] = CanRead(0x66 + i);
-   }
-   
-   //Save read address, if needed
-   if (recvId > 0) {
-      *recvId = 0;
-      *recvId |= (unsigned long)(CanRead(0x61)) << 3;
-      *recvId |= (CanRead(0x62) & 0b11100000) >> 5;
    }
    
    memcpy(buffer, temp, 8);
