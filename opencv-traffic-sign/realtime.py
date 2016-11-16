@@ -5,6 +5,7 @@ import tools
 from copy import deepcopy
 
 lastKnownVelocity = None
+
 def captureAndRecognize(videoCapture):
     ret, frame = videoCapture.read()
 
@@ -13,6 +14,7 @@ def captureAndRecognize(videoCapture):
 
     cv2.waitKey(10)
 
+    global digits
     digits = recognize.recognize(preprocessed, image, image)
 
     lastKnownVelocity = tools.getSpeedLimitFromDigits(digits, lastKnownVelocity)
@@ -20,8 +22,9 @@ def captureAndRecognize(videoCapture):
     display = tools.printRecognizedDigits(frame, lastKnownVelocity)
     cv2.imshow("Capture", display)
 
-cap = cv2.VideoCapture(0)
-
 def calculate():	
+    cap = cv2.VideoCapture(0)
     while True:
          captureAndRecognize(cap)
+
+

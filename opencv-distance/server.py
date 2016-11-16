@@ -3,6 +3,8 @@ import thread
 import time
 import distance
 
+distance = 0
+
 class DistanceHandler(BaseRequestHandler):
     def handle(self):
         print('Got connection from', self.client_address)
