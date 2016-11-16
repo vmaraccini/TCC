@@ -12,11 +12,11 @@ class TimeHandler(BaseRequestHandler):
         msg, sock = self.request
         global a
         a = 5123
-        resp = str(a).encode('utf-8')
+        resp = str(a)
         print(resp)
         sock.sendto(resp, self.client_address)
 
-serv = UDPServer(('127.0.0.1', 20000), TimeHandler)
+serv = UDPServer(('', 20000), TimeHandler)
 
 def calculate():  
     while True:

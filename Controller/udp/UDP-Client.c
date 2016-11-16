@@ -46,7 +46,7 @@ int main_udpDistance() {
     
     char status = OK;
     while (status == OK) {
-        status = read_distance();
+        //status = read_distance();
     }
     
     closeClient(clientSd_distance);
@@ -60,6 +60,7 @@ char read_maxVelocity() {
     char buffer[BUFFER_LEN];
     VELOCITY_MSG msg;
     
+    sendMessage("hello", clientSd_maxVelocity, &addr_maxVelocity);
     char status = readMessage(buffer, clientSd_maxVelocity, &addr_maxVelocity);
     if (status != OK) {
         printf("Error getting maximum velocity");
@@ -69,7 +70,7 @@ char read_maxVelocity() {
         maxVelocity = msg.maxVelocity;
     }
     
-    printf("after read");
+    printf("max: %d\n", maxVelocity);
     
     return OK;
 }
