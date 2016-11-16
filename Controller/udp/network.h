@@ -2,8 +2,8 @@
 //  network.h
 //  Controller
 //
-//  Created by Victor Maraccini on 11/9/16.
-//  Copyright © 2016 Denis. All rights reserved.
+//  Created by Victor Gabriel Maraccini & Denis Isidoro de Franca
+//  Copyright © 2016 TCC. All rights reserved.
 //
 
 #ifndef network_h
@@ -21,14 +21,14 @@
 
 #include <stdio.h>
 
-int iniciaCliente(int *client_sd, int port);
-char finalizaCliente(int client_sd);
+int initializeClient(int *client_sd, int port);
+char closeClient(int client_sd);
 char menu(int client_sd);
 
-int conecta(char *serverIP, int serverPort, int socketDescriptor);
+int openConnection(char *serverIP, int serverPort, int socketDescriptor);
 
-int enviaMensagem(char *message, int socketDescriptor);
-int recebeMensagem(char *message, int socketDescriptor);
+int sendMessage(char *message, int socketDescriptor);
+int getMessage(char *message, int socketDescriptor);
 
 
 #endif /* network_h */

@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		929A1E341DD3C291001924A9 /* Comum.c in Sources */ = {isa = PBXBuildFile; fileRef = 929A1E2D1DD3C291001924A9 /* Comum.c */; };
 		929A1E351DD3C291001924A9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 929A1E311DD3C291001924A9 /* main.c */; };
-		98E646D11DD3C948003377C1 /* controlador.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646C01DD3C948003377C1 /* controlador.c */; };
+		98E646D11DD3C948003377C1 /* sampler.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646C01DD3C948003377C1 /* sampler.c */; };
 		98E646D21DD3C948003377C1 /* controller.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646C21DD3C948003377C1 /* controller.c */; };
 		98E646D31DD3C948003377C1 /* controlLoop.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646C41DD3C948003377C1 /* controlLoop.c */; };
 		98E646D51DD3C948003377C1 /* json.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646C91DD3C948003377C1 /* json.c */; };
 		98E646D61DD3C948003377C1 /* rs232.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646CC1DD3C948003377C1 /* rs232.c */; };
-		98E646D71DD3C948003377C1 /* Cliente-UDP.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646CF1DD3C948003377C1 /* Cliente-UDP.c */; };
+		98E646D71DD3C948003377C1 /* UDP-Client.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646CF1DD3C948003377C1 /* UDP-Client.c */; };
 		98E646DA1DD3E26B003377C1 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 98E646D81DD3E26B003377C1 /* network.c */; };
 /* End PBXBuildFile section */
 
@@ -35,22 +35,20 @@
 		929A1E2D1DD3C291001924A9 /* Comum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Comum.c; sourceTree = "<group>"; };
 		929A1E2E1DD3C291001924A9 /* Comum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comum.h; sourceTree = "<group>"; };
 		929A1E311DD3C291001924A9 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		98E646C01DD3C948003377C1 /* controlador.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = controlador.c; sourceTree = "<group>"; };
-		98E646C11DD3C948003377C1 /* controlador.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlador.h; sourceTree = "<group>"; };
+		98E646C01DD3C948003377C1 /* sampler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sampler.c; sourceTree = "<group>"; };
+		98E646C11DD3C948003377C1 /* sampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sampler.h; sourceTree = "<group>"; };
 		98E646C21DD3C948003377C1 /* controller.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = controller.c; sourceTree = "<group>"; };
 		98E646C31DD3C948003377C1 /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
 		98E646C41DD3C948003377C1 /* controlLoop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = controlLoop.c; sourceTree = "<group>"; };
 		98E646C51DD3C948003377C1 /* controlLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlLoop.h; sourceTree = "<group>"; };
-		98E646C61DD3C948003377C1 /* vehicle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vehicle.c; sourceTree = "<group>"; };
-		98E646C71DD3C948003377C1 /* vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vehicle.h; sourceTree = "<group>"; };
 		98E646C91DD3C948003377C1 /* json.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = json.c; sourceTree = "<group>"; };
 		98E646CA1DD3C948003377C1 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		98E646CC1DD3C948003377C1 /* rs232.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rs232.c; sourceTree = "<group>"; };
 		98E646CD1DD3C948003377C1 /* rs232.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rs232.h; sourceTree = "<group>"; };
-		98E646CF1DD3C948003377C1 /* Cliente-UDP.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Cliente-UDP.c"; sourceTree = "<group>"; };
-		98E646D01DD3C948003377C1 /* Cliente-UDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cliente-UDP.h"; sourceTree = "<group>"; };
-		98E646D81DD3E26B003377C1 /* network.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = network.c; sourceTree = "<group>"; };
-		98E646D91DD3E26B003377C1 /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network.h; sourceTree = "<group>"; };
+		98E646CF1DD3C948003377C1 /* UDP-Client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "UDP-Client.c"; sourceTree = "<group>"; };
+		98E646D01DD3C948003377C1 /* UDP-Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UDP-Client.h"; sourceTree = "<group>"; };
+		98E646D81DD3E26B003377C1 /* network.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = network.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		98E646D91DD3E26B003377C1 /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = network.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,14 +87,12 @@
 		98E646BF1DD3C948003377C1 /* control */ = {
 			isa = PBXGroup;
 			children = (
-				98E646C01DD3C948003377C1 /* controlador.c */,
-				98E646C11DD3C948003377C1 /* controlador.h */,
+				98E646C01DD3C948003377C1 /* sampler.c */,
+				98E646C11DD3C948003377C1 /* sampler.h */,
 				98E646C21DD3C948003377C1 /* controller.c */,
 				98E646C31DD3C948003377C1 /* controller.h */,
 				98E646C41DD3C948003377C1 /* controlLoop.c */,
 				98E646C51DD3C948003377C1 /* controlLoop.h */,
-				98E646C61DD3C948003377C1 /* vehicle.c */,
-				98E646C71DD3C948003377C1 /* vehicle.h */,
 			);
 			path = control;
 			sourceTree = "<group>";
@@ -122,8 +118,8 @@
 		98E646CE1DD3C948003377C1 /* udp */ = {
 			isa = PBXGroup;
 			children = (
-				98E646CF1DD3C948003377C1 /* Cliente-UDP.c */,
-				98E646D01DD3C948003377C1 /* Cliente-UDP.h */,
+				98E646CF1DD3C948003377C1 /* UDP-Client.c */,
+				98E646D01DD3C948003377C1 /* UDP-Client.h */,
 				98E646D81DD3E26B003377C1 /* network.c */,
 				98E646D91DD3E26B003377C1 /* network.h */,
 			);
@@ -190,11 +186,11 @@
 				929A1E351DD3C291001924A9 /* main.c in Sources */,
 				98E646D21DD3C948003377C1 /* controller.c in Sources */,
 				98E646D31DD3C948003377C1 /* controlLoop.c in Sources */,
-				98E646D11DD3C948003377C1 /* controlador.c in Sources */,
+				98E646D11DD3C948003377C1 /* sampler.c in Sources */,
 				98E646D61DD3C948003377C1 /* rs232.c in Sources */,
 				929A1E341DD3C291001924A9 /* Comum.c in Sources */,
 				98E646D51DD3C948003377C1 /* json.c in Sources */,
-				98E646D71DD3C948003377C1 /* Cliente-UDP.c in Sources */,
+				98E646D71DD3C948003377C1 /* UDP-Client.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

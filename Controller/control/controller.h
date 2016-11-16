@@ -1,8 +1,8 @@
 //
 //  controller.h
-//  Controlador
+//  Controller
 //
-//  Created by Victor Maraccini on 10/22/16.
+//  Created by Victor Gabriel Maraccini & Denis Isidoro de Franca
 //  Copyright © 2016 TCC. All rights reserved.
 //
 

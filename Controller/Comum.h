@@ -4,13 +4,6 @@
 #include <pthread.h>
 #include <stdio.h>
 
-extern volatile char pedalByte;
-extern volatile int maxVelocity;
-extern volatile int leaderDistance;
-extern volatile int leaderVelocity;
-extern volatile int currentDistance;
-extern volatile int currentVelocity;
-
 #define BUFFER_LEN 8
 
 typedef enum {
@@ -32,12 +25,10 @@ typedef enum {
     
 } STATUS;
 
-//Declaracao de variaveis expostas globalmente
 extern volatile char pedalByte;
-extern volatile int maxVelocity;
+extern volatile char maxVelocity;
 extern volatile int leaderDistance;
 extern volatile int leaderVelocity;
-extern volatile int currentDistance;
 extern volatile int currentVelocity;
 
 #endif /* Comum_h */
