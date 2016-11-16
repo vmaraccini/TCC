@@ -21,7 +21,7 @@ volatile char maxVelocity;
 ///@discussion: A distance of 2^16 means no detection.
 volatile int leaderDistance;
 ///32-bit Integer representing the leader velocity. Unit: cm/s
-///@discussion: A distance of 2^16 means no detection.
+///@discussion: A velocity of 2^16 means no detection.
 volatile int leaderVelocity;
 ///16-bit Integer representing the vehicle's current velocity (0-2^16) Unit: dm/h
 volatile int currentVelocity;
