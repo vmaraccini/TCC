@@ -2,18 +2,73 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Create a New Pen</title>
+  <title>ProDAV car dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+
       <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-3.1.1.min.js"></script>
+  
 </head>
 
 <body>
-  <div id="limit">
-    10
+  
+<div class="table">
+  <div class="table-cell">
+    <div id="main" class="speedometer">
+      <div class="screen">
+        <div id="home" class="speed-widget">
+          <div id="speed" class="radial">
+            <div class="empty"></div>
+          </div>
+          <div class="icon">
+            <img src="img/car.svg"/>
+          </div>
+          <div id="leader-distance" class="small-number">?</div>
+          <h1 id="leader-speed" class="big-number">?</h1>
+          <div class="unit">km/h</div>
+        </div>
+        <div id="car">
+          <img src="img/chat.svg" />
+          <h2>TRANSMISSÃO<br>DE DADOS</h2>
+          <h3 id="connection-status">FALHA NA CONEXÃO</h3>
+          <h3><br><span id="connection-summary" class="small">ERRO</span></h3>
+        </div>
+
+        <div id="cardva">
+          <h2>ProDAV</h2>
+          <h3>Denis Isidoro<br>Victor Maraccini<br><br>Poli-USP<br>2016</span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-cell">
+    <div id="secondary" class="speedometer">
+      <div class="screen">
+        <div id="home" class="speed-widget">
+          <div id="speed2" class="radial">
+            <div class="empty"></div>
+          </div>
+          <div class="icon">
+<img src="img/danger.svg" class="smaller" />
+          </div>
+          <div id="max-speed" class="small-number pink">?</div>
+          <h1 id="current-speed" class="big-number">?</h1>
+          <div id="mph" class="unit">km/h</div>
+        </div>
+        
+      </div>
+    </div>
   </div>
   
-    <script src="js/index.js"></script>
-</body>
   
+  
+</div>
+  <script src='js/jquery-3.1.1.min.js'></script>
+<script src='js/TweenMax.min.js'></script>
 
+    <script src="js/index.js"></script>
+
+</body>
 </html>
