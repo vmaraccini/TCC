@@ -46,7 +46,7 @@ void readData() {
     gettimeofday(&temp, NULL);
     unsigned long delta = 1E6*temp.tv_sec + temp.tv_usec - 1E6*tv.tv_sec - tv.tv_usec;
     tv = temp;
-    printf("Time between reads: %lu", delta);
+    //printf("Time between reads: %lu", delta);
 #endif
     
     //Flush after read to discard dangling bytes

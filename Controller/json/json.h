@@ -12,6 +12,6 @@
 #include <stdio.h>
 #include "../Comum.h"
 
-void main_json();
+int main_json();
 
 #endif /* JSON_h */

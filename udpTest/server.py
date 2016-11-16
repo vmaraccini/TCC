@@ -1,6 +1,7 @@
 from SocketServer import BaseRequestHandler, UDPServer
 import thread
 import time
+import struct
 
 a = 2
 
@@ -10,10 +11,12 @@ class TimeHandler(BaseRequestHandler):
         # Get message and client socket
         msg, sock = self.request
         global a
-        resp = str(a)
+        a = 5123
+        resp = str(a).encode('utf-8')
+        print(resp)
         sock.sendto(resp, self.client_address)
 
-serv = UDPServer(('', 20000), TimeHandler)
+serv = UDPServer(('127.0.0.1', 20000), TimeHandler)
 
 def calculate():  
     while True:

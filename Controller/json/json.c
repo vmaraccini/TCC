@@ -13,12 +13,11 @@
 #include <stdlib.h>
 #include <netdb.h>
 
-void main_json(){
+int main_json(){
     
     FILE* f;
 
     usleep(2E6);
-    //FILE *f = fopen("data.json", "w");
 
     for (;;) {
         
@@ -26,7 +25,7 @@ void main_json(){
 
         if (f == NULL) {
             printf("Error opening file!\n");
-            exit(1);
+            return 1;
         }
 
         /* print some text */
@@ -39,6 +38,6 @@ void main_json(){
 
     }
 
-    //fclose(f);
+    return 0;
 
 }

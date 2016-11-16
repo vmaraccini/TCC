@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #define BUFFER_LEN 8
+#define BUFSIZE 8
 
 typedef enum {
     OK = 0,
