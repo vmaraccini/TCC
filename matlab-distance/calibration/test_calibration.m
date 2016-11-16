@@ -17,7 +17,7 @@ xyzPoints = reconstructScene(disparityMap,stereoParams);
 ptCloud = pointCloud(xyzPoints./1000, 'Color', J1);
 
 % Create a streaming point cloud viewer
-player3D = pcplayer([-3, 3], [-3, 3], [0, 10], 'VerticalAxis', 'y', ...
+player3D = pcplayer([-3, 3], [-3, 3], [0, 5], 'VerticalAxis', 'y', ...
     'VerticalAxisDir', 'down');
 
 view(player3D, ptCloud);
