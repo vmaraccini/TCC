@@ -2,6 +2,7 @@ import realtime
 from SocketServer import BaseRequestHandler, UDPServer
 import thread
 import json
+import struct
 
 digits = (0)
 
@@ -11,7 +12,9 @@ class TrafficSignHandler(BaseRequestHandler):
         # Get message and client socket
         msg, sock = self.request
         global digits
-        resp = json.dumps(digits)
+        speed = int(str(''.join(digits))) 
+        # http://stackoverflow.com/questions/31904047/convert-int-to-2-bytes-of-big-endian
+        resp = struct.pack('>H', speed)
         sock.sendto(resp, self.client_address)
 
 serv = UDPServer(('', 20001), TrafficSignHandler)
