@@ -16,7 +16,7 @@ class TimeHandler(BaseRequestHandler):
         print(resp)
         sock.sendto(resp, self.client_address)
 
-serv = UDPServer(('', 20000), TimeHandler)
+serv = UDPServer(("localhost", 20000), TimeHandler)
 
 def calculate():  
     while True:

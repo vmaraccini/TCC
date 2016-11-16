@@ -28,8 +28,8 @@ char menu(int client_sd);
 
 struct sockaddr_in openConnection(char *serverIP, int serverPort, int socketDescriptor);
 
-int sendMessage(char *message, int socketDescriptor, struct sockaddr_in *serveraddr);
-int readMessage(char *message, int socketDescriptor, struct sockaddr_in *serveraddr);
+int sendMessage(char *message, int socketDescriptor, struct sockaddr_in serveraddr);
+int readMessage(char *message, int socketDescriptor, struct sockaddr_in serveraddr);
 
 
 #endif /* network_h */

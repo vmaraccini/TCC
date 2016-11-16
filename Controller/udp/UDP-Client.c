@@ -60,14 +60,14 @@ char read_maxVelocity() {
     char buffer[BUFFER_LEN];
     VELOCITY_MSG msg;
     
-    sendMessage("hello", clientSd_maxVelocity, &addr_maxVelocity);
-    char status = readMessage(buffer, clientSd_maxVelocity, &addr_maxVelocity);
+    sendMessage("hello", clientSd_maxVelocity, addr_maxVelocity);
+    char status = readMessage(buffer, clientSd_maxVelocity, addr_maxVelocity);
     if (status != OK) {
         printf("Error getting maximum velocity");
         return OK;
     } else {
         memcpy(&msg, buffer, 4);
-        maxVelocity = msg.maxVelocity;
+        maxVelocity = msg.maxVelocity;  
     }
     
     printf("max: %d\n", maxVelocity);
@@ -79,7 +79,7 @@ char read_distance() {
     char buffer[BUFFER_LEN];
     STEREO_MSG msg;
     
-    char status = readMessage(buffer, clientSd_distance, &addr_distance);
+    char status = readMessage(buffer, clientSd_distance, addr_distance);
     if (status != OK) {
         printf("Error getting current distance");
         return OK;

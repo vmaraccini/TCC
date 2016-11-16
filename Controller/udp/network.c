@@ -36,15 +36,15 @@ struct sockaddr_in openConnection(char *hostname, int serverPort, int socketDesc
     return serveraddr;
 }
 
-int sendMessage(char *message, int socketDescriptor, struct sockaddr_in *serveraddr) {
+int sendMessage(char *message, int socketDescriptor, struct sockaddr_in serveraddr) {
     int serverlen = sizeof(serveraddr);
-    ssize_t len = sendto(socketDescriptor, message, strlen(message), 0, (struct sockaddr *) serveraddr, serverlen);
+    ssize_t len = sendto(socketDescriptor, message, strlen(message) + 1, 0, (struct sockaddr *) &serveraddr, serverlen);
     return len >= 0 ? OK : ERROR_SEND;
 }
 
-int readMessage(char *buffer, int socketDescriptor, struct sockaddr_in *serveraddr) {
+int readMessage(char *buffer, int socketDescriptor, struct sockaddr_in serveraddr) {
     socklen_t serverlen = sizeof(serveraddr);
-    ssize_t len = recvfrom(socketDescriptor, buffer, strlen(buffer), 0, (struct sockaddr *) serveraddr, &serverlen);
+    ssize_t len = recvfrom(socketDescriptor, buffer, strlen(buffer), 0, (struct sockaddr *) &serveraddr, &serverlen);
     return len >= 0 ? OK : ERROR_RECEIVE;
 }
 
