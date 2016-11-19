@@ -5,10 +5,8 @@ import cv2.ximgproc as imgproc
 cap1 = cv2.VideoCapture(0)
 cap2 = cv2.VideoCapture(1)
 
-
 def nothing(x):
     pass
-
 
 cv2.namedWindow('controls')
 
@@ -46,31 +44,37 @@ def getImages():
 
     return (undist1, undist2)
 
+def findDistanceFromDisparity(disps):
+    return 42
 
-while True:
-    imgL, imgR = getImages()
-    vis = np.concatenate((imgL, imgR), axis=1)
-    cv2.imshow('concat', vis)
+def calculate():
+    global distance
+    while True:
+        imgL, imgR = getImages()
+        vis = np.concatenate((imgL, imgR), axis=1)
+        cv2.imshow('concat', vis)
 
-    numDisp = 16 * cv2.getTrackbarPos('numDisparities', 'controls')
-    blockSize = 5 + 2 * cv2.getTrackbarPos('blockSize', 'controls')
+        numDisp = 16 * cv2.getTrackbarPos('numDisparities', 'controls')
+        blockSize = 5 + 2 * cv2.getTrackbarPos('blockSize', 'controls')
 
-    stereo = cv2.StereoBM_create(numDisparities=numDisp, blockSize=blockSize)
-    right_matcher = imgproc.createRightMatcher(stereo)
+        stereo = cv2.StereoBM_create(numDisparities=numDisp, blockSize=blockSize)
+        right_matcher = imgproc.createRightMatcher(stereo)
 
-    lDisp = stereo.compute(imgL, imgR)
-    rDisp = right_matcher.compute(imgR, imgL)
+        lDisp = stereo.compute(imgL, imgR)
+        rDisp = right_matcher.compute(imgR, imgL)
 
-    filter = imgproc.createDisparityWLSFilter(stereo)
-    filter.setLambda(8000)
-    filter.setSigmaColor(1)
+        filter = imgproc.createDisparityWLSFilter(stereo)
+        filter.setLambda(8000)
+        filter.setSigmaColor(1)
 
-    filtered_disp = imgL
-    filter.filter(lDisp, imgL, filtered_disp, rDisp)
+        filtered_disp = imgL
+        filter.filter(lDisp, imgL, filtered_disp, rDisp)
 
-    disps = np.concatenate((lDisp, rDisp), axis=1)
-    cv2.imshow('disparities', cv2.convertScaleAbs(disps))
-    cv2.imshow('filter', cv2.convertScaleAbs(filtered_disp))
+        disps = np.concatenate((lDisp, rDisp), axis=1)
+        cv2.imshow('disparities', cv2.convertScaleAbs(disps))
+        cv2.imshow('filter', cv2.convertScaleAbs(filtered_disp))
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+        distance = findDistanceFromDisparity(disps)

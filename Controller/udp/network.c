@@ -15,46 +15,40 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-int openConnection(char *serverIP, int serverPort, int socketDescriptor) {
-    int status;
+struct sockaddr_in openConnection(char *hostname, int serverPort, int socketDescriptor) {
+    struct sockaddr_in serveraddr;
+    struct hostent *server;
     
-    //Creates the server descriptor
-    struct sockaddr_in serverAddress;
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(serverPort);
+    /* gethostbyname: get the server's DNS entry */
+    server = gethostbyname(hostname);
+    if (server == NULL) {
+        fprintf(stderr,"ERROR, no such host as %s\n", hostname);
+        exit(0);
+    }
     
-    //Converts IP address from string
-    status = inet_pton(AF_INET, serverIP, &serverAddress.sin_addr);
-    if (status <= 0)
-        return ERROR_CONVERTIPV4ADDRESS;
+    /* build the server's Internet address */
+    bzero((char *) &serveraddr, sizeof(serveraddr));
+    serveraddr.sin_family = AF_INET;
+    bcopy((char *)server->h_addr,
+          (char *)&serveraddr.sin_addr.s_addr, server->h_length);
+    serveraddr.sin_port = htons(serverPort);
     
-    //Creates the connection
-    status = connect(socketDescriptor,
-                     (struct sockaddr*)&serverAddress,
-                     sizeof(serverAddress));
-    if (status < 0)
-        return ERROR_CONNECT;
-    
-    return OK;
+    return serveraddr;
 }
 
-int sendMessage(char *message, int socketDescriptor) {
-    ssize_t len = send(socketDescriptor,
-                       message,
-                       strlen(message) + 1, //Add 1 to include \0
-                       0);
-    
+int sendMessage(char *message, int socketDescriptor, struct sockaddr_in serveraddr) {
+    int serverlen = sizeof(serveraddr);
+    ssize_t len = sendto(socketDescriptor, message, strlen(message) + 1, 0, (struct sockaddr *) &serveraddr, serverlen);
     return len >= 0 ? OK : ERROR_SEND;
 }
 
-int getMessage(char *buffer, int socketDescriptor) {
-    ssize_t len = recv(socketDescriptor, buffer, BUFFER_LEN, 0);
+int readMessage(char *buffer, int socketDescriptor, struct sockaddr_in serveraddr) {
+    socklen_t serverlen = sizeof(serveraddr);
+    ssize_t len = recvfrom(socketDescriptor, buffer, sizeof(buffer), 0, (struct sockaddr *) &serveraddr, &serverlen);
     return len >= 0 ? OK : ERROR_RECEIVE;
 }
 
-int initializeClient(int *client_sd, int port) {
-    int status;
-    
+struct sockaddr_in initializeClient(int *client_sd, int port) {
     //Opens socket connection using UDP
     *client_sd = socket(PF_INET, SOCK_DGRAM, 0);
     
@@ -64,11 +58,7 @@ int initializeClient(int *client_sd, int port) {
         exit(ERROR_OPENSOCKET);
     }
     
-    status = openConnection("127.0.0.1", port, *client_sd);
-    if (status != OK)
-        exit(status);
-    
-    return OK;
+    return openConnection("localhost", port, *client_sd);
 }
 
 char closeClient(int client_sd) {

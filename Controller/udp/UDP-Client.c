@@ -18,12 +18,16 @@
 int clientSd_maxVelocity; 
 int clientSd_distance;
 
+//Server addresses
+struct sockaddr_in addr_maxVelocity;
+struct sockaddr_in addr_distance;
+
 //------------------ Functions ------------------
 
 int main_udpMaxVelocity() {
     printf("ProDAV - Cliente UDP - Max speed\n\n");
     
-    initializeClient(&clientSd_maxVelocity, 3031);
+    addr_maxVelocity = initializeClient(&clientSd_maxVelocity, 20001);
     
     char status = OK;
     while (status == OK) {
@@ -38,7 +42,7 @@ int main_udpMaxVelocity() {
 int main_udpDistance() {
     printf("ProDAV - Cliente UDP - Stereo\n\n");
     
-    initializeClient(&clientSd_distance, 3032);
+    addr_distance = initializeClient(&clientSd_distance, 20002);
     
     char status = OK;
     while (status == OK) {
@@ -56,14 +60,17 @@ char read_maxVelocity() {
     char buffer[BUFFER_LEN];
     VELOCITY_MSG msg;
     
-    char status = getMessage(buffer, clientSd_maxVelocity);
+    sendMessage("hello", clientSd_maxVelocity, addr_maxVelocity);
+    char status = readMessage(buffer, clientSd_maxVelocity, addr_maxVelocity);
     if (status != OK) {
         printf("Error getting maximum velocity");
         return OK;
     } else {
-        memcpy(&msg, buffer, 4);
-        maxVelocity = msg.maxVelocity;
+        memcpy(&msg, buffer, 1);
+        maxVelocity = msg.maxVelocity;  
     }
+    
+    printf("max: %d\n", maxVelocity);
     
     return OK;
 }
@@ -72,14 +79,17 @@ char read_distance() {
     char buffer[BUFFER_LEN];
     STEREO_MSG msg;
     
-    char status = getMessage(buffer, clientSd_distance);
+    sendMessage("hello", clientSd_distance, addr_distance);
+    char status = readMessage(buffer, clientSd_distance, addr_distance);
     if (status != OK) {
         printf("Error getting current distance");
         return OK;
     } else {
-        memcpy(&msg, buffer, 8);
+        memcpy(&msg, buffer, 4);
         leaderDistance = msg.distance;
         leaderVelocity = msg.velocity;
+        
+//        printf("dist: %d, vel: %d\n", leaderDistance, leaderVelocity);
     }
     
     return OK;
