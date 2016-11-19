@@ -1,6 +1,7 @@
 videoFileLeft = 'l.mov';
 videoFileRight = 'r.mov';
 
+load('../calibration/stereoParams.mat')
 readerLeft = vision.VideoFileReader(videoFileLeft, 'VideoOutputDataType', 'uint8');
 readerRight = vision.VideoFileReader(videoFileRight, 'VideoOutputDataType', 'uint8');
 player = vision.DeployableVideoPlayer('Location', [20, 400]);
