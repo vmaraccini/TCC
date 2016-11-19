@@ -23,12 +23,12 @@ char read_maxVelocity();
 char read_distance();
 
 typedef struct VELOCITY_MSG {
-    int maxVelocity:1;
+    int maxVelocity:8;
 } VELOCITY_MSG;
 
 typedef struct STEREO_MSG {
-    int distance:2;
-    int velocity:2;
+    unsigned int distance:16;
+    unsigned int velocity:16;
 } STEREO_MSG;
 
 #endif /* Cliente_UDP_h */

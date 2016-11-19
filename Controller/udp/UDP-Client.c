@@ -27,7 +27,7 @@ struct sockaddr_in addr_distance;
 int main_udpMaxVelocity() {
     printf("ProDAV - Cliente UDP - Max speed\n\n");
     
-    addr_maxVelocity = initializeClient(&clientSd_maxVelocity, 20000);
+    addr_maxVelocity = initializeClient(&clientSd_maxVelocity, 20001);
     
     char status = OK;
     while (status == OK) {
@@ -42,11 +42,11 @@ int main_udpMaxVelocity() {
 int main_udpDistance() {
     printf("ProDAV - Cliente UDP - Stereo\n\n");
     
-    addr_distance = initializeClient(&clientSd_distance, 3032);
+    addr_distance = initializeClient(&clientSd_distance, 20002);
     
     char status = OK;
     while (status == OK) {
-        //status = read_distance();
+        status = read_distance();
     }
     
     closeClient(clientSd_distance);
@@ -66,7 +66,7 @@ char read_maxVelocity() {
         printf("Error getting maximum velocity");
         return OK;
     } else {
-        memcpy(&msg, buffer, 4);
+        memcpy(&msg, buffer, 1);
         maxVelocity = msg.maxVelocity;  
     }
     
@@ -79,14 +79,17 @@ char read_distance() {
     char buffer[BUFFER_LEN];
     STEREO_MSG msg;
     
+    sendMessage("hello", clientSd_distance, addr_distance);
     char status = readMessage(buffer, clientSd_distance, addr_distance);
     if (status != OK) {
         printf("Error getting current distance");
         return OK;
     } else {
-        memcpy(&msg, buffer, 8);
+        memcpy(&msg, buffer, 4);
         leaderDistance = msg.distance;
         leaderVelocity = msg.velocity;
+        
+//        printf("dist: %d, vel: %d\n", leaderDistance, leaderVelocity);
     }
     
     return OK;

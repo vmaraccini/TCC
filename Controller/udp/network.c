@@ -44,7 +44,7 @@ int sendMessage(char *message, int socketDescriptor, struct sockaddr_in serverad
 
 int readMessage(char *buffer, int socketDescriptor, struct sockaddr_in serveraddr) {
     socklen_t serverlen = sizeof(serveraddr);
-    ssize_t len = recvfrom(socketDescriptor, buffer, strlen(buffer), 0, (struct sockaddr *) &serveraddr, &serverlen);
+    ssize_t len = recvfrom(socketDescriptor, buffer, sizeof(buffer), 0, (struct sockaddr *) &serveraddr, &serverlen);
     return len >= 0 ? OK : ERROR_RECEIVE;
 }
 
