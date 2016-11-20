@@ -43,6 +43,6 @@ double pickVelocity(double constantDistanceVelocity, double desiredVelocity) {
     } else if (currentMode == OPERATION_MODE_CC && difference < OPERATION_MODE_HYSTERESIS_RIGHT) {
         currentMode = OPERATION_MODE_ACC;
     }
-    printf("Current mode: %d", currentMode);
+
     return currentMode == OPERATION_MODE_ACC ? constantDistanceVelocity : desiredVelocity;
 }
