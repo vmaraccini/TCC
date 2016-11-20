@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #define BUFFER_LEN 8
+#define BUFSIZE 8
 
 typedef enum {
     OK = 0,
@@ -17,18 +18,19 @@ typedef enum {
     ERRO_ALTERACAO,
     ERRO_CONSULTA,
     ERRO_DESCONHECIDO,
-    
+
     ERRO_METODO_DESCONHECIDO,
     ERRO_METODO_INVALIDO,
     ERRO_ARQUIVO,
     ERRO_CAMINHO
-    
+
 } STATUS;
 
-extern volatile char pedalByte;
-extern volatile char maxVelocity;
-extern volatile int leaderDistance;
-extern volatile int leaderVelocity;
-extern volatile int currentVelocity;
+extern char pedalByte;
+//extern char accEnabled;
+extern int maxVelocity;
+extern int leaderDistance;
+extern int leaderVelocity;
+extern int currentVelocity;
 
 #endif /* Comum_h */
