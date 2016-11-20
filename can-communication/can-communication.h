@@ -12,8 +12,14 @@ typedef struct CAN_MESSAGE {
 } CAN_MESSAGE;
 
 typedef struct CAN_590 {
-   unsigned long int ref_torque; // ref torque: 0 - 100 %. fator: 0.01
-   unsigned long int velocidade; // fator: 0.1
+   unsigned int refTorque1;
+   unsigned int refTroque2;
+   
+   unsigned int vel1;
+   unsigned int vel2;
+   
+   //unsigned long int ref_torque:16; // ref torque: 0 - 100 %. fator: 0.01
+   //unsigned long int velocidade:16; // fator: 0.1
    int marcha; // 0: neutro - 5
    int reserved:2;
    int pedal_freio:1;

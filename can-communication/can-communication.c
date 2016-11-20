@@ -31,8 +31,6 @@ void main() {
    sprintf(lcdBuffer, "PRODAV");
    WriteLCDLine0(&lcdBuffer);
    
-   delay_ms(500);
-   
    //Filter messages to read: 0x590
    CanFilter(0x590);
    
@@ -40,30 +38,37 @@ void main() {
    CanStructInit(&reference);
    CanStructInit(&enableControl);
    
-   enableACC();
-   
    for (;;) {
-      readCan();
+      enableACC();
+      for (int i = 0; i < 3; i++) { readCan(); }
       writeSerial();
       readSerial();
       writeCan();
-   }
+   }  
 }
 
 void readCan() {
-   message.velocidade += 1; //Stubbed
-   //ReadMessage(0x590, &message, &id)
+   ReadMessage(&message);
+   
+   //Debug: Display velocity
+   ClearLCDBuffer();
+   unsigned long int v = 256*message.vel2 + message.vel1;
+   float f = v / 100;
+   sprintf(lcdBuffer, "%f", f);
+   WriteLCDLine0(&lcdBuffer);
 }
 
 void writeSerial() {
-   int msg0 = message.velocidade & 0xFF;
-   int msg1 = (message.velocidade >> 8) & 0xFF;
-   UART_Write(msg0);
-   UART_Write(msg1);
+   UART_Write(message.vel1);
+   UART_Write(message.vel2);
 }
 
 void readSerial() {
    pedal = UART_Read();
+
+   ClearLCDBuffer();
+   sprintf(lcdBuffer, "PED: %d", pedal);
+   WriteLCDLine1(&lcdBuffer);
 }
 
 void writeCan() {

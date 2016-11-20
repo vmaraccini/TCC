@@ -22,7 +22,7 @@ void UART_Write_Text(char *text) {
 }
 
 char UART_Read() {
-  //while(!RCIF); //Waits for Reception to complete
+  while(!RCIF); //Waits for Reception to complete
   CREN = 0;
   CREN = 1;
   return RCREG; //Returns the 8 bit data
