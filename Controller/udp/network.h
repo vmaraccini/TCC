@@ -19,16 +19,17 @@
 
 #define EXIT 6
 
+#include <netinet/in.h>
 #include <stdio.h>
 
-int initializeClient(int *client_sd, int port);
+struct sockaddr_in initializeClient(int *client_sd, int port);
 char closeClient(int client_sd);
 char menu(int client_sd);
 
-int openConnection(char *serverIP, int serverPort, int socketDescriptor);
+struct sockaddr_in openConnection(char *serverIP, int serverPort, int socketDescriptor);
 
-int sendMessage(char *message, int socketDescriptor);
-int getMessage(char *message, int socketDescriptor);
+int sendMessage(char *message, int socketDescriptor, struct sockaddr_in serveraddr);
+int readMessage(char *message, int socketDescriptor, struct sockaddr_in serveraddr);
 
 
 #endif /* network_h */
