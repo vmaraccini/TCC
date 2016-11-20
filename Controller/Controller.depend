@@ -1,0 +1,111 @@
+# depslib dependency file v1.0
+1479582520 source:/home/vmaraccini/Controller/main.c
+	"Comum.h"
+	"control/sampler.h"
+	"udp/UDP-Client.h"
+	"json/json.h"
+	"rs232/rs232.h"
+	"semaphore.h"
+	<stdio.h>
+
+1479582511 /home/vmaraccini/Controller/Comum.h
+	<pthread.h>
+	<stdio.h>
+
+1479576049 /home/vmaraccini/Controller/control/sampler.h
+	<stdio.h>
+	"../Comum.h"
+
+1479578209 /home/vmaraccini/Controller/udp/UDP-Client.h
+	<stdio.h>
+	"../Comum.h"
+
+1479580875 /home/vmaraccini/Controller/json/json.h
+	<stdio.h>
+	"../Comum.h"
+
+1479576049 /home/vmaraccini/Controller/rs232/rs232.h
+	<stdio.h>
+	"../Comum.h"
+
+1479589077 source:/home/vmaraccini/Controller/udp/UDP-Client.c
+	"../Comum.h"
+	"UDP-Client.h"
+	"network.h"
+	<stdio.h>
+	<string.h>
+
+1479576168 /home/vmaraccini/Controller/udp/network.h
+	<netinet/in.h>
+	<stdio.h>
+
+1479564683 source:/home/vmaraccini/Controller/udp/network.c
+	"../Comum.h"
+	"network.h"
+	<netdb.h>
+	<arpa/inet.h>
+	<stdlib.h>
+	<string.h>
+	<sys/socket.h>
+	<unistd.h>
+
+1479583824 source:/home/vmaraccini/Controller/rs232/rs232.c
+	"../json/json.h"
+	<unistd.h>
+	<string.h>
+	<stdlib.h>
+	<netdb.h>
+	<sys/time.h>
+	<stdio.h>
+	"termios.h"
+	"fcntl.h"
+	"semaphore.h"
+
+1479589560 source:/home/vmaraccini/Controller/control/sampler.c
+	<stdio.h>
+	<unistd.h>
+	"sampler.h"
+	"controller.h"
+	"controlLoop.h"
+	"semaphore.h"
+	<time.h>
+
+1479576049 /home/vmaraccini/Controller/control/controller.h
+
+1479576049 /home/vmaraccini/Controller/control/controlLoop.h
+	<stdio.h>
+
+1479575891 source:/home/vmaraccini/Controller/control/controlador.c
+	<stdio.h>
+	<unistd.h>
+	"controlador.h"
+	"controller.h"
+	"controlLoop.h"
+	"semaphore.h"
+
+1479576057 /home/vmaraccini/Controller/control/controlador.h
+	<stdio.h>
+	"../Comum.h"
+
+1479576049 source:/home/vmaraccini/Controller/control/controller.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"controller.h"
+
+1479576049 source:/home/vmaraccini/Controller/control/vehicle.c
+	"vehicle.h"
+
+1479576049 /home/vmaraccini/Controller/control/vehicle.h
+	<stdio.h>
+
+1479576168 source:/home/vmaraccini/Controller/control/controlLoop.c
+	"controlLoop.h"
+
+1479576168 source:/home/vmaraccini/Controller/json/json.c
+	"json.h"
+	<unistd.h>
+	<string.h>
+	<stdlib.h>
+	<netdb.h>
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Controller" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Controller" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Controller" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Comum.h" />
+		<Unit filename="control/controlLoop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="control/controlLoop.h" />
+		<Unit filename="control/controlador.h" />
+		<Unit filename="control/controller.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="control/controller.h" />
+		<Unit filename="control/sampler.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="control/sampler.h" />
+		<Unit filename="control/vehicle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="control/vehicle.h" />
+		<Unit filename="json/json.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="json/json.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rs232/rs232.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rs232/rs232.h" />
+		<Unit filename="udp/UDP-Client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="udp/UDP-Client.h" />
+		<Unit filename="udp/network.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="udp/network.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
