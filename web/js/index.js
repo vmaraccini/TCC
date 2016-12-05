@@ -76,7 +76,26 @@ function load() {
       load();
     }, 1500);
 
+    fitToScreen()
+
   });
+
+ $(window).resize(fitToScreen);
+
+ function fitToScreen() {
+      var win = $(window);
+      
+      // scale = 1 means the diameter will be 400px
+      // a panel should fit to the screen width with some margin
+      // both panels should fit to the screen height with some margin
+      var scale = Math.min(
+        win.width() / 400 / 1.2,
+        win.height() / 800 / 1.25);
+
+      TweenMax.to($("body"), 0.4, {
+        scale: scale
+      })
+}
 
   function makeRadial(options) {
     if (options && options.el) {
