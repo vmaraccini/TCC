@@ -3,7 +3,7 @@ var page = 0;
 var wasSuccessful = true;
 
 function load() {
-  var href = "/data.json"
+  var href = "/data.json?_=" + (new Date()).getTime();
   $.ajax(href, {
     success: function(data) {
       $('#max-speed').html(Math.floor(data.max_speed) + "km/h");
