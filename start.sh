@@ -1,7 +1,7 @@
 #!/bin/bash
 
-./Controller/Controller &
-sh ./web/start.sh &
-
-python opencv-camera/distance.py &
-python opencv-traffic-sign/traffic-sign.py &
+#./Controller/Controller &
+cd web
+sh ./start.sh &
+cd .. 
+python main.py

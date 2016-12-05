@@ -7,7 +7,7 @@ import numpy as np
 class traffic_sign:
 
     frame = None
-    lastKnownVelocity = None
+    lastKnownVelocity = 0
 
     condition = None
     displayImage = np.zeros((300, 300))

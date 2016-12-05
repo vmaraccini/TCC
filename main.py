@@ -6,7 +6,7 @@ import time
 from stereovision import stereo_cameras, calibration
 
 cal = calibration.StereoCalibration(input_folder="./opencv_distance/calibration")
-pair = stereo_cameras.CalibratedPair([1, 0], cal, None)
+pair = stereo_cameras.CalibratedPair([0, 1], cal, None)
 
 condition = threading.Condition()
 
@@ -36,4 +36,11 @@ while 1:
     condition.notifyAll()
     condition.release()
 
-    time.sleep(0.1)
+    time.sleep(0.4)
+
+    json = "{{\"current_speed\": {0},\"leader_distance\": {1},\"leader_speed\": {2},\"max_speed\": {3},\"pedal\": {4}}}" \
+        .format(40, distance.currentDistance * 100, distance.currentVelocity, trafficSign.lastKnownVelocity, 0)
+
+    f = open('./web/data.json', 'w')
+    f.write(json)
+    f.close()

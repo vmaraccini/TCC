@@ -3,7 +3,8 @@ import numpy as np
 
 
 class distance:
-    currDistance = 0
+    currentDistance = 0
+    currentVelocity = 0
 
     imgPair = None
     disp_to_depth_mat = None
@@ -97,7 +98,10 @@ class distance:
                                 (x + 10, y + 20),
                                 font, 0.5, (200,255,155), 2, cv2.LINE_AA)
 
-            if len(costsList) == 0: continue
+            if len(costsList) == 0:
+                cv2.imshow('ref', cv2.pyrUp(printMe));
+                cv2.waitKey(2)
+                continue
 
             #Print best match in red
             _, idx = min((val, idx) for (idx, val) in enumerate(costsList))
