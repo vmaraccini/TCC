@@ -7,6 +7,7 @@ function load() {
   var href = "/data.json?_=" + (new Date()).getTime();
   $.ajax(href, {
     success: function(data) {
+      errors = 0;
       $('#current-speed').html(Math.floor(data.max_speed));
       $('#max-speed').html(Math.floor(data.current_speed / 10) + "&thinsp;km/h");
       $('#leader-speed').html(Math.floor(data.leader_distance / 10) / 10);
@@ -20,7 +21,7 @@ function load() {
     },
     error: function() {
       errors++;
-      if (errors > 3) {
+      if (errors >= 3) {
         $('#max-speed').html("?");
         $('#current-speed').html("?");
         $('#leader-distance').html("?");
