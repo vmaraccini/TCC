@@ -1,6 +1,7 @@
 var pages = ["#home", "#car", "#cardva"]
 var page = 0;
 var wasSuccessful = true;
+var errors = 0;
 
 function load() {
   var href = "/data.json?_=" + (new Date()).getTime();
@@ -18,16 +19,19 @@ function load() {
       wasSuccessful = true;
     },
     error: function() {
-      $('#max-speed').html("?");
-      $('#current-speed').html("?");
-      $('#leader-distance').html("?");
-      $('#leader-speed').html("?");
-      $('#connection-status').html("FALHA NA CONEXÃO");
-      $('#connection-summary').html("SERVIDOR INDISPONÍVEL");
-      if (wasSuccessful) {
-        goToPage(1);
+      errors++;
+      if (errors > 3) {
+        $('#max-speed').html("?");
+        $('#current-speed').html("?");
+        $('#leader-distance').html("?");
+        $('#leader-speed').html("?");
+        $('#connection-status').html("FALHA NA CONEXÃO");
+        $('#connection-summary').html("SERVIDOR INDISPONÍVEL");
+        if (wasSuccessful) {
+          goToPage(1);
+        }
+        wasSuccessful = false;
       }
-      wasSuccessful = false;
     }
   });
 }
