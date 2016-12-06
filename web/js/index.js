@@ -6,10 +6,10 @@ function load() {
   var href = "/data.json?_=" + (new Date()).getTime();
   $.ajax(href, {
     success: function(data) {
-      $('#max-speed').html(Math.floor(data.max_speed) + "km/h");
-      $('#current-speed').html(Math.floor(data.current_speed / 10));
-      $('#leader-distance').html(Math.floor(data.leader_distance / 100) + "m");
-      $('#leader-speed').html(Math.floor(data.leader_speed / 100 * 3.6));
+      $('#current-speed').html(Math.floor(data.max_speed));
+      $('#max-speed').html(Math.floor(data.current_speed / 10) + "&thinsp;km/h");
+      $('#leader-speed').html(Math.floor(data.leader_distance / 10) / 10);
+      $('#leader-distance').html(Math.floor(data.leader_speed / 100 * 3.6) + "&thinsp;km/h");
       $('#connection-status').html("CONEXÃO ESTABELECIDA");
       $('#connection-summary').html("OK");
       if (!wasSuccessful) {
